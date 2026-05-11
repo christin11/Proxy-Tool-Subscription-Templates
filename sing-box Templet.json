@@ -23,7 +23,9 @@
       },
       {
         "tag": "dns_fakeip",
-        "address": "fakeip"
+        "address": "fakeip",
+        "address_resolver": "dns_local",
+        "strategy": "ipv4_only"
       },
       {
         "tag": "dns_block",
