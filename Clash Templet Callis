@@ -1,0 +1,1446 @@
+# ============================================================
+# Clash Meta 配置模板
+# 策略组来源：ACL4SSR_Online_Full_Netflix_Pro (Carrollis-Pro)
+# 配置框架来源：Christin11 Clash Templet
+# ============================================================
+
+proxy-providers:
+  AirPort:
+    type: http
+    interval: 1800
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+    proxy: "🟢 直连"
+    url: "{{url}}"
+
+global-ua: clash
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7894
+ipv6: false
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: ui
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 30
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "+.v2ex.com"
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "+.push.apple.com"
+    - "+.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  mtu: 9000
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+    - 'doh.pub'
+    - 'dns.alidns.com'
+    - 'dns.google'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.msftncsi.com'
+    - '+.msftconnecttest.com'
+    - '+.push.apple.com'
+
+  nameserver:
+    - 'https://119.29.29.29/dns-query'
+    - 'https://223.5.5.5/dns-query'
+    - '223.5.5.5'
+
+  nameserver-policy:
+    "geosite:cn": "119.29.29.29"
+    "+.google.com": "https://dns.cloudflare.com/dns-query"
+    "+.googleapis.com": "https://dns.cloudflare.com/dns-query"
+    "+.youtube.com": "https://dns.cloudflare.com/dns-query"
+    "+.facebook.com": "https://dns.cloudflare.com/dns-query"
+    "+.twitter.com": "https://dns.cloudflare.com/dns-query"
+    "+.github.com": "https://dns.cloudflare.com/dns-query"
+
+  fallback-filter:
+    geoip: true
+    geoip-code: "CN"
+    ipcidr:
+      - 240.0.0.0/4
+
+proxies:
+  - name: "🟢 直连"
+    type: direct
+    udp: true
+
+# ============================================================
+# 策略组
+# ============================================================
+proxy-groups:
+
+  # ============ 顶层选择组 ============
+  - name: "🚀 节点选择"
+    type: select
+    proxies:
+      - "♻️ 自动选择"
+      - "🔯 故障转移"
+      - "🔮 负载均衡"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🇬🇧 英国节点"
+      - "🚀 手动切换"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+
+  - name: "🚀 手动切换"
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+
+  - name: "♻️ 自动选择"
+    type: url-test
+    include-all: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: "🔯 故障转移"
+    type: fallback
+    include-all: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
+
+  - name: "🔮 负载均衡"
+    type: load-balance
+    include-all: true
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Round_Robin.png
+
+  # ============ 特殊固定 IP 组 ============
+  - name: "🔮 私人固定"
+    type: select
+    include-all: true
+    filter: "(私人|Teddy)"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png
+
+  - name: "🏖️ 私人智选"
+    type: url-test
+    include-all: true
+    filter: "(私人|Teddy)"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: "🛩️ IP海外固定"
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+
+  - name: "🛩️ IP国内固定"
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+
+  - name: "🛩️ 其他备用"
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+
+  - name: "🛩️ 美国备用"
+    type: select
+    include-all: true
+    filter: "(?i)美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\\bUS\\b|United States"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
+  - name: "🛩️ 日本备用"
+    type: select
+    include-all: true
+    filter: "(?i)日本|川日|东京|大阪|泉日|埼玉|沪日|深日|\\bJP\\b|Japan"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+
+  - name: "🛩️ 英国备用"
+    type: select
+    include-all: true
+    filter: "(?i)英|英国|不列颠|大不列颠|日不落|\\bUK\\b|\\bEN\\b|Britain"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+
+  - name: "🛩️ 香港备用"
+    type: select
+    include-all: true
+    filter: "(?i)港|\\bHK\\b|Hong Kong"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+  - name: "🛩️ 台湾备用"
+    type: select
+    include-all: true
+    filter: "(?i)台|新北|彰化|\\bTW\\b|Taiwan"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+
+  - name: "🛩️ 新加坡备用"
+    type: select
+    include-all: true
+    filter: "(?i)新加坡|坡|狮城|\\bSG\\b|Singapore"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+
+  # ============ 业务分流组 ============
+  - name: "📲 国内IP锁定"
+    type: select
+    proxies:
+      - "🛩️ IP海外固定"
+      - "🛩️ IP国内固定"
+      - "🚀 节点选择"
+      - "🔮 私人固定"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png
+
+  - name: "📲 海外IP锁定"
+    type: select
+    proxies:
+      - "🛩️ IP海外固定"
+      - "🛩️ IP国内固定"
+      - "🚀 节点选择"
+      - "🔮 私人固定"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+
+  - name: "📢 谷歌服务"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+
+  - name: "📺 YouTube"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+
+  - name: "📲 电报消息"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+
+  - name: "🔮 流媒体登录"
+    type: select
+    proxies:
+      - "🔮 私人固定"
+      - "🏖️ 私人智选"
+      - "🚀 节点选择"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🚀 手动切换"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png
+
+  - name: "🐹 Disney+"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🛩️ IP国内固定"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png
+
+  - name: "🎦 HBO"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HBO.png
+
+  - name: "🎵 Spotify"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+
+  - name: "🎶 AbemaTV"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇯🇵 日本节点"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 日本备用"
+      - "🛩️ 美国备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AbemaTV.png
+
+  - name: "📺 DAZN"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DAZN.png
+
+  - name: "📺 BBC"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇬🇧 英国节点"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 英国备用"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/BBC_iPlayer.png
+
+  - name: "📲 亚马逊"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🛩️ IP国内固定"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video_1.png
+
+  - name: "📺 Tiktok"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+
+  - name: "🎥 奈飞视频"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🛩️ IP国内固定"
+      - "🇸🇬 新加坡节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png
+
+  - name: "📺 巴哈姆特"
+    type: select
+    proxies:
+      - "🇹🇼 台湾节点"
+      - "🚀 节点选择"
+      - "🚀 手动切换"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bahamut.png
+
+  - name: "📺 哔哩哔哩"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🇹🇼 台湾节点"
+      - "🇭🇰 香港节点"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png
+
+  - name: "🌍 国外媒体"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🛩️ 其他备用"
+      - "🚀 手动切换"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DomesticMedia.png
+
+  - name: "🌏 国内媒体"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🚀 手动切换"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/StreamingCN.png
+
+  - name: "Ⓜ️ 微软服务"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+
+  - name: "🍎 苹果服务"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png
+
+  - name: "🔮 Github"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png
+
+  - name: "🔮 AI服务"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png
+
+  - name: "🎶 网易音乐"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🚀 节点选择"
+      - "♻️ 自动选择"
+    include-all: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netease_Music.png
+
+  - name: "🎮 国外下载"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+
+  - name: "🎮 国内下载"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+      - "🛩️ 其他备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+
+  - name: "🎮 PC平台"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🛩️ 其他备用"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+
+  - name: "🎮 PS平台"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🛩️ 其他备用"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PlayStation.png
+
+  - name: "🎮 Xbox平台"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🛩️ 其他备用"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Xbox.png
+
+  - name: "🎮 任天堂平台"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🛩️ 其他备用"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Nintendo.png
+
+  - name: "🎮 海外手游"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🛩️ 其他备用"
+      - "🚀 节点选择"
+      - "🇺🇲 美国节点"
+      - "🇭🇰 香港节点"
+      - "🇹🇼 台湾节点"
+      - "🇸🇬 新加坡节点"
+      - "🇯🇵 日本节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - "🛩️ 美国备用"
+      - "🛩️ 日本备用"
+      - "🛩️ 新加坡备用"
+      - "🛩️ 香港备用"
+      - "🛩️ 台湾备用"
+      - "🛩️ 英国备用"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+
+  # ============ 拦截与直连组 ============
+  - name: "🛑 广告拦截"
+    type: select
+    proxies:
+      - REJECT
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
+
+  - name: "🍃 应用净化"
+    type: select
+    proxies:
+      - REJECT
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png
+
+  - name: "🎯 全球直连"
+    type: select
+    proxies:
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png
+
+  - name: "🐟 漏网之鱼"
+    type: select
+    proxies:
+      - "🟢 直连"
+      - "🚀 节点选择"
+      - "🚀 手动切换"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+
+  # ============ 地区节点分组 (url-test 自动择优) ============
+  - name: "🇭🇰 香港节点"
+    type: url-test
+    include-all: true
+    filter: "(?i)🇭🇰|香港|港|\\bHK\\b|Hong"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+  - name: "🇹🇼 台湾节点"
+    type: url-test
+    include-all: true
+    filter: "(?i)🇹🇼|台湾|台灣|台|\\bTW\\b|Taiwan"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+
+  - name: "🇸🇬 新加坡节点"
+    type: url-test
+    include-all: true
+    filter: "(?i)🇸🇬|新加坡|坡|狮城|\\bSG\\b|Singapore"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+
+  - name: "🇯🇵 日本节点"
+    type: url-test
+    include-all: true
+    filter: "(?i)🇯🇵|日本|东京|东京|\\bJP\\b|Japan"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+
+  - name: "🇺🇲 美国节点"
+    type: url-test
+    include-all: true
+    filter: "(?i)🇺🇸|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\\bUS\\b|United States"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 150
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+
+  - name: "🇰🇷 韩国节点"
+    type: url-test
+    include-all: true
+    filter: "(?i)🇰🇷|韩|韓|首尔|\\bKR\\b|Korea"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+
+  - name: "🇬🇧 英国节点"
+    type: url-test
+    include-all: true
+    filter: "(?i)🇬🇧|英|英国|不列颠|大不列颠|\\bUK\\b|\\bEN\\b|Britain"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+
+# ============================================================
+# 规则集锚点
+# ============================================================
+rule-anchor:
+  class: &class {type: http, interval: 259200, behavior: classical, format: text}
+
+# ============================================================
+# 规则集定义（完整保留朋友 INI 中所有来源）
+# ============================================================
+rule-providers:
+  # === 拦截类 ===
+  BanAD:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
+
+  BanProgramAD:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
+
+  AWAvenueAds:
+    <<: *class
+    url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml"
+
+  # === 直连白名单 ===
+  LocalAreaNetwork:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"
+
+  UnBan:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"
+
+  AntiAdWhiteTeddy:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/dead-horse/refs/heads/master/anti-ad-white-for-clash(Teddy).yaml"
+
+  AntiAdWhite:
+    <<: *class
+    url: "https://raw.githubusercontent.com/privacy-protection-tools/dead-horse/refs/heads/master/anti-ad-white-for-clash.yaml"
+
+  GoogleCNProxyIP:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCNProxyIP.list"
+
+  GoogleCN:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleCN.list"
+
+  CallisDomestic:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-Domestic"
+
+  IPTVMainland:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/IPTVMainland/IPTVMainland.list"
+
+  PrivateTracker:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PrivateTracker/PrivateTracker.list"
+
+  TeamViewer:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/TeamViewer.list"
+
+  ChinaDomain:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
+
+  ChinaCompanyIp:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
+
+  Download:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.list"
+
+  # === 国内IP锁定 ===
+  S115Login:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/115login"
+
+  # === 流媒体登录 ===
+  GlobalMediaLogin:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-GlobalMediaLogin"
+
+  # === YouTube ===
+  YouTube:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list"
+
+  YouTubeMusic:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTubeMusic/YouTubeMusic.list"
+
+  # === 谷歌服务 ===
+  GoogleFCM:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GoogleFCM/GoogleFCM.list"
+
+  GooglePlayStore:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-GooglePlayStore"
+
+  Google:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Google/Google.list"
+
+  GoogleACL:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Google.list"
+
+  GoogleCNList:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/GoogleCN.list"
+
+  # === 国外媒体 ===
+  IPTVGlobalSpecific:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-IPTV(Global-Specific)"
+
+  LinkedIn:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/LinkedIn/LinkedIn.list"
+
+  IPTVGlobalGeneral:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-IPTV(Global-General)"
+
+  MediaCDNGlobal:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-MediaCDN(Global)"
+
+  ProxyMedia:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list"
+
+  # === BBC ===
+  BBC:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/BBC/BBC.list"
+
+  # === 微软服务 ===
+  MicrosoftEdge:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/MicrosoftEdge/MicrosoftEdge.list"
+
+  Microsoft:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Microsoft/Microsoft.list"
+
+  OneDrive:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive.list"
+
+  # === 苹果服务 ===
+  AppStore:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppStore/AppStore.list"
+
+  Apple:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Apple/Apple.list"
+
+  AppleDev:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleDev/AppleDev.list"
+
+  AppleID:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleID/AppleID.list"
+
+  AppleTV:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleTV/AppleTV.list"
+
+  AppleMedia:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleMedia/AppleMedia.list"
+
+  AppleMusic:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleMusic/AppleMusic.list"
+
+  AppleAdditional:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/Apple-additional-Callis.list"
+
+  # === GitHub ===
+  GitHub:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/GitHub/GitHub.list"
+
+  # === Telegram ===
+  Telegram:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list"
+
+  # === Disney+ ===
+  DisneyPlusAdditional:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/Disney%2B(Additional-DIY).list"
+
+  DisneyPlus:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/DisneyPlus.list"
+
+  # === HBO ===
+  HBOAdditional:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/HBO(Additional)"
+
+  HBO:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/HBO.list"
+
+  # === Spotify ===
+  Spotify:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Spotify.list"
+
+  # === DAZN ===
+  DAZN:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/DAZN.list"
+
+  # === 亚马逊 ===
+  Amazon:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Amazon.list"
+
+  AmazonIp:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AmazonIp.list"
+
+  AmazonPrimeVideo:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AmazonPrimeVideo/AmazonPrimeVideo.list"
+
+  # === TikTok ===
+  TikTok:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/TikTok/TikTok.list"
+
+  # === 网易音乐 ===
+  NetEaseMusic:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/NetEaseMusic.list"
+
+  # === AI服务 ===
+  OpenAI:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list"
+
+  Discord:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Discord/Discord.list"
+
+  Claude:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list"
+
+  Gemini:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.list"
+
+  # === AbemaTV ===
+  Abema:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Abema/Abema.list"
+
+  AbemaTV:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/AbemaTV/AbemaTV.list"
+
+  # === 游戏下载 ===
+  GameDownloadCallis:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/GameDownload-Callis.list"
+
+  SteamDownloadCallis:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Steam-Download(Callis)"
+
+  GameDownload:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/GameDownload/GameDownload.list"
+
+  GameDownloadCN:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/GameDownloadCN/GameDownloadCN.list"
+
+  # === 游戏平台 ===
+  SteamCN:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list"
+
+  Epic:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list"
+
+  Sony:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sony/Sony.list"
+
+  EA:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list"
+
+  Battle:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Battle/Battle.list"
+
+  Origin:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Origin/Origin.list"
+
+  Steam:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Steam/Steam.list"
+
+  SteamCNBM:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/SteamCN/SteamCN.list"
+
+  Nintendo:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.list"
+
+  Xbox:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Xbox/Xbox.list"
+
+  DIYGame:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/DIY-Game"
+
+  # === 奈飞 ===
+  Netflix:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Netflix/Netflix.list"
+
+  NetflixIP:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/NetflixIP.list"
+
+  NetflixIPAdd:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/NetflixIP-add.list"
+
+  # === 巴哈姆特 ===
+  Bahamut:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list"
+
+  # === 哔哩哔哩 ===
+  BilibiliHMT:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list"
+
+  Bilibili:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list"
+
+  # === 国内媒体 ===
+  ChinaMedia:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list"
+
+  # === GFW/代理 ===
+  ProxyGFWlist:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list"
+
+  GoogleCNACL:
+    <<: *class
+    url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list"
+
+# ============================================================
+# 分流规则（严格按照 INI 原始顺序）
+# ============================================================
+rules:
+  # === 国内IP锁定 ===
+  - RULE-SET,S115Login,📲 国内IP锁定
+
+  # === YouTube ===
+  - RULE-SET,YouTube,📺 YouTube
+  - RULE-SET,YouTubeMusic,📺 YouTube
+
+  # === 谷歌服务 ===
+  - RULE-SET,GoogleFCM,📢 谷歌服务
+  - RULE-SET,GooglePlayStore,📢 谷歌服务
+  - RULE-SET,GoogleACL,📢 谷歌服务
+  - RULE-SET,Google,📢 谷歌服务
+  - RULE-SET,GoogleCNList,📢 谷歌服务
+
+  # === 国外媒体 ===
+  - RULE-SET,Google,🌍 国外媒体
+  - RULE-SET,IPTVGlobalSpecific,🌍 国外媒体
+  - RULE-SET,LinkedIn,🌍 国外媒体
+  - RULE-SET,IPTVGlobalGeneral,🌍 国外媒体
+  - RULE-SET,MediaCDNGlobal,🌍 国外媒体
+
+  # === 全球直连白名单 ===
+  - RULE-SET,LocalAreaNetwork,🎯 全球直连
+  - RULE-SET,UnBan,🎯 全球直连
+  - RULE-SET,AntiAdWhiteTeddy,🎯 全球直连
+  - RULE-SET,AntiAdWhite,🎯 全球直连
+  - RULE-SET,GoogleCNProxyIP,🎯 全球直连
+  - RULE-SET,GoogleCN,🎯 全球直连
+  - RULE-SET,CallisDomestic,🎯 全球直连
+  - RULE-SET,IPTVMainland,🎯 全球直连
+
+  # === 广告拦截 ===
+  - RULE-SET,AWAvenueAds,🛑 广告拦截
+  - RULE-SET,BanAD,🛑 广告拦截
+
+  # === 应用净化 ===
+  - RULE-SET,BanProgramAD,🍃 应用净化
+
+  # === 直连补充 ===
+  - RULE-SET,GoogleCNACL,🎯 全球直连
+  - RULE-SET,PrivateTracker,🎯 全球直连
+  - RULE-SET,TeamViewer,🎯 全球直连
+
+  # === 流媒体登录 ===
+  - RULE-SET,GlobalMediaLogin,🔮 流媒体登录
+
+  # === BBC ===
+  - RULE-SET,BBC,📺 BBC
+
+  # === 微软服务 ===
+  - RULE-SET,MicrosoftEdge,Ⓜ️ 微软服务
+  - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,OneDrive,Ⓜ️ 微软服务
+
+  # === 苹果服务 ===
+  - RULE-SET,AppStore,🍎 苹果服务
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,AppleDev,🍎 苹果服务
+  - RULE-SET,AppleID,🍎 苹果服务
+  - RULE-SET,AppleTV,🍎 苹果服务
+  - RULE-SET,AppleAdditional,🍎 苹果服务
+  - RULE-SET,AppleMedia,🍎 苹果服务
+  - RULE-SET,AppleMusic,🍎 苹果服务
+
+  # === GitHub ===
+  - RULE-SET,GitHub,🔮 Github
+
+  # === Telegram ===
+  - RULE-SET,Telegram,📲 电报消息
+
+  # === Disney+ ===
+  - RULE-SET,DisneyPlusAdditional,🐹 Disney+
+  - RULE-SET,DisneyPlus,🐹 Disney+
+
+  # === HBO ===
+  - RULE-SET,HBOAdditional,🎦 HBO
+  - RULE-SET,HBO,🎦 HBO
+
+  # === Spotify ===
+  - RULE-SET,Spotify,🎵 Spotify
+
+  # === DAZN ===
+  - RULE-SET,DAZN,📺 DAZN
+
+  # === 亚马逊 ===
+  - RULE-SET,Amazon,📲 亚马逊
+  - RULE-SET,AmazonIp,📲 亚马逊
+  - RULE-SET,AmazonPrimeVideo,📲 亚马逊
+
+  # === TikTok ===
+  - RULE-SET,TikTok,📺 Tiktok
+
+  # === 网易音乐 ===
+  - RULE-SET,NetEaseMusic,🎶 网易音乐
+
+  # === AI服务 ===
+  - RULE-SET,OpenAI,🔮 AI服务
+  - RULE-SET,Discord,🔮 AI服务
+  - RULE-SET,Claude,🔮 AI服务
+  - RULE-SET,Gemini,🔮 AI服务
+
+  # === AbemaTV ===
+  - RULE-SET,Abema,🎶 AbemaTV
+  - RULE-SET,AbemaTV,🎶 AbemaTV
+
+  # === 游戏下载 ===
+  - RULE-SET,GameDownloadCallis,🎮 国外下载
+  - RULE-SET,SteamDownloadCallis,🎮 国内下载
+  - RULE-SET,GameDownload,🎮 国外下载
+  - RULE-SET,GameDownloadCN,🎮 国内下载
+
+  # === 游戏平台 ===
+  - RULE-SET,SteamCN,🎮 PC平台
+  - RULE-SET,Epic,🎮 PC平台
+  - RULE-SET,Sony,🎮 PS平台
+  - RULE-SET,EA,🎮 PC平台
+  - RULE-SET,Battle,🎮 PC平台
+  - RULE-SET,Origin,🎮 PC平台
+  - RULE-SET,Steam,🎮 PC平台
+  - RULE-SET,SteamCNBM,🎮 PC平台
+  - RULE-SET,Nintendo,🎮 任天堂平台
+  - RULE-SET,Xbox,🎮 Xbox平台
+  - RULE-SET,DIYGame,🎮 海外手游
+
+  # === 奈飞 ===
+  - RULE-SET,Netflix,🎥 奈飞视频
+  - RULE-SET,NetflixIP,🎥 奈飞视频
+  - RULE-SET,NetflixIPAdd,🎥 奈飞视频
+  - RULE-SET,AmazonIp,🎥 奈飞视频
+
+  # === 巴哈姆特 ===
+  - RULE-SET,Bahamut,📺 巴哈姆特
+
+  # === 哔哩哔哩 ===
+  - RULE-SET,BilibiliHMT,📺 哔哩哔哩
+  - RULE-SET,Bilibili,📺 哔哩哔哩
+
+  # === 国内/国外媒体 ===
+  - RULE-SET,ChinaMedia,🌏 国内媒体
+  - RULE-SET,ProxyMedia,🌍 国外媒体
+
+  # === GFW代理 ===
+  - RULE-SET,ProxyGFWlist,🚀 节点选择
+
+  # === 国内直连 ===
+  - RULE-SET,ChinaDomain,🎯 全球直连
+  - RULE-SET,ChinaCompanyIp,🎯 全球直连
+  - RULE-SET,Download,🎯 全球直连
+  - GEOIP,CN,🎯 全球直连
+
+  # === 兜底 ===
+  - MATCH,🐟 漏网之鱼
