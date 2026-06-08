@@ -158,13 +158,13 @@ proxies:
 # YAML 锚点
 pr: &pr
   type: select
-  proxies: ["✨ 节点选择", "🚀 手动切换", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🟢 直连"]
+  proxies: ["✨ 节点选择", "🚀 手动切换", "♻️ 自动选择", "🔯 故障转移", "🔮 负载均衡", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🟢 直连"]
 
 # 策略组
 proxy-groups:
   - name: "✨ 节点选择"
     type: select
-    proxies: ["🚀 手动切换", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🟢 直连"]
+    proxies: ["🚀 手动切换", "♻️ 自动选择", "🔯 故障转移", "🔮 负载均衡", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🟢 直连"]
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
 
   - name: "🚀 手动切换"
@@ -182,14 +182,35 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
+  - name: "🔯 故障转移"
+    type: fallback
+    include-all: true
+    filter: '^((?!直连).)*$'
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
+
+  - name: "🔮 负载均衡"
+    type: load-balance
+    include-all: true
+    filter: '^((?!直连).)*$'
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    strategy: consistent-hashing
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Round_Robin.png
+
+  # ============ 业务分流组 ============
   - {name: "⏱️ 网络测速", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
   - {name: "🔍 谷歌服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
   - {name: "Ⓜ️ 微软服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
   - {name: "🍎 苹果服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png}
   - {name: "📰 苹果新闻", type: select, proxies: ["🇺🇸 美国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png}
   - {name: "🪙 贝宝支付", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png}
+  - {name: "🛒 电商平台", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Amazon_1.png}
+  - {name: "🐙 Github", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png}
   - {name: "🤖️ 人工智能", type: select, proxies: ["🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
   - {name: "📤 Line消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png}
+  - {name: "📢 KakaoTalk消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/kakaotalk.png}
   - {name: "📱 电报消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
   - {name: "🐦 Discord消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png}
   - {name: "👤 脸书消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png}
@@ -203,7 +224,7 @@ proxy-groups:
   - {name: "🎥 奈飞视频", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png}
   - {name: "🎬 迪士尼+", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png}
   - {name: "🎬 HBO视频", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HBO.png}
-  - {name: "📀 亚马逊服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video_1.png}
+  - {name: "📀 PrimeVideo", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video_1.png}
   - {name: "🗼 BBC", type: select, proxies: ["🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/BBC_iPlayer.png}
   - {name: "🏟️ DAZN", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DAZN.png}
   - {name: "🎞️ ViuTV", type: select, proxies: ["🇭🇰 香港节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ViuTV.png}
@@ -217,6 +238,8 @@ proxy-groups:
   - {name: "🎮 游戏平台", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png}
   - {name: "🧱 GFW网站", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png}
   - {name: "🌍 兜底分流", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
+  
+  # ============ 拦截与直连组 ============
   - {name: "🛑 广告拦截", type: select, proxies: [REJECT, "🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png}
   - {name: "🧹 应用净化", type: select, proxies: [REJECT, "🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png}
   - {name: "🌐 全球直连", type: select, proxies: ["🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png}
@@ -232,58 +255,6 @@ proxy-groups:
   - {name: "🇩🇪 德国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇩🇪|德国|德國|\bDE\b|Germany', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png}
   - {name: "🇬🇧 英国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇬🇧|英国|英國|GBR|\bUK\b(?!R)|Kingdom', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png}
 
-  - RULE-SET,YouTube,🔍 谷歌服务
-  - RULE-SET,Google,🔍 谷歌服务
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Github,Ⓜ️ 微软服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软服务
-  - RULE-SET,Xbox,Ⓜ️ 微软服务
-  - RULE-SET,AppleCN,🍎 苹果服务
-  - RULE-SET,AppleProxy,🍎 苹果服务
-  - RULE-SET,AppleNews,📰 苹果新闻
-  - RULE-SET,Paypal,🪙 贝宝支付
-  - RULE-SET,AI,🤖️ 人工智能
-  - RULE-SET,Line,📤 Line消息
-  - RULE-SET,Telegram,📱 电报消息
-  - RULE-SET,Discord,🐦 Discord消息
-  - RULE-SET,Facebook,👤 脸书消息
-  - RULE-SET,Twitter,📄 推特消息
-  - RULE-SET,Reddit,📖 红迪消息
-  - RULE-SET,TikTok,🫟 TikTok
-  - RULE-SET,Spotify,🎻 Spotify
-  - RULE-SET,JOOX,🎹 JOOX
-  - RULE-SET,Deezer,🎷 Deezer
-  - RULE-SET,Netflix,🎥 奈飞视频
-  - RULE-SET,Disney,🎬 迪士尼+
-  - RULE-SET,PrimeVideo,📀 亚马逊服务
-  - RULE-SET,HBO,🎬 HBO视频
-  - RULE-SET,BBC,🗼 BBC
-  - RULE-SET,DAZN,🏟️ DAZN
-  - RULE-SET,AbemaTV,🖼️ AbemaTV
-  - RULE-SET,Bahamut,📽 巴哈姆特
-  - RULE-SET,ProxyMedia,🍿 境外媒体
-  - RULE-SET,ChinaMedia,🍔 国内媒体
-  - RULE-SET,Bilibili,📽 哔哩哔哩
-  - RULE-SET,Emby,🛋️ Emby
-  - RULE-SET,Twitch,📺 Twitch直播
-  - RULE-SET,Steam,🎮 游戏平台
-  - RULE-SET,Epic,🎮 游戏平台
-  - RULE-SET,Games,🎮 游戏平台
-  - RULE-SET,ProxyGFW,🧱 GFW网站
-  - RULE-SET,Reject,🛑 广告拦截
-  - RULE-SET,AdGuardChinese,🛑 广告拦截
-  - RULE-SET,EasyListChina,🛑 广告拦截
-  - RULE-SET,EasyListPrivacy,🛑 广告拦截
-  - RULE-SET,Ads_limbopro,🛑 广告拦截
-  - RULE-SET,BanProgramAD,🧹 应用净化
-  - RULE-SET,Direct,🌐 全球直连
-  - RULE-SET,ChinaASN,🌐 全球直连
-  - RULE-SET,ChinaDomain,🌐 全球直连
-  - RULE-SET,ChinaIP,🌐 全球直连
-  - RULE-SET,Lan,🌐 全球直连
-  - GEOIP,CN,🌐 全球直连
-  - MATCH,🌍 兜底分流
-
 # 规则锚点定义
 rule-anchor:
   ip: &ip {type: http, interval: 259200, behavior: ipcidr, format: mrs}
@@ -291,9 +262,9 @@ rule-anchor:
   qcy: &qcy {type: http, interval: 259200, behavior: domain, format: text}
   class: &class {type: http, interval: 259200, behavior: classical, format: text}
 
-# 规则集定义 (保持原始链接与条目，仅调整顺序)
+# 规则集定义
 rule-providers:
-  # === 拦截类规则 (移至最上方以确保优先级) ===
+  # === 拦截类规则 (最高优先级) ===
   BanProgramAD: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list'}
   Reject: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Reject.list'}
   AdGuardChinese: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AdGuardChinese.list'}
@@ -315,6 +286,7 @@ rule-providers:
   Reddit: {!!merge <<: *class, url: 'https://whatshub.top/rule/Reddit.list'}
   Discord: {!!merge <<: *class, url: 'https://whatshub.top/rule/Discord.list'}
   Line: {!!merge <<: *class, url: 'https://whatshub.top/rule/Line.list'}
+  KakaoTalk: {!!merge <<: *class, url: 'https://yfamilys.com/rule/KakaoTalk.list'}
   Speedtest: {!!merge <<: *class, url: 'https://whatshub.top/rule/Speedtest.list'}
   Google: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
   AppleCN: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
@@ -324,6 +296,9 @@ rule-providers:
   OneDrive: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   Github: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
   Paypal: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PayPal.list'}
+  eBay: {!!merge <<: *class, url: 'https://yfamilys.com/rule/eBay.list'}
+  Bestbuy: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Bestbuy.list'}
+  AmazonIP: {!!merge <<: *ip, url: 'https://yfamilys.com/rule/AmazonIP.list'}
   Xbox: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Xbox.list'}
   Steam: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
   Epic: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
@@ -351,3 +326,68 @@ rule-providers:
   ChinaDomain: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaDomain.list'}
   ChinaIP: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaIP.list'}
   ChinaASN: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaASN.list'}
+
+rules:
+  # === 最高优先级：广告拦截规则 ===
+  - RULE-SET,BanProgramAD,🧹 应用净化
+  - RULE-SET,Reject,🛑 广告拦截
+  - RULE-SET,AdGuardChinese,🛑 广告拦截
+  - RULE-SET,EasyListChina,🛑 广告拦截
+  - RULE-SET,EasyListPrivacy,🛑 广告拦截
+  - RULE-SET,Ads_limbopro,🛑 广告拦截
+  
+  # === 第二优先级：应用与媒体规则 ===
+  - RULE-SET,Speedtest,⏱️ 网络测速
+  - RULE-SET,YouTube,🔍 谷歌服务
+  - RULE-SET,Google,🔍 谷歌服务
+  - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,Github,🐙 Github
+  - RULE-SET,OneDrive,Ⓜ️ 微软服务
+  - RULE-SET,Xbox,Ⓜ️ 微软服务
+  - RULE-SET,AppleCN,🍎 苹果服务
+  - RULE-SET,AppleProxy,🍎 苹果服务
+  - RULE-SET,AppleNews,📰 苹果新闻
+  - RULE-SET,Paypal,🪙 贝宝支付
+  - RULE-SET,eBay,🛒 电商平台
+  - RULE-SET,Bestbuy,🛒 电商平台
+  - RULE-SET,AmazonIP,🛒 电商平台
+  - RULE-SET,AI,🤖️ 人工智能
+  - RULE-SET,Line,📤 Line消息
+  - RULE-SET,KakaoTalk,📢 KakaoTalk消息
+  - RULE-SET,Telegram,📱 电报消息
+  - RULE-SET,Discord,🐦 Discord消息
+  - RULE-SET,Facebook,👤 脸书消息
+  - RULE-SET,Twitter,📄 推特消息
+  - RULE-SET,Reddit,📖 红迪消息
+  - RULE-SET,TikTok,🫟 TikTok
+  - RULE-SET,Spotify,🎻 Spotify
+  - RULE-SET,JOOX,🎹 JOOX
+  - RULE-SET,Deezer,🎷 Deezer
+  - RULE-SET,Netflix,🎥 奈飞视频
+  - RULE-SET,Disney,🎬 迪士尼+
+  - RULE-SET,PrimeVideo,📀 PrimeVideo
+  - RULE-SET,HBO,🎬 HBO视频
+  - RULE-SET,BBC,🗼 BBC
+  - RULE-SET,DAZN,🏟️ DAZN
+  - RULE-SET,AbemaTV,🖼️ AbemaTV
+  - RULE-SET,Bahamut,📽 巴哈姆特
+  - RULE-SET,ProxyMedia,🍿 境外媒体
+  - RULE-SET,ChinaMedia,🍔 国内媒体
+  - RULE-SET,Bilibili,📽 哔哩哔哩
+  - RULE-SET,Emby,🛋️ Emby
+  - RULE-SET,Twitch,📺 Twitch直播
+  - RULE-SET,Steam,🎮 游戏平台
+  - RULE-SET,Epic,🎮 游戏平台
+  - RULE-SET,Games,🎮 游戏平台
+  - RULE-SET,ProxyGFW,🧱 GFW网站
+  
+  # === 第三优先级：国内直连 ===
+  - RULE-SET,Direct,🌐 全球直连
+  - RULE-SET,ChinaASN,🌐 全球直连
+  - RULE-SET,ChinaDomain,🌐 全球直连
+  - RULE-SET,ChinaIP,🌐 全球直连
+  - RULE-SET,Lan,🌐 全球直连
+  - GEOIP,CN,🌐 全球直连
+  
+  # === 最低优先级：兜底分流 ===
+  - MATCH,🌍 兜底分流
