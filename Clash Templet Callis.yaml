@@ -5,7 +5,7 @@
 # ============================================================
 
 proxy-providers:
-  AirPort:
+  "AirPort Name":
     type: http
     interval: 1800
     health-check:
