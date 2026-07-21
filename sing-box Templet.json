@@ -4,56 +4,57 @@
     "level": "info",
     "timestamp": true
   },
-  "dns": {
-    "servers": [
-      {
-        "tag": "default-dns",
-        "address": "223.5.5.5"
-      },
-      {
-        "tag": "default-dns-2",
-        "address": "119.29.29.29"
-      },
-      {
-        "tag": "doh-ali",
-        "address": "https://223.5.5.5/dns-query"
-      },
-      {
-        "tag": "doh-tencent",
-        "address": "https://119.29.29.29/dns-query"
-      }
-    ],
-    "rules": [
-      {
-        "domain_suffix": [
-          "lan",
-          "local"
-        ],
-        "server": "default-dns"
-      },
-      {
-        "domain_suffix": [
-          "stun.*.*",
-          "stun.*.*.*",
-          "msftncsi.com",
-          "msftconnecttest.com",
-          "push.apple.com"
-        ],
-        "server": "default-dns"
-      },
-      {
-        "domain_suffix": [
-          "google.com",
-          "googleapis.com",
-          "youtube.com",
-          "facebook.com",
-          "twitter.com",
-          "github.com"
-        ],
-        "server": "https://dns.cloudflare.com/dns-query"
-      }
-    ],
-    "strategy": "prefer_ipv4",
+"dns": {
+  "servers": [
+    {
+      "tag": "default-dns",
+      "address": "223.5.5.5"
+    },
+    {
+      "tag": "default-dns-2",
+      "address": "119.29.29.29"
+    },
+    {
+      "tag": "doh-ali",
+      "address": "https://223.5.5.5/dns-query"
+    },
+    {
+      "tag": "doh-tencent",
+      "address": "https://119.29.29.29/dns-query"
+    }
+  ],
+  "rules": [
+    {
+      "domain_suffix": [
+        "lan",
+        "local"
+      ],
+      "server": "default-dns"
+    },
+    {
+      "domain_suffix": [
+        "stun.*.*",
+        "stun.*.*.*",
+        "msftncsi.com",
+        "msftconnecttest.com",
+        "push.apple.com"
+      ],
+      "server": "default-dns"
+    },
+    {
+      "domain_suffix": [
+        "google.com",
+        "googleapis.com",
+        "youtube.com",
+        "facebook.com",
+        "twitter.com",
+        "github.com"
+      ],
+      "server": "https://dns.cloudflare.com/dns-query"
+    }
+  ],
+  "strategy": "prefer_ipv4"
+}
     "disable_cache": false,
     "disable_expire": false,
     "independent_cache": true,
