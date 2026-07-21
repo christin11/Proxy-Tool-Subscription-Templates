@@ -83,7 +83,7 @@
       "tag": "REJECT"
     },
     {
-      "type": "external",
+      "type": "subscription",
       "tag": "AirPort name",
       "url": "",
       "interval": 1800,
