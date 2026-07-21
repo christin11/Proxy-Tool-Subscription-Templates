@@ -59,7 +59,7 @@
     "independent_cache": true,
     "reverse_mapping": false,
     "fakeip": {
-      "enabled": true,
+      "enabled": false,
       "inet4_range": "198.18.0.1/16"
     }
   },
