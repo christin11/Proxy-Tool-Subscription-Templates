@@ -83,17 +83,6 @@
       "tag": "REJECT"
     },
     {
-      "type": "external",
-      "tag": "AirPort name",
-      "url": "",
-      "interval": 1800,
-      "healthcheck": {
-        "enable": true,
-        "url": "https://www.epochtimes.com/",
-        "interval": 300
-      }
-    },
-    {
       "type": "selector",
       "tag": "✨ 节点选择",
       "outbounds": [
