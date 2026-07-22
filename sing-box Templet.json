@@ -59,18 +59,6 @@
       "tag": "http-in",
       "listen": "::",
       "listen_port": 7890
-    },
-    {
-      "type": "redir",
-      "tag": "redir-in",
-      "listen": "::",
-      "listen_port": 7892
-    },
-    {
-      "type": "tproxy",
-      "tag": "tproxy-in",
-      "listen": "::",
-      "listen_port": 7894
     }
   ],
   "outbounds": [
@@ -921,399 +909,399 @@
         "type": "remote",
         "format": "text",
         "url": "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list",
-        "update_interval": 259200
+        "update_interval": "3d"
       },
       {
         "tag": "Reject",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Reject.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Reject.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "AdGuardChinese",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/AdGuardChinese.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AdGuardChinese.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "EasyListChina",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListChina.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_EasyListChina.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "EasyListPrivacy",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListPrivacy.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_EasyListPrivacy.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Ads_limbopro",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_limbopro.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_limbopro.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "AI",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AI.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Telegram",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Telegram.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "YouTube",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/YouTube.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "YouTubeMusic",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/YouTubeMusic.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/YouTubeMusic/YouTubeMusic.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Netflix",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Netflix.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Disney",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Disney.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Spotify",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Spotify.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "TikTok",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/TikTok.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Twitter",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Twitter.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Facebook",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Facebook.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Reddit",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/Reddit.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Reddit/Reddit.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Discord",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/Discord.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Discord/Discord.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Line",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/Line.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Line/Line.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "KakaoTalk",
         "type": "remote",
-        "format": "text",
-        "url": "https://yfamilys.com/rule/KakaoTalk.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/KakaoTalk/KakaoTalk.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Speedtest",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/Speedtest.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Speedtest/Speedtest.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Google",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Google.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "AppleCN",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleCN.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "AppleProxy",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleServers.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "AppleNews",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/AppleNews.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/AppleNews/AppleNews.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Microsoft",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Microsoft.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "OneDrive",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/OneDrive.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Github",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Github.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Paypal",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/PayPal.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/PayPal.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "eBay",
         "type": "remote",
-        "format": "text",
-        "url": "https://yfamilys.com/rule/eBay.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/eBay/eBay.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Bestbuy",
         "type": "remote",
-        "format": "text",
-        "url": "https://yfamilys.com/rule/Bestbuy.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Bestbuy/Bestbuy.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "AmazonIP",
         "type": "remote",
-        "format": "ipcidr",
-        "url": "https://yfamilys.com/rule/AmazonIP.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/AmazonIP/AmazonIP.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Xbox",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Xbox.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Xbox.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Steam",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Steam.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Epic",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Epic.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Games",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Game.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "JOOX",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/JOOX.rule",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/JOOX/JOOX.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Deezer",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/Deezer.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Deezer/Deezer.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "PrimeVideo",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/PrimeVideo.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "HBO",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/HBO.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "BBC",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/BBC.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/BBC/BBC.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "DAZN",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/DAZN.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/DAZN/DAZN.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "ViuTV",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/ViuTV.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/ViuTV/ViuTV.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "AbemaTV",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/AbemaTV.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/AbemaTV/AbemaTV.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Bahamut",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Bahamut.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "ProxyMedia",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ProxyMedia.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "ChinaMedia",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/ChinaMedia.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/ChinaMedia/ChinaMedia.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Bilibili",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/BiliBili.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Bilibili/Bilibili.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Emby",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Emby.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Twitch",
         "type": "remote",
-        "format": "text",
-        "url": "https://whatshub.top/rule/Twitch.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Twitch/Twitch.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Lan",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Lan.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "ProxyGFW",
         "type": "remote",
-        "format": "text",
-        "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Stash/Rules/ProxyGFW.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ProxyGFW.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Proxy",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Proxy.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Proxy.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "Direct",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/Direct.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Direct.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "ChinaDomain",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaDomain.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ChinaDomain.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "ChinaIP",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaIP.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ChinaIP.srs",
+        "update_interval": "3d"
       },
       {
         "tag": "ChinaASN",
         "type": "remote",
-        "format": "text",
-        "url": "https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaASN.list",
-        "update_interval": 259200
+        "format": "binary",
+        "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ChinaASN.srs",
+        "update_interval": "3d"
       }
     ]
   }
