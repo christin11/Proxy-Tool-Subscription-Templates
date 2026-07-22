@@ -41,29 +41,14 @@
       "external_ui": "ui"
     }
   },
-  "http_clients": [
-    {
-      "tag": "default_client",
-      "detour": "✨ 节点选择"
-    }
-  ],
   "inbounds": [
     {
       "type": "tun",
       "tag": "tun-in",
-      "address": [
-        "172.19.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
+      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route": true,
       "strict_route": true,
       "stack": "system"
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed-in",
-      "listen": "::",
-      "listen_port": 7893
     },
     {
       "type": "socks",
@@ -920,8 +905,6 @@
     }
   ],
   "route": {
-"default_domain_resolver": "default-dns",
-"default_http_client": "default_client",
 "rule_set": [
   {
     "tag": "BanProgramAD",
