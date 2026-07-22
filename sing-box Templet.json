@@ -1300,7 +1300,7 @@
     "tag": "ChinaASN",
     "type": "remote",
     "format": "source",
-    "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/ChinaASN.json",
+    "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/ChinaDomain.json",
     "update_interval": "3d"
   }
 ]
