@@ -43,12 +43,15 @@
   },
   "inbounds": [
     {
-     "type": "tun",
-     "tag": "tun-in",
-     "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
-     "auto_route": true,
-     "strict_route": true,
-     "stack": "system"
+      "type": "tun",
+      "tag": "tun-in",
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system"
     },
     {
       "type": "mixed",
@@ -911,405 +914,463 @@
     }
   ],
   "route": {
+"default_domain_resolver": "default-dns",
 "rule_set": [
   {
     "tag": "BanProgramAD",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/christin11/Subscription-Templet/main/ACL4SSR/BanProgramAD.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Reject",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Reject.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "AdGuardChinese",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/AdGuardChinese.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "EasyListChina",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Ads_EasyListChina.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "EasyListPrivacy",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Ads_EasyListPrivacy.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Ads_limbopro",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Ads_limbopro.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "AI",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/AI.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Telegram",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Telegram.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "YouTube",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/YouTube.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "YouTubeMusic",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/YouTubeMusic/YouTubeMusic.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Netflix",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Netflix.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Disney",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Disney.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Spotify",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Spotify.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "TikTok",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/TikTok.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Twitter",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Twitter.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Facebook",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Facebook.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Reddit",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Reddit/Reddit.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Discord",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Discord/Discord.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Line",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Line/Line.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "KakaoTalk",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/KakaoTalk/KakaoTalk.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Speedtest",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Speedtest/Speedtest.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Google",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Google.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "AppleCN",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/AppleCN.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "AppleProxy",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/AppleServers.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "AppleNews",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/AppleNews/AppleNews.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Microsoft",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Microsoft.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "OneDrive",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/OneDrive.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Github",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Github.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Paypal",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/PayPal.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "eBay",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/eBay/eBay.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Bestbuy",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Bestbuy/Bestbuy.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "AmazonIP",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/AmazonIP/AmazonIP.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Xbox",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Xbox.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Steam",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Steam.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Epic",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Epic.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Games",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Game.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "JOOX",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/JOOX/JOOX.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Deezer",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Deezer/Deezer.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "PrimeVideo",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/PrimeVideo.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "HBO",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/HBO.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "BBC",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/BBC/BBC.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "DAZN",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/DAZN/DAZN.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "ViuTV",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/ViuTV/ViuTV.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "AbemaTV",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/AbemaTV/AbemaTV.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Bahamut",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Bahamut.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "ProxyMedia",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/ProxyMedia.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "ChinaMedia",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/ChinaMedia/ChinaMedia.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Bilibili",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/refs/heads/main/rule/BiliBili/BiliBili.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Emby",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Emby.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Twitch",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Twitch/Twitch.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Lan",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Lan.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "ProxyGFW",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/ProxyGFW.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Proxy",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Proxy.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "Direct",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Direct.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "ChinaDomain",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/ChinaDomain.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "ChinaIP",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/ChinaIP.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   },
   {
     "tag": "ChinaASN",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/ChinaDomain.json",
-    "update_interval": "3d"
+    "update_interval": "3d",
+        "download_detour": "✨ 节点选择"
   }
 ]
   }
