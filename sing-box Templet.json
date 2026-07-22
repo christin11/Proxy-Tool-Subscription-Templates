@@ -1237,7 +1237,7 @@
     "tag": "Bilibili",
     "type": "remote",
     "format": "source",
-    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Bilibili/Bilibili.json",
+    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/refs/heads/main/rule/BiliBili/BiliBili.json",
     "update_interval": "3d"
   },
   {
