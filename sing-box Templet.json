@@ -907,7 +907,7 @@
       {
         "tag": "BanProgramAD",
         "type": "remote",
-        "format": "text",
+        "format": "source",
         "url": "https://raw.githubusercontent.com/christin11/Subscription-Templet/refs/heads/main/ACL4SSR/BanProgramAD.json",
         "update_interval": "3d"
       },
