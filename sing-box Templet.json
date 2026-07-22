@@ -43,6 +43,14 @@
   },
   "inbounds": [
     {
+      "type": "tun",
+      "tag": "tun-in",
+      "inet4_address": "172.19.0.1/30",
+      "auto_route": true,
+      "strict_route": true,
+      "sniff": true
+    },
+    {
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "::",
@@ -903,8 +911,6 @@
     }
   ],
   "route": {
-    "rule_set_outbound": "🟢 直连",
-    "default_domain_resolver": "default-dns",
 "rule_set": [
   {
     "tag": "BanProgramAD",
