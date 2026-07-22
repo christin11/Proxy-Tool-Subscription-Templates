@@ -903,6 +903,8 @@
     }
   ],
   "route": {
+    "rule_set_outbound": "🟢 直连",
+    "default_domain_resolver": "default-dns",
 "rule_set": [
   {
     "tag": "BanProgramAD",
