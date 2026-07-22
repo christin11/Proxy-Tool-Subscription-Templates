@@ -914,392 +914,392 @@
       {
         "tag": "Reject",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Reject.json",
         "update_interval": "3d"
       },
       {
         "tag": "AdGuardChinese",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AdGuardChinese.json",
         "update_interval": "3d"
       },
       {
         "tag": "EasyListChina",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_EasyListChina.json",
         "update_interval": "3d"
       },
       {
         "tag": "EasyListPrivacy",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_EasyListPrivacy.json",
         "update_interval": "3d"
       },
       {
         "tag": "Ads_limbopro",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_limbopro.json",
         "update_interval": "3d"
       },
       {
         "tag": "AI",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AI.json",
         "update_interval": "3d"
       },
       {
         "tag": "Telegram",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Telegram.json",
         "update_interval": "3d"
       },
       {
         "tag": "YouTube",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/YouTube.json",
         "update_interval": "3d"
       },
       {
         "tag": "YouTubeMusic",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/YouTubeMusic/YouTubeMusic.json",
         "update_interval": "3d"
       },
       {
         "tag": "Netflix",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Netflix.json",
         "update_interval": "3d"
       },
       {
         "tag": "Disney",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Disney.json",
         "update_interval": "3d"
       },
       {
         "tag": "Spotify",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Spotify.json",
         "update_interval": "3d"
       },
       {
         "tag": "TikTok",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/TikTok.json",
         "update_interval": "3d"
       },
       {
         "tag": "Twitter",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Twitter.json",
         "update_interval": "3d"
       },
       {
         "tag": "Facebook",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Facebook.json",
         "update_interval": "3d"
       },
       {
         "tag": "Reddit",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Reddit/Reddit.json",
         "update_interval": "3d"
       },
       {
         "tag": "Discord",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Discord/Discord.json",
         "update_interval": "3d"
       },
       {
         "tag": "Line",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Line/Line.json",
         "update_interval": "3d"
       },
       {
         "tag": "KakaoTalk",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/KakaoTalk/KakaoTalk.json",
         "update_interval": "3d"
       },
       {
         "tag": "Speedtest",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Speedtest/Speedtest.json",
         "update_interval": "3d"
       },
       {
         "tag": "Google",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Google.json",
         "update_interval": "3d"
       },
       {
         "tag": "AppleCN",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleCN.json",
         "update_interval": "3d"
       },
       {
         "tag": "AppleProxy",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleServers.json",
         "update_interval": "3d"
       },
       {
         "tag": "AppleNews",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/AppleNews/AppleNews.json",
         "update_interval": "3d"
       },
       {
         "tag": "Microsoft",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Microsoft.json",
         "update_interval": "3d"
       },
       {
         "tag": "OneDrive",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/OneDrive.json",
         "update_interval": "3d"
       },
       {
         "tag": "Github",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Github.json",
         "update_interval": "3d"
       },
       {
         "tag": "Paypal",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/PayPal.json",
         "update_interval": "3d"
       },
       {
         "tag": "eBay",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/eBay/eBay.json",
         "update_interval": "3d"
       },
       {
         "tag": "Bestbuy",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Bestbuy/Bestbuy.json",
         "update_interval": "3d"
       },
       {
         "tag": "AmazonIP",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/AmazonIP/AmazonIP.json",
         "update_interval": "3d"
       },
       {
         "tag": "Xbox",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Xbox.json",
         "update_interval": "3d"
       },
       {
         "tag": "Steam",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Steam.json",
         "update_interval": "3d"
       },
       {
         "tag": "Epic",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Epic.json",
         "update_interval": "3d"
       },
       {
         "tag": "Games",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Game.json",
         "update_interval": "3d"
       },
       {
         "tag": "JOOX",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/JOOX/JOOX.json",
         "update_interval": "3d"
       },
       {
         "tag": "Deezer",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Deezer/Deezer.json",
         "update_interval": "3d"
       },
       {
         "tag": "PrimeVideo",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/PrimeVideo.json",
         "update_interval": "3d"
       },
       {
         "tag": "HBO",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/HBO.json",
         "update_interval": "3d"
       },
       {
         "tag": "BBC",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/BBC/BBC.json",
         "update_interval": "3d"
       },
       {
         "tag": "DAZN",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/DAZN/DAZN.json",
         "update_interval": "3d"
       },
       {
         "tag": "ViuTV",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/ViuTV/ViuTV.json",
         "update_interval": "3d"
       },
       {
         "tag": "AbemaTV",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/AbemaTV/AbemaTV.json",
         "update_interval": "3d"
       },
       {
         "tag": "Bahamut",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Bahamut.json",
         "update_interval": "3d"
       },
       {
         "tag": "ProxyMedia",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ProxyMedia.json",
         "update_interval": "3d"
       },
       {
         "tag": "ChinaMedia",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/ChinaMedia/ChinaMedia.json",
         "update_interval": "3d"
       },
       {
         "tag": "Bilibili",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Bilibili/Bilibili.json",
         "update_interval": "3d"
       },
       {
         "tag": "Emby",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Emby.json",
         "update_interval": "3d"
       },
       {
         "tag": "Twitch",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Twitch/Twitch.json",
         "update_interval": "3d"
       },
       {
         "tag": "Lan",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Lan.json",
         "update_interval": "3d"
       },
       {
         "tag": "ProxyGFW",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ProxyGFW.json",
         "update_interval": "3d"
       },
       {
         "tag": "Proxy",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Proxy.json",
         "update_interval": "3d"
       },
       {
         "tag": "Direct",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/Direct.json",
         "update_interval": "3d"
       },
       {
         "tag": "ChinaDomain",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ChinaDomain.json",
         "update_interval": "3d"
       },
       {
         "tag": "ChinaIP",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ChinaIP.json",
         "update_interval": "3d"
       },
       {
         "tag": "ChinaASN",
         "type": "remote",
-        "format": "binary",
+        "format": "source",
         "url": "https://github.com/Repcz/Tool/raw/X/sing-box/Rules/ChinaASN.json",
         "update_interval": "3d"
       }
