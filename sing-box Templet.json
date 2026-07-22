@@ -88,8 +88,7 @@
         "🇩🇪 德国节点",
         "🇬🇧 英国节点",
         "🟢 直连"
-      ],
-    "domain_resolver": "default-dns"
+      ]
     },
     {
       "type": "selector",
