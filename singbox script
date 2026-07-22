@@ -1,0 +1,89 @@
+// Sub-Store 脚本操作：把订阅节点合并进 sing-box 模板
+// 用法：在「脚本操作」里粘贴本脚本，或者把本文件传到能公网访问的地方后填链接
+// URL 参数（在脚本链接后面用 # 拼接，或在 Sub-Store 参数框里填）：
+//   name  = 你在 Sub-Store 里保存的订阅名称（必填）
+//   type  = 0 表示单条订阅，1 表示组合订阅（默认 0）
+// 例：#name=my_airport&type=0
+
+log(`🚀 开始合并节点`)
+
+let { name, type } = $arguments
+if (!name) {
+  throw new Error('缺少参数 name：请在脚本参数里指定 Sub-Store 中的订阅名称')
+}
+type = /^1$/.test(type) ? 'collection' : 'subscription'
+
+// ① 解析当前模板内容
+const parser = ProxyUtils.JSON5 || JSON
+let config
+try {
+  config = parser.parse($content ?? $files[0])
+} catch (e) {
+  throw new Error(`模板不是合法的 JSON: ${e.message ?? e}`)
+}
+
+// ② 读取订阅，转换为 sing-box 节点
+log(`② 读取订阅 [${name}] (${type})`)
+let data = await produceArtifact({
+  name,
+  type,
+  platform: 'sing-box',
+})
+data = JSON.parse(data)
+const proxies = [...(data.outbounds ?? []), ...(data.endpoints ?? [])]
+log(`获取到 ${proxies.length} 个节点`)
+
+if (proxies.length === 0) {
+  throw new Error('订阅没有解析出任何节点，请检查订阅名称/类型是否填写正确')
+}
+
+// ③ 分组匹配规则：分组 tag -> 节点名筛选正则（留空 = 全部节点）
+const GROUP_RULES = [
+  ['🚀 手动切换', null],
+  ['♻️ 自动选择', null],
+  ['🔯 故障转移', null],
+  ['🔮 负载均衡', null],
+  ['🇭🇰 香港节点', /🇭🇰|香港|港|\bHK\b|Hong/i],
+  ['🇹🇼 台湾节点', /🇹🇼|台湾|台灣|台|\bTW\b|Taiwan/i],
+  ['🇯🇵 日本节点', /🇯🇵|日本|东京|東京|\bJP\b|Japan/i],
+  ['🇰🇷 韩国节点', /🇰🇷|韩|韓|首尔|\bKR\b|Korea/i],
+  ['🇸🇬 新加坡节点', /🇸🇬|新加坡|狮|狮城|\bSG\b|Singapore/i],
+  ['🇹🇭 泰国节点', /🇹🇭|泰国|泰國|曼谷|\bTH\b|Thailand/i],
+  ['🇺🇸 美国节点', /🇺🇸|美国|洛杉矶|圣何塞|\bUS\b|States|America/i],
+  ['🇩🇪 德国节点', /🇩🇪|德国|德國|\bDE\b|Germany/i],
+  ['🇬🇧 英国节点', /🇬🇧|英国|英國|GBR|\bUK\b(?!R)|Kingdom/i],
+]
+const PLACEHOLDER_TAG = 'AirPort name'
+
+// ④ 给每个分组塞节点，同时把占位符 tag 从分组里摘掉
+if (!Array.isArray(config.outbounds)) config.outbounds = []
+
+config.outbounds.forEach(ob => {
+  const rule = GROUP_RULES.find(([tag]) => tag === ob.tag)
+  if (!rule) return
+  const [, regex] = rule
+  if (!Array.isArray(ob.outbounds)) ob.outbounds = []
+  // 去掉占位符
+  ob.outbounds = ob.outbounds.filter(t => t !== PLACEHOLDER_TAG)
+  // 插入匹配的真实节点
+  const tags = (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag)
+  log(`🕳 ${ob.tag} 插入 ${tags.length} 个节点`)
+  ob.outbounds.push(...tags)
+  // 兜底：如果分组还是空的，塞一个 direct 防止内核报错
+  if (ob.outbounds.length === 0) {
+    ob.outbounds.push('direct')
+  }
+})
+
+// ⑤ 删除原来的占位 outbound（type: external 那一个）
+config.outbounds = config.outbounds.filter(ob => ob.tag !== PLACEHOLDER_TAG)
+
+// ⑥ 把真实节点对象本身也加进 outbounds 数组末尾
+config.outbounds.push(...proxies)
+
+$content = JSON.stringify(config, null, 2)
+log(`🔚 完成`)
+
+function log(v) {
+  console.log(`[merge_nodes] ${v}`)
+}
