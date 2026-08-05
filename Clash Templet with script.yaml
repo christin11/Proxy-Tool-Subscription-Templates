@@ -1,5 +1,4 @@
 proxy-providers:
-  # 请将下方 "AirPort name" 替换为你的机场名称
   {{AIRPORT_NAME}}: 
     type: http
     interval: 1800
@@ -8,7 +7,6 @@ proxy-providers:
       url: https://www.epochtimes.com/
       interval: 300
     proxy: "🟢 直连"
-    # 请将下方 url 替换为你的机场订阅链接
     url: "{{SUB_URL}}"
 
 global-ua: clash
