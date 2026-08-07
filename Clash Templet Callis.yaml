@@ -5,7 +5,7 @@
 # ============================================================
 
 proxy-providers:
-  "AirPort Name":
+  {{AIRPORT_NAME}}: 
     type: http
     interval: 1800
     health-check:
@@ -13,7 +13,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 300
     proxy: "🟢 直连"
-    url: "{{url}}"
+    url: "{{SUB_URL}}"
 
 global-ua: clash
 
