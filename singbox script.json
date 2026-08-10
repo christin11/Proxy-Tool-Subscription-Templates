@@ -1,9 +1,8 @@
-// Sub-Store 脚本操作：适配 christin11/Subscription-Templet 最新版 sing-box 模板
-// （这份模板的地区分组用 "DIRECT" 作为永久兜底成员，脚本只做"追加"，不做"替换/清空"）
-//
-// URL 参数（脚本链接后面用 # 拼接）：
-//   name = 你在 Sub-Store 里保存的订阅名称（必填）
-//   type = 0 单条订阅 / 1 组合订阅（默认 0）
+// Sub-Store 脚本操作：把订阅节点合并进 sing-box 模板
+// 用法：在「脚本操作」里粘贴本脚本，或者把本文件传到能公网访问的地方后填链接
+// URL 参数（在脚本链接后面用 # 拼接，或在 Sub-Store 参数框里填）：
+//   name  = 你在 Sub-Store 里保存的订阅名称（必填）
+//   type  = 0 表示单条订阅，1 表示组合订阅（默认 0）
 // 例：#name=my_airport&type=0
 
 log(`🚀 开始合并节点`)
@@ -38,8 +37,12 @@ if (proxies.length === 0) {
   throw new Error('订阅没有解析出任何节点，请检查订阅名称/类型是否填写正确')
 }
 
-// ③ 地区分组 tag -> 节点名筛选正则
-const REGION_RULES = [
+// ③ 分组匹配规则：分组 tag -> 节点名筛选正则（留空 = 全部节点）
+const GROUP_RULES = [
+  ['🚀 手动切换', null],
+  ['♻️ 自动选择', null],
+  ['🔯 故障转移', null],
+  ['🔮 负载均衡', null],
   ['🇭🇰 香港节点', /🇭🇰|香港|港|\bHK\b|Hong/i],
   ['🇹🇼 台湾节点', /🇹🇼|台湾|台灣|台|\bTW\b|Taiwan/i],
   ['🇯🇵 日本节点', /🇯🇵|日本|东京|東京|\bJP\b|Japan/i],
@@ -50,49 +53,39 @@ const REGION_RULES = [
   ['🇩🇪 德国节点', /🇩🇪|德国|德國|\bDE\b|Germany/i],
   ['🇬🇧 英国节点', /🇬🇧|英国|英國|GBR|\bUK\b(?!R)|Kingdom/i],
 ]
+const PLACEHOLDER_TAG = 'AirPort name'
+// 兜底用的直连出站 tag —— 必须跟模板里 { "type": "direct", "tag": "..." } 的 tag 完全一致！
+const DIRECT_TAG = '🟢 直连'
 
-// ④ 手动切换/自动选择/故障转移/负载均衡 这几个「全量节点池」分组，同样只追加不清空
-const FULL_POOL_TAGS = ['🚀 手动切换', '♻️ 自动选择', '🔯 故障转移', '🔮 负载均衡']
-// 注：🚀 手动切换 原本 outbounds 是 ["✨ 节点选择", "DIRECT"]，
-// 会跟 ✨ 节点选择 形成循环引用（✨ 节点选择 -> 🚀 手动切换 -> ✨ 节点选择）。
-// 脚本会把真实节点追加进去，但你仍需手动把模板里 🚀 手动切换 的
-// "✨ 节点选择" 这一项删掉，只留 "DIRECT"，避免循环引用报错。
-
+// ④ 给每个分组塞节点，同时把占位符 tag 从分组里摘掉
 if (!Array.isArray(config.outbounds)) config.outbounds = []
 
-let regionMatched = 0
-let poolMatched = 0
-
 config.outbounds.forEach(ob => {
-  if (!Array.isArray(ob.outbounds)) return
-
-  const regionRule = REGION_RULES.find(([tag]) => tag === ob.tag)
-  if (regionRule) {
-    const [, regex] = regionRule
-    const tags = proxies.filter(p => regex.test(p.tag)).map(p => p.tag)
-    // 只追加，不删除原有的 "DIRECT"，即使 tags 为空也不会导致数组变空
-    ob.outbounds.push(...tags)
-    log(`🕳 ${ob.tag} 追加 ${tags.length} 个节点${tags.length === 0 ? '（该地区无匹配节点，保留 DIRECT 兜底）' : ''}`)
-    regionMatched++
-    return
-  }
-
-  if (FULL_POOL_TAGS.includes(ob.tag)) {
-    const tags = proxies.map(p => p.tag)
-    ob.outbounds.push(...tags)
-    log(`🕳 ${ob.tag} 追加 ${tags.length} 个节点（全量）`)
-    poolMatched++
+  const rule = GROUP_RULES.find(([tag]) => tag === ob.tag)
+  if (!rule) return
+  const [, regex] = rule
+  if (!Array.isArray(ob.outbounds)) ob.outbounds = []
+  // 去掉占位符
+  ob.outbounds = ob.outbounds.filter(t => t !== PLACEHOLDER_TAG)
+  // 插入匹配的真实节点
+  const tags = (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag)
+  log(`🕳 ${ob.tag} 插入 ${tags.length} 个节点${tags.length === 0 ? '（无匹配，使用直连兜底）' : ''}`)
+  ob.outbounds.push(...tags)
+  // 兜底：如果分组还是空的，塞直连出站的真实 tag，防止内核报 dependency not found
+  if (ob.outbounds.length === 0) {
+    ob.outbounds.push(DIRECT_TAG)
   }
 })
 
-log(`③ 地区分组处理 ${regionMatched} 个，全量池处理 ${poolMatched} 个`)
+// ⑤ 删除原来的占位 outbound（如果模板里单独定义过一个占位对象的话）
+config.outbounds = config.outbounds.filter(ob => ob.tag !== PLACEHOLDER_TAG)
 
-// ⑤ 把真实节点对象本身加进 outbounds 数组末尾
+// ⑥ 把真实节点对象本身也加进 outbounds 数组末尾
 config.outbounds.push(...proxies)
 
 $content = JSON.stringify(config, null, 2)
 log(`🔚 完成`)
 
 function log(v) {
-  console.log(`[merge_nodes_v3] ${v}`)
+  console.log(`[merge_nodes] ${v}`)
 }
