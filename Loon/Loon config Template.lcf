@@ -1,0 +1,195 @@
+[General]
+udp-fallback-mode = DIRECT
+dns-server = 223.5.5.5,119.29.29.29,114.114.114.114,47.110.75.65
+ip-mode = v4-only
+ipv6 = false
+skip-proxy = 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,localhost,*.local,passenger.t3go.cn,passenger.t3go.cn
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.18.0.0/15,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
+allow-udp-proxy = false
+allow-wifi-access = false
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+proxy-test-url = https://www.epochtimes.com/
+internet-test-url = http://wifi.vivo.com.cn/generate_204
+test-timeout = 2
+interface-mode = auto
+resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
+
+[Host]
+# 指定 bestvmr.com 及其子域名使用机场私有 DNS 服务的 8053 端口解析，并仅限 IPv4
+bestvmr.com = server:47.110.75.65:8053
+*.bestvmr.com = server:47.110.75.65:8053
+
+[Proxy]
+🌐直连 = DIRECT
+⛔️拒绝 = REJECT
+🌐Direct = DIRECT
+⛔️Reject = REJECT
+
+[Remote Proxy]
+{{AIRPORT_NAME}} = {{SUB_URL}},udp=true,block-quic=true,fast-open=false,vmess-aead=true,skip-cert-verify=true,enabled=true,flexible-sni=true,img-url={{SUB_img-url}}
+
+[Proxy Group]
+节点选择 = select,🚀 手动切换,♻️ 自动选择,🔯 故障转移,🔮 负载均衡,🇭🇰 香港节点,🇹🇼 台湾节点,🇺🇸 美国节点,🇰🇷 韩国节点,🇬🇧 英国节点,🇯🇵 日本节点,🇸🇬 新加坡节点,🇩🇪 德国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+🚀 手动切换 = select,🌐直连,♻️ 自动选择,🔯 故障转移,🔮 负载均衡,{{AIRPORT_NAME}},img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+♻️ 自动选择 = url-test,{{AIRPORT_NAME}},url = http://www.gstatic.com/generate_204,interval = 600,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+🔯 故障转移 = fallback,{{AIRPORT_NAME}},url = http://www.gstatic.com/generate_204,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
+🔮 负载均衡 = load-balance,{{AIRPORT_NAME}},url = http://www.gstatic.com/generate_204,interval = 600,max-timeout = 3000,algorithm = pcc,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Round_Robin.png
+⏱️ Speedtest = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png
+🔍 Google = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+Ⓜ️ Microsoft = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+🍎 Apple = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png
+📰 Apple News = select,DIRECT,🚀 手动切换,🇺🇸 美国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png
+🪙 Paypal = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png
+🛒 Shopping = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Amazon_1.png
+🐙 GitHub = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png
+🤖️ AI = select,🚀 手动切换,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png
+📤 Line = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png
+📢 KakaoTalk = select,🚀 手动切换,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/kakaotalk.png
+📲 Telegram = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+🐦 Discord = select,🚀 手动切换,🇭🇰 香港节点,🇺🇸 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇹🇼 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png
+👤 Facebook = select,🚀 手动切换,🇭🇰 香港节点,🇺🇸 美国节点,🇸🇬 新加坡节点,🇯🇵 日本节点,🇹🇼 台湾节点,🇬🇧 英国节点,🇰🇷 韩国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png
+📄 Twitter = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png
+📖 Reddit = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/reddit.png
+🫟 TikTok = select,🚀 手动切换,DIRECT,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png
+🎻 Spotify = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+🎹 JOOX = select,🚀 手动切换,🇭🇰 香港节点,🇹🇭 泰国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/JOOX.png
+🎷 Deezer = select,🚀 手动切换,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/deezer.png
+📹 YouTube = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+🎥 Netflix = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇹🇭 泰国节点,🇸🇬 新加坡节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png
+🎬 Disney+ = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png
+🎬 HBO = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HBO.png
+📀 Prime Video = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video_1.png
+🗼BBC = select,🚀 手动切换,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/BBC_iPlayer.png
+🏟️ DAZN = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DAZN.png
+🎞️ ViuTV = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ViuTV.png
+🖼️ AbemaTV = select,🚀 手动切换,🇯🇵 日本节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AbemaTV.png
+📽 Bahamut = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bahamut.png
+🍿 国外媒体 = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DomesticMedia.png
+🍔 国内媒体 = select,DIRECT,🚀 手动切换,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/StreamingCN.png
+🍟 新浪微博 = select,DIRECT,🚀 手动切换,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Weibo.png
+📽 Bilibili = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png
+🛋️ Emby = select,DIRECT,🚀 手动切换,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png
+📺 Twitch = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitch.png
+🎮 Games = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+🧱 GFW网站 = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png
+🌍 兜底分流 = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+⛔️ 广告拦截 = select,DIRECT,REJECT,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
+🧹 应用净化 = select,DIRECT,REJECT,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png
+🌐 全球直连 = select,DIRECT,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png
+🇭🇰 香港节点 = select,香港节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+🇹🇼 台湾节点 = select,台湾节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png
+🇯🇵 日本节点 = select,日本节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+🇰🇷 韩国节点 = select,韩国节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+🇸🇬 新加坡节点 = select,新加坡节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+🇹🇭 泰国节点 = select,泰国节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png
+🇺🇸 美国节点 = select,美国节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+🇩🇪 德国节点 = select,德国节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png
+🇬🇧 英国节点 = select,英国节点,url = http://www.gstatic.com/generate_204,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+
+[Remote Filter]
+香港节点 = NameRegex, FilterKey = "(?=.*(港|HK|(?i)Hong))^((?!(台湾|日本|新加坡|美国|韩国|狮城|南朝鲜|US|SG|JP|KR|TW|台灣|美國|韓國|獅城)).)*$"
+台湾节点 = NameRegex, FilterKey = "(?=.*(台|TW|(?i)Taiwan))^((?!(港|日|韩|新|美)).)*$"
+日本节点 = NameRegex, FilterKey = "(?=.*(日本|JP|(?i)Japan))^((?!(香港|台湾|新加坡|美国|韩国|狮城|南朝鲜|US|SG|KR|HK|TW|台灣|美國|韓國|獅城)).)*$"
+韩国节点 = NameRegex, FilterKey = "(?=.*(KR|Korea|KOR|首尔|韩|韓|(?i)Korea))^((?!(香港|台湾|新加坡|美国|狮城|南朝鲜|US|SG|HK|TW|UKR|台灣|美國|獅城)).)*$"
+新加坡节点 = NameRegex, FilterKey = "(?=.*(新加坡|狮城|SG|(?i)Singapore))^((?!(香港|台湾|日本|美国|韩国|南朝鲜|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"
+泰国节点 = NameRegex, FilterKey = "🇹🇭|泰国|泰國|THA|TH|曼谷|Thailand"
+美国节点 = NameRegex, FilterKey = "(?=.*(美国|美國|USA|US|洛杉矶|西雅图|(?i)States|American))^((?!(香港|台湾|日本|新加坡|韩国|狮城|南朝鲜|SG|JP|KR|HK|TW|台灣|韓國|獅城)).)*$"
+德国节点 = NameRegex, FilterKey = "(?i)🇩🇪|德国|德國|DEU|慕尼黑|汉堡|科隆|(\b(DE|Germany)\b)^((?!(香港|台湾|新加坡|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國|Linode)).)*$"
+英国节点 = NameRegex, FilterKey = "(?=.*(🇬🇧|英国|英國|GBR|UK|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰))^((?!(香港|台湾|日本|新加坡|韩国|狮城|南朝鲜|SG|JP|KR|HK|TW|台灣|韓國|獅城)).)*$"
+
+[Remote Rule]
+https://whatshub.top/rule/Speedtest.list, policy=⏱️ Speedtest, tag=⏱️ Speedtest, enabled=true
+https://whatshub.top/rule/Google.list, policy=🔍 Google, tag=🔍 Google, enabled=true
+https://whatshub.top/rule/Microsoft.list, policy=Ⓜ️ Microsoft, tag=Ⓜ️ Microsoft, enabled=true
+https://whatshub.top/rule/OneDrive.list, policy=Ⓜ️ Microsoft, tag=Ⓜ️ Microsoft, enabled=true
+https://whatshub.top/rule/Apple.list, policy=🍎 Apple, tag=🍎 Apple, enabled=true
+https://whatshub.top/rule/AppStore.list, policy=🍎 Apple, tag=🍎 Apple, enabled=true
+https://whatshub.top/rule/AppleProxy.list, policy=🚀 手动切换, tag=🍎 Apple, enabled=true
+https://whatshub.top/rule/AppleNews.list, policy=📰 Apple News, tag=📰 Apple News, enabled=true
+https://whatshub.top/rule/PayPal.list, policy=🪙 Paypal, tag=🪙 Paypal, enabled=true
+https://whatshub.top/rule/AmazonIP.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
+https://whatshub.top/rule/eBay.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
+https://whatshub.top/rule/BestBuy.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
+https://whatshub.top/rule/GitHub.list, policy=🐙 GitHub, tag=🐙 GitHub, enabled=true
+https://whatshub.top/rule/ai.list, policy=🤖️ AI, tag=🤖 AI, enabled=true
+https://whatshub.top/rule/Line.list, policy=📤 Line, tag=📤 Line, enabled=true
+https://whatshub.top/rule/KakaoTalk.list, policy=📢 KakaoTalk, tag=📢 KakaoTalk, enabled=true
+https://whatshub.top/rule/Telegram.list, policy=📲 Telegram, tag=📱 Telegram, enabled=true
+https://whatshub.top/rule/Discord.list, policy=🐦 Discord, tag=🐦 Discord, enabled=true
+https://whatshub.top/rule/Facebook.list, policy=👤 Facebook, tag=👤 Facebook, enabled=true
+https://whatshub.top/rule/Twitter.list, policy=📄 Twitter, tag=📄 Twitter, enabled=true
+https://whatshub.top/rule/Reddit.list, policy=📖 Reddit, tag=📖 Reddit, enabled=true
+https://whatshub.top/rule/TikTok.list, policy=🫟 TikTok, tag=🫟 TikTok, enabled=true
+https://whatshub.top/rule/Spotify.list, policy=🎻 Spotify, tag=🎻 Spotify, enabled=true
+https://whatshub.top/rule/JOOX.list, policy=🎹 JOOX, tag=🎹 JOOX, enabled=true
+https://whatshub.top/rule/Deezer.list, policy=🎷 Deezer, tag=🎷 Deezer, enabled=true
+https://whatshub.top/rule/YouTube.list, policy=📹 YouTube, tag=📹 YouTube, enabled=true
+https://whatshub.top/rule/YouTubeMusic.list, policy=📹 YouTube, tag=🎵 YouTube Music, enabled=true
+https://whatshub.top/rule/Netflix.list, policy=🎥 Netflix, tag=🎥 Netflix, enabled=true
+https://whatshub.top/rule/Disney.list, policy=🎬 Disney+, tag=🎬 Disney+, enabled=true
+https://whatshub.top/rule/HBO.list, policy=🎬 HBO, tag=🎬 HBO, enabled=true
+https://yfamilys.com/rule/AmazonPrimeVideo.list, policy=📀 PrimeVideo, tag=📀 PrimeVideo, enabled=true
+https://whatshub.top/rule/BBC.list, policy=🗼BBC, tag=🗼BBC, enabled=true
+https://whatshub.top/rule/DAZN.list, policy=🏟️ DAZN, tag=🏟️ DAZN, enabled=true
+https://whatshub.top/rule/ViuTV.list, policy=🎞️ ViuTV, tag=🎞️ ViuTV, enabled=true
+https://whatshub.top/rule/AbemaTV.list, policy=🖼️ AbemaTV, tag=🖼️ AbemaTV, enabled=true
+https://whatshub.top/rule/Bahamut.list, policy=📽 Bahamut, tag=📽 Bahamut, enabled=true
+https://whatshub.top/rule/ProxyMedia.list, policy=🍿 国外媒体, tag=🍿 国外媒体, enabled=true
+https://whatshub.top/rule/ChinaMedia.list, policy=🍔 国内媒体, tag=🍔 国内媒体, enabled=true
+https://whatshub.top/rule/BiliBili.list, policy=📽 Bilibili, tag=📽 Bilibili, enabled=true
+https://whatshub.top/rule/Weibo.list, policy=🍟 新浪微博, tag=🍟 新浪微博, enabled=true
+https://whatshub.top/rule/Emby.list, policy=🛋️ Emby, tag=🛋️ Emby, enabled=true
+https://whatshub.top/rule/WeChat.list, policy=DIRECT, tag=🐧 腾讯服务, enabled=true
+https://whatshub.top/rule/Twitch.list, policy=📺 Twitch, tag=📺 Twitch, enabled=true
+https://whatshub.top/rule/Douyu.list, policy=DIRECT, tag=📺 斗鱼, enabled=true
+https://whatshub.top/rule/PlayStation.list, policy=🎮 Games, tag=🎮 PlayStation, enabled=true
+https://whatshub.top/rule/Epic.list, policy=🎮 Games, tag=🎮 Epic, enabled=true
+https://whatshub.top/rule/Sony.list, policy=🎮 Games, tag=🎮 SONY, enabled=true
+https://whatshub.top/rule/Steam.list, policy=🎮 Games, tag=🎮 Steam, enabled=true
+https://whatshub.top/rule/Nintendo.list, policy=🎮 Games, tag=🎮 Nintento, enabled=true
+https://whatshub.top/rule/WanMeiShiJie.list, policy=DIRECT, tag=🎮 完美世界, enabled=true
+https://whatshub.top/rule/Blizzard.list, policy=🎮 Games, tag=🎮 Blizzard, enabled=true
+https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Loon/Rules/ProxyGFW.list, policy=🚀 手动切换, tag=🧱 GFW网站, enabled=true
+https://whatshub.top/rule/Proxy.list, policy=🚀 手动切换, tag=🌍 兜底分流, enabled=true
+https://whatshub.top/rule/AntiAD.list, policy=⛔️ 广告拦截, tag=⛔️ 广告拦截, enabled=true
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list, policy=🧹 应用净化, tag=🧹 应用净化, enabled=true
+https://whatshub.top/rule/IPs-CN.list, policy=DIRECT, tag=🌐 全球直连, enabled=true
+https://whatshub.top/rule/ChinaIPsBGP.list, policy=DIRECT, tag=🌐 全球直连, enabled=true
+[Rule]
+FINAL,🚀 手动切换
+[Rewrite]
+[Remote Rewrite]
+[Script]
+[Remote Script]
+[Plugin]
+https://whatshub.top/plugin/adultraplus.plugin, enabled=true
+https://kelee.one/Tool/Loon/Lpx/AppleWeatherEnhancer.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Auto_Join_TF.lpx, enabled=false
+https://kelee.one/Tool/Loon/Lpx/Zhihu_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/RedPaper_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/WexinMiniPrograms_Remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weixin_external_links_unlock.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/NeteaseCloudMusic_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Taobao_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/51Job_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/PinDuoDuo_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/JD_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Remove_ads_by_keli.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/HUPU_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Douyu_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BaiduNetDisk_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Cainiao_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BaiduSearchWebpage_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Tieba_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/YouTube_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Sub-Store.lpx, enabled=false
+https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/QQMusic_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/IThome_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Google.lpx, enabled=true
+[Mitm]
+ca-p12 = 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
+ca-passphrase = GG0V9FQ6
+skip-server-cert-verify = false
