@@ -910,7 +910,7 @@
     "tag": "BanProgramAD",
     "type": "remote",
     "format": "source",
-    "url": "https://raw.githubusercontent.com/KaringX/karing-ruleset/refs/heads/sing/ACL4SSR/BanProgramAD.json",
+    "url": "https://raw.githubusercontent.com/christin11/Proxy-Tool-Subscription-Templates/refs/heads/main/Rules/BanProgramAD.json",
     "update_interval": "3d"
   },
   {
