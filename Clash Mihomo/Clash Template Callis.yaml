@@ -153,13 +153,9 @@ proxy-groups:
       - "🇬🇧 英国节点"
       - "🚀 手动切换"
       - "🛩️ 其他备用"
+      - "🇭🇰 香港大流量智选"
       - "🟢 直连"
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
-
-  - name: "🚀 手动切换"
-    type: select
-    include-all: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
 
   - name: "♻️ 自动选择"
     type: url-test
@@ -184,11 +180,6 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Round_Robin.png
 
   # ============ 特殊固定 IP 组 ============
-  - name: "🔮 私人固定"
-    type: select
-    include-all: true
-    filter: "(私人|Teddy)"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png
 
   - name: "🏖️ 私人智选"
     type: url-test
@@ -197,19 +188,9 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Filter.png
 
-  - name: "🛩️ IP海外固定"
-    type: select
-    include-all: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
-
-  - name: "🛩️ IP国内固定"
-    type: select
-    include-all: true
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
-
-  - name: "🛩️ 其他备用"
+  - name: "🚀 手动切换"
     type: select
     include-all: true
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
@@ -250,27 +231,28 @@ proxy-groups:
     filter: "(?i)新加坡|坡|狮城|\\bSG\\b|Singapore"
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
 
+  - name: "🛩️ IP海外固定"
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/World_Map.png
+
+  - name: "🛩️ IP国内固定"
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
+
+  - name: "🛩️ 其他备用"
+    type: select
+    include-all: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available_1.png
+
+  - name: "🔮 私人固定"
+    type: select
+    include-all: true
+    filter: "(私人|Teddy)"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Star.png
+
   # ============ 业务分流组 ============
-  - name: "📲 国内IP锁定"
-    type: select
-    proxies:
-      - "🛩️ IP海外固定"
-      - "🛩️ IP国内固定"
-      - "🚀 节点选择"
-      - "🔮 私人固定"
-      - "🟢 直连"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png
-
-  - name: "📲 海外IP锁定"
-    type: select
-    proxies:
-      - "🛩️ IP海外固定"
-      - "🛩️ IP国内固定"
-      - "🚀 节点选择"
-      - "🔮 私人固定"
-      - "🟢 直连"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
-
   - name: "📢 谷歌服务"
     type: select
     proxies:
@@ -291,7 +273,7 @@ proxy-groups:
       - "🛩️ 其他备用"
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
 
-  - name: "📺 YouTube"
+  - name: "🎦 海外CDN"
     type: select
     proxies:
       - "🚀 节点选择"
@@ -302,6 +284,7 @@ proxy-groups:
       - "🇯🇵 日本节点"
       - "🇰🇷 韩国节点"
       - "🚀 手动切换"
+      - "🇭🇰 香港大流量智选"
       - "🛩️ 美国备用"
       - "🛩️ 日本备用"
       - "🛩️ 新加坡备用"
@@ -309,7 +292,7 @@ proxy-groups:
       - "🛩️ 台湾备用"
       - "🛩️ 英国备用"
       - "🛩️ 其他备用"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png
 
   - name: "📲 电报消息"
     type: select
@@ -347,7 +330,27 @@ proxy-groups:
       - "🛩️ 英国备用"
       - "🛩️ 其他备用"
       - "🚀 手动切换"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ForeignMedia.png
+
+  - name: "📲 国内IP锁定"
+    type: select
+    proxies:
+      - "🛩️ IP海外固定"
+      - "🛩️ IP国内固定"
+      - "🚀 节点选择"
+      - "🔮 私人固定"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/CN.png
+
+  - name: "📲 海外IP锁定"
+    type: select
+    proxies:
+      - "🛩️ IP海外固定"
+      - "🛩️ IP国内固定"
+      - "🚀 节点选择"
+      - "🔮 私人固定"
+      - "🟢 直连"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
 
   - name: "🐹 Disney+"
     type: select
@@ -693,7 +696,7 @@ proxy-groups:
       - "🛩️ 台湾备用"
       - "🛩️ 英国备用"
       - "🛩️ 其他备用"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png
 
   - name: "🎮 国内下载"
     type: select
@@ -714,7 +717,7 @@ proxy-groups:
       - "🛩️ 台湾备用"
       - "🛩️ 英国备用"
       - "🛩️ 其他备用"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png
 
   - name: "🎮 PC平台"
     type: select
@@ -735,7 +738,7 @@ proxy-groups:
       - "🛩️ 香港备用"
       - "🛩️ 台湾备用"
       - "🛩️ 英国备用"
-    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Windows.png
 
   - name: "🎮 PS平台"
     type: select
@@ -855,6 +858,51 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: "(?i)🇭🇰|香港|港|\\bHK\\b|Hong"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+  - name: "🇭🇰 香港大流量智选"
+    type: url-test
+    proxies:
+      - "🇭🇰 NCloud香港-0队"
+      - "🇭🇰 NCloud香港-1队"
+      - "🇭🇰 NCloud香港-2队"
+      - "🇭🇰 良心云香港-3队"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+  - name: "🇭🇰 NCloud香港-0队"
+    type: url-test
+    include-all: true
+    filter: "(?=.*NCloud-0)(?=.*(?:港|HK|Hong Kong))"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+  - name: "🇭🇰 NCloud香港-1队"
+    type: url-test
+    include-all: true
+    filter: "(?=.*NCloud-1)(?=.*(?:港|HK|Hong Kong))"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+  - name: "🇭🇰 NCloud香港-2队"
+    type: url-test
+    include-all: true
+    filter: "(?=.*NCloud-2)(?=.*(?:港|HK|Hong Kong))"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+
+  - name: "🇭🇰 良心云香港-3队"
+    type: url-test
+    include-all: true
+    filter: "(?=.*良心云)(?=.*(?:港|HK|Hong Kong))"
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -991,23 +1039,29 @@ rule-providers:
     url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Download/Download.list"
 
   # === 国内IP锁定 ===
-  S115Login:
+  115Login:
     <<: *class
-    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/master/Clash/Ruleset/115login"
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Addi-115%20Login"
 
   # === 流媒体登录 ===
   GlobalMediaLogin:
     <<: *class
     url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-GlobalMediaLogin"
 
-  # === YouTube ===
-  YouTube:
+ # === Youtube登录 ===
+  YouTube-Login:
     <<: *class
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list"
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Addi-Youtube%20Login"
 
-  YouTubeMusic:
+ # === Tiktok登录 ===
+  Tiktok-Login:
     <<: *class
-    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTubeMusic/YouTubeMusic.list"
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Addi-Tiktok%20Login"
+
+ # === CDN媒体资源 ===
+  CDN-Media:
+    <<: *class
+    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Addi-CDN%20MediaNetwork"
 
   # === 谷歌服务 ===
   GoogleFCM:
@@ -1030,6 +1084,14 @@ rule-providers:
     <<: *class
     url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/GoogleCN.list"
 
+  YouTube:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTube/YouTube.list"
+
+  YouTubeMusic:
+    <<: *class
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/YouTubeMusic/YouTubeMusic.list"
+
   # === 国外媒体 ===
   IPTVGlobalSpecific:
     <<: *class
@@ -1042,10 +1104,6 @@ rule-providers:
   IPTVGlobalGeneral:
     <<: *class
     url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-IPTV(Global-General)"
-
-  MediaCDNGlobal:
-    <<: *class
-    url: "https://raw.githubusercontent.com/carrollis/ACL4SSR-Carrollis/refs/heads/master/Clash/Ruleset/Callis-DIY-MediaCDN(Global)"
 
   ProxyMedia:
     <<: *class
@@ -1297,11 +1355,17 @@ rule-providers:
 # ============================================================
 rules:
   # === 国内IP锁定 ===
-  - RULE-SET,S115Login,📲 国内IP锁定
+  - RULE-SET,115Login,📲 国内IP锁定
+
+  # === 流媒体/服务IP锁定 ===
+  - RULE-SET,GlobalMediaLogin,🔮 流媒体登录
+  - RULE-SET,YouTube-Login,📲 海外IP锁定
+  - RULE-SET,Tiktok-Login,📺 Tiktok
+  - RULE-SET,CDN-Media,🎦 海外CDN
 
   # === YouTube ===
-  - RULE-SET,YouTube,📺 YouTube
-  - RULE-SET,YouTubeMusic,📺 YouTube
+  - RULE-SET,YouTube,📢 谷歌服务
+  - RULE-SET,YouTubeMusic,📢 谷歌服务
 
   # === 谷歌服务 ===
   - RULE-SET,GoogleFCM,📢 谷歌服务
@@ -1315,7 +1379,6 @@ rules:
   - RULE-SET,IPTVGlobalSpecific,🌍 国外媒体
   - RULE-SET,LinkedIn,🌍 国外媒体
   - RULE-SET,IPTVGlobalGeneral,🌍 国外媒体
-  - RULE-SET,MediaCDNGlobal,🌍 国外媒体
 
   # === 全球直连白名单 ===
   - RULE-SET,LocalAreaNetwork,🎯 全球直连
@@ -1338,9 +1401,6 @@ rules:
   - RULE-SET,GoogleCNACL,🎯 全球直连
   - RULE-SET,PrivateTracker,🎯 全球直连
   - RULE-SET,TeamViewer,🎯 全球直连
-
-  # === 流媒体登录 ===
-  - RULE-SET,GlobalMediaLogin,🔮 流媒体登录
 
   # === BBC ===
   - RULE-SET,BBC,📺 BBC
