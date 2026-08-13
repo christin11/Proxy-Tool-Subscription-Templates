@@ -109,6 +109,8 @@ dns:
 
   # 修正后的策略分流：每个冒号后都严格检查了空格，并对 Key 加上了双引号
   nameserver-policy:
+    "*.bestvmr.com": "47.110.75.65:8053"
+    "bestvmr.com": "47.110.75.65:8053"
     "geosite:cn": "119.29.29.29"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
     "+.googleapis.com": "https://dns.cloudflare.com/dns-query"
@@ -116,6 +118,10 @@ dns:
     "+.facebook.com": "https://dns.cloudflare.com/dns-query"
     "+.twitter.com": "https://dns.cloudflare.com/dns-query"
     "+.github.com": "https://dns.cloudflare.com/dns-query"
+    "+.sdykjym.cc":
+        - "https://api-query.yunkai002.top/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb"
+        - "https://64.83.40.123:40443//89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb"
+        - "https://dns.controld.com/zlyskwxxt6"
 
   # 备用/污染判定
   fallback-filter:
