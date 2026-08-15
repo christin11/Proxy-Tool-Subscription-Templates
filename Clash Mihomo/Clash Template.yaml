@@ -360,6 +360,7 @@ rules:
   - RULE-SET,Epic,🎮 游戏平台
   - RULE-SET,Games,🎮 游戏平台
   - RULE-SET,ProxyGFW,🧱 GFW网站
+  - DOMAIN-SUFFIX,accuweather.com,✨ 节点选择
   
   # === 第三优先级：国内直连 ===
   - RULE-SET,Direct,🌐 全球直连
