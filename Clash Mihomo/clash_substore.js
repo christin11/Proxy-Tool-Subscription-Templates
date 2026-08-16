@@ -1,5 +1,7 @@
 if (typeof $content === 'string') {
   const raw = $arguments?.target || ''
+  // 新增：机场名称也从参数表读，没配置就自动用 subName 兜底
+  const nameParam = $arguments?.name || ''
 
   let type = 'sub'
   let subName = raw
@@ -17,16 +19,16 @@ if (typeof $content === 'string') {
 
   const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
   const TARGET = 'ClashMeta'
-
-  // 单条订阅: /download/<name>
-  // 组合订阅: /download/collection/<name>  ← 比单条订阅多一段 collection/
   const pathPrefix = type === 'collection' ? 'collection/' : ''
 
   const url = subName
     ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}`
     : ''
 
+  // 显示名称优先用 name 参数，没填就退回用 subName，都没有才兜底 AirPort
+  const displayName = nameParam || subName || 'AirPort'
+
   $content = $content
-    .replace(/\{\{AIRPORT_NAME\}\}/g, '良心云')
+    .replace(/\{\{AIRPORT_NAME\}\}/g, displayName)
     .replace(/\{\{SUB_URL\}\}/g, url)
 }
