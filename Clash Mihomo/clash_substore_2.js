@@ -1,25 +1,32 @@
+if (typeof $content === 'string') {
+  const raw = $arguments?.target || ''
 
-```javascript
-/**
- * Clash 模板注入脚本 - 稳定修复版
- * 特点：补全全局/手动/自动注入，精准定位全局 proxies，解决异步陷阱
- */
+  let type = 'sub'
+  let subName = raw
+  if (raw.includes(':')) {
+    const idx = raw.indexOf(':')
+    type = raw.slice(0, idx).trim().toLowerCase()
+    subName = raw.slice(idx + 1).trim()
+  }
 
-async function operator(content, args) {
-  // 1. 获取参数（兼容 name=机场名）
-  const name = args.name || (typeof $arguments !== 'undefined' ? $arguments.name : null);
-  if (!name) return content;
+  if (!subName) {
+    console.log(`[脚本操作] WARN: 参数表里没有配置 target，请检查`)
+  } else if (!['sub', 'collection'].includes(type)) {
+    console.log(`[脚本操作] WARN: target 的类型 "${type}" 不识别，仅支持 sub 或 collection`)
+  }
 
-  // 2. 安全读取订阅缓存
-  const target = $artifacts.find(a => a.name === name);
-  if (!target) return content;
+  const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
+  const TARGET = 'ClashMeta'
 
-  const proxies = await target.getProxies();
-  if (!proxies || proxies.length === 0) return content;
+  // 单条订阅: /download/<name>
+  // 组合订阅: /download/collection/<name>  ← 比单条订阅多一段 collection/
+  const pathPrefix = type === 'collection' ? 'collection/' : ''
 
-  // 3. 增强版匹配规则
-  const regionMatch = {
-    '🇭🇰 香港节点': ['香港', 'HK', 'Hong Kong', 'Hongkong', '🇭🇰'],
-    '🇹🇼 台湾节点': ['台湾', '臺灣', 'TW', 'Taiwan', '新北', '彰化', '高雄', '🇹🇼'],
-    '🇯🇵 日本节点': ['日本', 'JP', 'Japan', '东京', '大阪', '名古屋', '埼玉', '福冈', '🇯🇵'],
-    '🇰🇷 韩国节点': ['韩国', '韓國', 'KR', 'K
+  const url = subName
+    ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}`
+    : ''
+
+  $content = $content
+    .replace(/\{\{AIRPORT_NAME\}\}/g, '良心云')
+    .replace(/\{\{SUB_URL\}\}/g, url)
+}
