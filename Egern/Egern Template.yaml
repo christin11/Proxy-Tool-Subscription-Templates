@@ -1008,21 +1008,21 @@ mitm:
 modules:
 - url: https://raw.githubusercontent.com/jnlaoshu/MySelf/main/Egern/Module/Panel.yaml
   enabled: true
-- url: https://whatshub.top/sgmodule/appsdoor.sgmodule
+- url: https://yfamilys.com/sgmodule/appsdoor.sgmodule
   enabled: true
-- url: https://whatshub.top/sgmodule/ZhihuBlock.sgmodule
+- url: https://yfamilys.com/sgmodule/ZhihuBlock.sgmodule
   enabled: false
-- url: https://whatshub.top/module/weiboad.module
+- url: https://yfamilys.com/module/weiboad.module
   enabled: true
-- url: https://whatshub.top/module/wechatad.module
+- url: https://yfamilys.com/module/wechatad.module
   enabled: false
-- url: https://whatshub.top/module/HistoryPrice.sgmodule
+- url: https://yfamilys.com/module/HistoryPrice.sgmodule
   enabled: true
-- url: https://whatshub.top/module/caixin.module
+- url: https://yfamilys.com/module/caixin.module
   enabled: false
-- url: https://whatshub.top/sgmodule/ip-api.sgmodule
+- url: https://yfamilys.com/sgmodule/ip-api.sgmodule
   enabled: true
-- url: https://whatshub.top/module/adultraplus.sgmodule
+- url: https://yfamilys.com/module/adultraplus.sgmodule
   enabled: false
 - url: https://github.com/Repcz/Tool/raw/X/Egern/Module/YouTube.yaml
   enabled: false
