@@ -145,11 +145,11 @@ proxy-groups:
   - {name: 🇩🇪 德国节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇩🇪|德国|德國|DEU|慕尼黑|汉堡|科隆|(\b(DE|Germany)\b)^((?!(香港|台湾|新加坡|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
   - {name: 🇬🇧 英国节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇬🇧|英国|英國|GBR|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰|(\b(UK|United Kingdom)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|乌克兰|🇺🇦|UKR|UKRUS US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
 rule-providers:
-  Speedtest: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Speedtest.list'}
+  Speedtest: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Speedtest.list'}
   Google: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
   AppleCN: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
   AppleProxy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
-  AppleNews: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/AppleNews.list'}
+  AppleNews: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/AppleNews.list'}
   Microsoft: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
   OneDrive: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   GitHub: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
@@ -159,33 +159,33 @@ rule-providers:
   Bestbuy: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Bestbuy.list'}
   AmazonIP: {behavior: ipcidr, format: text, interval: 86400, url: 'https://yfamilys.com/rule/AmazonIP.list'}
   AI: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
-  Line: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Line.list'}
+  Line: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Line.list'}
   KakaoTalk: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/KakaoTalk.list'}
   Telegram: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
-  Discord: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Discord.list'}
+  Discord: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Discord.list'}
   Facebook: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list'}
   Twitter: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
-  Reddit: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Reddit.list'}
+  Reddit: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Reddit.list'}
   TikTok: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list'}
   Spotify: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list'}
-  JOOX: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/JOOX.rule'}
-  Deezer: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Deezer.list'}
+  JOOX: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/JOOX.rule'}
+  Deezer: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Deezer.list'}
   YouTube: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
-  YouTubeMusic: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/YouTubeMusic.list'}
+  YouTubeMusic: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/YouTubeMusic.list'}
   Netflix: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list'}
   Disney: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list'}
   PrimeVideo: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list'}
   HBO: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list'}
-  BBC: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/BBC.list'}
-  DAZN: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/DAZN.list'}
-  ViuTV: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/ViuTV.list'}
-  AbemaTV: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/AbemaTV.list'}
+  BBC: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/BBC.list'}
+  DAZN: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/DAZN.list'}
+  ViuTV: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/ViuTV.list'}
+  AbemaTV: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/AbemaTV.list'}
   Bahamut: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list'}
   ProxyMedia: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
-  ChinaMedia: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/ChinaMedia.list'}
-  Bilibili: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/BiliBili.list'}
+  ChinaMedia: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/ChinaMedia.list'}
+  Bilibili: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/BiliBili.list'}
   Emby: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list'}
-  Twitch: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Twitch.list'}
+  Twitch: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Twitch.list'}
   Steam: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
   Epic: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
   Games: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list'}
