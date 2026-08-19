@@ -1006,6 +1006,19 @@
         "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Ads_limbopro.json",
         "update_interval": "3d"
       },
+        {
+        "tag": "Lan",
+       "type": "inline",
+       "rules": [
+      {
+        "ip_cidr": [
+          "192.168.0.0/16",
+          "10.0.0.0/8",
+          "172.16.0.0/12"
+        ]
+      }
+    ]
+  },
       {
         "tag": "AI",
         "type": "remote",
