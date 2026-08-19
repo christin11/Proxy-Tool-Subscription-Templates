@@ -4,23 +4,48 @@
     "level": "info",
     "timestamp": true
   },
- "dns": {
+  "dns": {
   "servers": [
+    { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
+    { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
+    { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
+    { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
+    { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns" },
+    { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053, },
+    { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
+  ],
+  "rules": [
     {
-      "tag": "default-dns",
-      "type": "udp",
-      "server": "47.110.75.65",
-      "server_port": 8053
+      "domain_suffix": ["lan", "local"],
+      "server": "default-dns"
     },
     {
-      "tag": "dns-sdykjym",
-      "type": "https",
-      "server": "api-query.yunkai002.top",
-      "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb",
-      "domain_resolver": "default-dns"
+      "domain_suffix": [
+        "stun.*.*", "stun.*.*.*",
+        "msftncsi.com", "msftconnecttest.com", "push.apple.com"
+      ],
+      "server": "default-dns"
+    },
+    {
+      "domain_suffix": ["bestvmr.com"],
+      "server": "private-dns-flyint"
+    },
+    {
+      "domain_suffix": ["sdykjym.cc"],
+      "server": "dns-sdykjym"
+    },
+    {
+      "domain_suffix": [
+        "google.com", "googleapis.com", "youtube.com",
+        "facebook.com", "twitter.com", "github.com"
+      ],
+      "server": "doh-cloudflare"
+    },
+    {
+      "rule_set": ["ChinaDomain"],
+      "server": "default-dns-2"
     }
   ],
-  "final": "default-dns",
   "strategy": "prefer_ipv4"
   },
   "experimental": {
