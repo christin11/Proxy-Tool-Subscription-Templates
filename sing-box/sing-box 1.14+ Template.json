@@ -5,92 +5,44 @@
     "timestamp": true
   },
   "dns": {
-    "servers": [
-      {
-        "tag": "default-dns",
-        "type": "udp",
-        "server": "223.5.5.5"
-      },
-      {
-        "tag": "default-dns-2",
-        "type": "udp",
-        "server": "119.29.29.29"
-      },
-      {
-        "tag": "doh-ali",
-        "type": "https",
-        "server": "223.5.5.5"
-      },
-      {
-        "tag": "doh-tencent",
-        "type": "https",
-        "server": "119.29.29.29"
-      },
-      {
-        "tag": "doh-cloudflare",
-        "type": "https",
-        "server": "1.1.1.1",
-        "path": "/dns-query",
-        "tls": {
-          "server_name": "cloudflare-dns.com"
-        },
-        "detour": "✨ 节点选择"
-      },
-      {
-        "tag": "private-dns-flyint",
-        "type": "udp",
-        "server": "47.110.75.65",
-        "server_port": 8053
-      },
-      {
-        "tag": "dns-sdykjym",
-        "type": "https",
-        "server": "api-query.yunkai002.top",
-        "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb",
-        "domain_resolver": "default-dns"
-      }
-    ],
-    "rules": [
-      {
-        "domain_suffix": [
-          "lan",
-          "local"
-        ],
-        "server": "default-dns"
-      },
-      {
-        "domain_suffix": [
-          "stun.*.*",
-          "stun.*.*.*",
-          "msftncsi.com",
-          "msftconnecttest.com",
-          "push.apple.com"
-        ],
-        "server": "default-dns"
-      },
-      {
-        "domain_suffix": [
-          "bestvmr.com"
-        ],
-        "server": "private-dns-flyint"
-      },
-      {
-        "domain_suffix": [
-          "sdykjym.cc"
-        ],
-        "server": "dns-sdykjym"
-      },
-      {
-        "rule_set": [
-          "ChinaDomain"
-        ],
-        "server": "default-dns-2"
-      },
-      {
-        "server": "doh-cloudflare"
-      }
-    ],
-    "strategy": "prefer_ipv4"
+  "servers": [
+    { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
+    { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
+    { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
+    { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
+    { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
+    { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053 },
+    { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
+  ],
+  "rules": [
+    {
+      "domain_suffix": ["lan", "local"],
+      "server": "default-dns"
+    },
+    {
+      "domain_suffix": [
+        "stun.*.*", "stun.*.*.*",
+        "msftncsi.com", "msftconnecttest.com", "push.apple.com"
+      ],
+      "server": "default-dns"
+    },
+    {
+      "domain_suffix": ["bestvmr.com"],
+      "server": "private-dns-flyint"
+    },
+    {
+      "domain_suffix": ["sdykjym.cc"],
+      "server": "dns-sdykjym"
+    },
+    {
+      "domain_suffix": [
+        "google.com", "googleapis.com", "youtube.com",
+        "facebook.com", "twitter.com", "github.com"
+      ],
+      "server": "doh-cloudflare"
+    }
+  ],
+  "strategy": "prefer_ipv4"
   },
   "experimental": {
     "clash_api": {
@@ -103,10 +55,7 @@
     {
       "type": "tun",
       "tag": "tun-in",
-      "address": [
-        "172.19.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
+      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
       "auto_route": true,
       "strict_route": true,
       "stack": "system"
@@ -970,280 +919,49 @@
     "auto_detect_interface": true,
     "final": "🌍 兜底分流",
     "rules": [
-      {
-        "action": "sniff"
-      },
-      {
-        "protocol": "dns",
-        "action": "hijack-dns"
-      },
-      {
-        "rule_set": [
-          "Lan"
-        ],
-        "outbound": "🌐 全球直连"
-      },
-      {
-        "rule_set": [
-          "ProxyGFW"
-        ],
-        "outbound": "🧱 GFW网站"
-      },
-      {
-        "rule_set": [
-          "BanProgramAD"
-        ],
-        "outbound": "🧹 应用净化"
-      },
-      {
-        "rule_set": [
-          "Reject",
-          "AdGuardChinese",
-          "EasyListChina",
-          "EasyListPrivacy",
-          "Ads_limbopro"
-        ],
-        "outbound": "🛑 广告拦截"
-      },
-      {
-        "rule_set": [
-          "Speedtest"
-        ],
-        "outbound": "⏱️ 网络测速"
-      },
-      {
-        "rule_set": [
-          "Google"
-        ],
-        "outbound": "🔍 谷歌服务"
-      },
-      {
-        "rule_set": [
-          "Microsoft",
-          "OneDrive",
-          "Xbox"
-        ],
-        "outbound": "Ⓜ️ 微软服务"
-      },
-      {
-        "rule_set": [
-          "AppleCN",
-          "AppleProxy"
-        ],
-        "outbound": "🍎 苹果服务"
-      },
-      {
-        "rule_set": [
-          "AppleNews"
-        ],
-        "outbound": "📰 苹果新闻"
-      },
-      {
-        "rule_set": [
-          "Paypal"
-        ],
-        "outbound": "🪙 贝宝支付"
-      },
-      {
-        "rule_set": [
-          "eBay",
-          "Bestbuy",
-          "AmazonIP"
-        ],
-        "outbound": "🛒 电商平台"
-      },
-      {
-        "rule_set": [
-          "Github"
-        ],
-        "outbound": "🐙 Github"
-      },
-      {
-        "rule_set": [
-          "AI"
-        ],
-        "outbound": "🤖️ 人工智能"
-      },
-      {
-        "rule_set": [
-          "Line"
-        ],
-        "outbound": "📤 Line消息"
-      },
-      {
-        "rule_set": [
-          "KakaoTalk"
-        ],
-        "outbound": "📢 KakaoTalk消息"
-      },
-      {
-        "rule_set": [
-          "Telegram"
-        ],
-        "outbound": "📱 电报消息"
-      },
-      {
-        "rule_set": [
-          "Discord"
-        ],
-        "outbound": "🐦 Discord消息"
-      },
-      {
-        "rule_set": [
-          "Facebook"
-        ],
-        "outbound": "👤 脸书消息"
-      },
-      {
-        "rule_set": [
-          "Twitter"
-        ],
-        "outbound": "📄 推特消息"
-      },
-      {
-        "rule_set": [
-          "Reddit"
-        ],
-        "outbound": "📖 红迪消息"
-      },
-      {
-        "rule_set": [
-          "TikTok"
-        ],
-        "outbound": "🫟 TikTok"
-      },
-      {
-        "rule_set": [
-          "Spotify"
-        ],
-        "outbound": "🎻 Spotify"
-      },
-      {
-        "rule_set": [
-          "JOOX"
-        ],
-        "outbound": "🎹 JOOX"
-      },
-      {
-        "rule_set": [
-          "Deezer"
-        ],
-        "outbound": "🎷 Deezer"
-      },
-      {
-        "rule_set": [
-          "YouTube",
-          "YouTubeMusic"
-        ],
-        "outbound": "📹 油管视频"
-      },
-      {
-        "rule_set": [
-          "Netflix"
-        ],
-        "outbound": "🎥 奈飞视频"
-      },
-      {
-        "rule_set": [
-          "Disney"
-        ],
-        "outbound": "🎬 迪士尼+"
-      },
-      {
-        "rule_set": [
-          "HBO"
-        ],
-        "outbound": "🎬 HBO视频"
-      },
-      {
-        "rule_set": [
-          "PrimeVideo"
-        ],
-        "outbound": "📀 PrimeVideo"
-      },
-      {
-        "rule_set": [
-          "BBC"
-        ],
-        "outbound": "🗼 BBC"
-      },
-      {
-        "rule_set": [
-          "DAZN"
-        ],
-        "outbound": "🏟️ DAZN"
-      },
-      {
-        "rule_set": [
-          "ViuTV"
-        ],
-        "outbound": "🎞️ ViuTV"
-      },
-      {
-        "rule_set": [
-          "AbemaTV"
-        ],
-        "outbound": "🖼️ AbemaTV"
-      },
-      {
-        "rule_set": [
-          "Bahamut"
-        ],
-        "outbound": "📽 巴哈姆特"
-      },
-      {
-        "rule_set": [
-          "ProxyMedia"
-        ],
-        "outbound": "🍿 境外媒体"
-      },
-      {
-        "rule_set": [
-          "ChinaMedia"
-        ],
-        "outbound": "🍔 国内媒体"
-      },
-      {
-        "rule_set": [
-          "Bilibili"
-        ],
-        "outbound": "📽 哔哩哔哔哩"
-      },
-      {
-        "rule_set": [
-          "Emby"
-        ],
-        "outbound": "🛋️ Emby"
-      },
-      {
-        "rule_set": [
-          "Twitch"
-        ],
-        "outbound": "📺 Twitch直播"
-      },
-      {
-        "rule_set": [
-          "Steam",
-          "Epic",
-          "Games"
-        ],
-        "outbound": "🎮 游戏平台"
-      },
-      {
-        "rule_set": [
-          "Proxy"
-        ],
-        "outbound": "🧱 GFW网站"
-      },
-      {
-        "rule_set": [
-          "Direct",
-          "ChinaDomain",
-          "ChinaIP",
-          "ChinaASN"
-        ],
-        "outbound": "🌐 全球直连"
-      }
+      {"action": "sniff"},
+      {"protocol": "dns", "action": "hijack-dns"},
+      {"rule_set": ["Lan"], "outbound": "🌐 全球直连"},
+      {"rule_set": ["BanProgramAD"], "outbound": "🧹 应用净化"},
+      {"rule_set": ["Reject", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
+      {"rule_set": ["Speedtest"], "outbound": "⏱️ 网络测速"},
+      {"rule_set": ["Google"], "outbound": "🔍 谷歌服务"},
+      {"rule_set": ["Microsoft", "OneDrive", "Xbox"], "outbound": "Ⓜ️ 微软服务"},
+      {"rule_set": ["AppleCN", "AppleProxy"], "outbound": "🍎 苹果服务"},
+      {"rule_set": ["AppleNews"], "outbound": "📰 苹果新闻"},
+      {"rule_set": ["Paypal"], "outbound": "🪙 贝宝支付"},
+      {"rule_set": ["eBay", "Bestbuy", "AmazonIP"], "outbound": "🛒 电商平台"},
+      {"rule_set": ["Github"], "outbound": "🐙 Github"},
+      {"rule_set": ["AI"], "outbound": "🤖️ 人工智能"},
+      {"rule_set": ["Line"], "outbound": "📤 Line消息"},
+      {"rule_set": ["KakaoTalk"], "outbound": "📢 KakaoTalk消息"},
+      {"rule_set": ["Telegram"], "outbound": "📱 电报消息"},
+      {"rule_set": ["Discord"], "outbound": "🐦 Discord消息"},
+      {"rule_set": ["Facebook"], "outbound": "👤 脸书消息"},
+      {"rule_set": ["Twitter"], "outbound": "📄 推特消息"},
+      {"rule_set": ["Reddit"], "outbound": "📖 红迪消息"},
+      {"rule_set": ["TikTok"], "outbound": "🫟 TikTok"},
+      {"rule_set": ["Spotify"], "outbound": "🎻 Spotify"},
+      {"rule_set": ["JOOX"], "outbound": "🎹 JOOX"},
+      {"rule_set": ["Deezer"], "outbound": "🎷 Deezer"},
+      {"rule_set": ["YouTube", "YouTubeMusic"], "outbound": "📹 油管视频"},
+      {"rule_set": ["Netflix"], "outbound": "🎥 奈飞视频"},
+      {"rule_set": ["Disney"], "outbound": "🎬 迪士尼+"},
+      {"rule_set": ["HBO"], "outbound": "🎬 HBO视频"},
+      {"rule_set": ["PrimeVideo"], "outbound": "📀 PrimeVideo"},
+      {"rule_set": ["BBC"], "outbound": "🗼 BBC"},
+      {"rule_set": ["DAZN"], "outbound": "🏟️ DAZN"},
+      {"rule_set": ["ViuTV"], "outbound": "🎞️ ViuTV"},
+      {"rule_set": ["AbemaTV"], "outbound": "🖼️ AbemaTV"},
+      {"rule_set": ["Bahamut"], "outbound": "📽 巴哈姆特"},
+      {"rule_set": ["ProxyMedia"], "outbound": "🍿 境外媒体"},
+      {"rule_set": ["ChinaMedia"], "outbound": "🍔 国内媒体"},
+      {"rule_set": ["Bilibili"], "outbound": "📽 哔哩哔哔哩"},
+      {"rule_set": ["Emby"], "outbound": "🛋️ Emby"},
+      {"rule_set": ["Twitch"], "outbound": "📺 Twitch直播"},
+      {"rule_set": ["Steam", "Epic", "Games"], "outbound": "🎮 游戏平台"},
+      {"rule_set": ["ProxyGFW", "Proxy"], "outbound": "🧱 GFW网站"},
+      {"rule_set": ["Direct", "ChinaDomain", "ChinaIP", "ChinaASN"], "outbound": "🌐 全球直连"}
     ],
     "rule_set": [
       {
