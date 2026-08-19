@@ -16,7 +16,7 @@
     "type": "udp",
     "server": "47.110.75.65",
     "server_port": 8053,
-    "detour": "🟢 直连"
+    "detour": "🟢 直连 Selector"
   },
   {
     "tag": "dns-sdykjym",
@@ -97,6 +97,12 @@
     {
       "type": "direct",
       "tag": "🟢 直连"
+    },
+    {
+      "type": "selector",
+      "tag": "🟢 直连 Selector",
+      "outbounds": [
+        "🟢 直连"
     },
     {
       "type": "block",
