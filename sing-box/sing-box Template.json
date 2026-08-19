@@ -28,7 +28,7 @@
     },
     {
       "domain_suffix": ["bestvmr.com"],
-      "server": "private-dns-flyint"
+      "server": "private-dns-flyint",
       "disable_cache": true
     },
     {
