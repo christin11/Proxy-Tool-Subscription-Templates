@@ -977,8 +977,14 @@
         "action": "hijack-dns"
       },
       {
-        "rule_set": [
-          "Lan"
+        "ip_is_private": true,
+        "outbound": "🌐 全球直连"
+      },
+      {
+        "domain_suffix": [
+          "lan",
+          "local",
+          "home"
         ],
         "outbound": "🌐 全球直连"
       },
@@ -1589,34 +1595,6 @@
         "format": "source",
         "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Twitch/Twitch.json",
         "update_interval": "3d"
-      },
-      {
-        "tag": "Lan",
-        "type": "inline",
-        "rules": [
-          {
-            "domain_suffix": [
-              "home",
-              "lan",
-              "local"
-            ]
-          },
-          {
-            "ip_cidr": [
-              "0.0.0.0/8",
-              "10.0.0.0/8",
-              "100.64.0.0/10",
-              "127.0.0.0/8",
-              "169.254.0.0/16",
-              "172.16.0.0/12",
-              "192.168.0.0/16",
-              "224.0.0.0/4",
-              "::1/128",
-              "fc00::/7",
-              "fe80::/10"
-            ]
-          }
-        ]
       },
       {
         "tag": "ProxyGFW",
