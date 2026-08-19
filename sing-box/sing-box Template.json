@@ -98,12 +98,6 @@
       "tag": "🟢 直连"
     },
     {
-      "type": "selector",
-      "tag": "🟢 直连 Selector",
-      "outbounds": [
-        "🟢 直连"
-    },
-    {
       "type": "block",
       "tag": "REJECT"
     },
