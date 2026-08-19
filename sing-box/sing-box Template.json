@@ -40,10 +40,6 @@
         "facebook.com", "twitter.com", "github.com"
       ],
       "server": "doh-cloudflare"
-    },
-    {
-      "rule_set": ["ChinaDomain"],
-      "server": "default-dns-2"
     }
   ],
   "strategy": "prefer_ipv4"
