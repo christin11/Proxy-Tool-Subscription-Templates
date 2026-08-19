@@ -7,7 +7,7 @@
  "dns": {
   "servers": [
     {
-      "tag": "private-dns-flyint",
+      "tag": "default-dns",
       "type": "udp",
       "server": "47.110.75.65",
       "server_port": 8053
@@ -17,10 +17,10 @@
       "type": "https",
       "server": "api-query.yunkai002.top",
       "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb",
-      "domain_resolver": "private-dns-flyint"
+      "domain_resolver": "default-dns"
     }
   ],
-  "final": "private-dns-flyint",
+  "final": "default-dns",
   "strategy": "prefer_ipv4"
   },
   "experimental": {
