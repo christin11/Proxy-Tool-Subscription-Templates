@@ -109,10 +109,6 @@
       "tag": "REJECT"
     },
     {
-      "type": "block",
-      "tag": "REJECT"
-    },
-    {
       "type": "selector",
       "tag": "✨ 节点选择",
       "outbounds": [
