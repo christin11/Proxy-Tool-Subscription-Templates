@@ -5,44 +5,44 @@
     "timestamp": true
   },
   "dns": {
-  "servers": [
-    { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
-    { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
-    { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
-    { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
-    { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
-    { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053 },
-    { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
-  ],
-  "rules": [
-    {
-      "domain_suffix": ["lan", "local"],
-      "server": "default-dns"
-    },
-    {
-      "domain_suffix": [
-        "stun.*.*", "stun.*.*.*",
-        "msftncsi.com", "msftconnecttest.com", "push.apple.com"
-      ],
-      "server": "default-dns"
-    },
-    {
-      "domain_suffix": ["bestvmr.com"],
-      "server": "private-dns-flyint"
-    },
-    {
-      "domain_suffix": ["sdykjym.cc"],
-      "server": "dns-sdykjym"
-    },
-    {
-      "domain_suffix": [
-        "google.com", "googleapis.com", "youtube.com",
-        "facebook.com", "twitter.com", "github.com"
-      ],
-      "server": "doh-cloudflare"
-    }
-  ],
-  "strategy": "prefer_ipv4"
+    "servers": [
+      { "tag": "default-dns", "type": "udp", "server": "223.5.5.5" },
+      { "tag": "default-dns-2", "type": "udp", "server": "119.29.29.29" },
+      { "tag": "doh-ali", "type": "https", "server": "223.5.5.5" },
+      { "tag": "doh-tencent", "type": "https", "server": "119.29.29.29" },
+      { "tag": "doh-cloudflare", "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
+      { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053 },
+      { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
+    ],
+    "rules": [
+      {
+        "domain_suffix": ["lan", "local"],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": [
+          "stun.*.*", "stun.*.*.*",
+          "msftncsi.com", "msftconnecttest.com", "push.apple.com"
+        ],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": ["bestvmr.com"],
+        "server": "private-dns-flyint"
+      },
+      {
+        "domain_suffix": ["sdykjym.cc"],
+        "server": "dns-sdykjym"
+      },
+      {
+        "domain_suffix": [
+          "google.com", "googleapis.com", "youtube.com",
+          "facebook.com", "twitter.com", "github.com"
+        ],
+        "server": "doh-cloudflare"
+      }
+    ],
+    "strategy": "prefer_ipv4"
   },
   "experimental": {
     "clash_api": {
@@ -698,7 +698,7 @@
     },
     {
       "type": "selector",
-      "tag": "📽 哔哩哔哔哩",
+      "tag": "📽 哔哩哔哩",
       "outbounds": [
         "🟢 直连",
         "✨ 节点选择"
@@ -956,7 +956,7 @@
       {"rule_set": ["Bahamut"], "outbound": "📽 巴哈姆特"},
       {"rule_set": ["ProxyMedia"], "outbound": "🍿 境外媒体"},
       {"rule_set": ["ChinaMedia"], "outbound": "🍔 国内媒体"},
-      {"rule_set": ["Bilibili"], "outbound": "📽 哔哩哔哔哩"},
+      {"rule_set": ["Bilibili"], "outbound": "📽 哔哩哔哩"},
       {"rule_set": ["Emby"], "outbound": "🛋️ Emby"},
       {"rule_set": ["Twitch"], "outbound": "📺 Twitch直播"},
       {"rule_set": ["Steam", "Epic", "Games"], "outbound": "🎮 游戏平台"},
@@ -1006,19 +1006,6 @@
         "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Ads_limbopro.json",
         "update_interval": "3d"
       },
-        {
-        "tag": "Lan",
-       "type": "inline",
-       "rules": [
-      {
-        "ip_cidr": [
-          "192.168.0.0/16",
-          "10.0.0.0/8",
-          "172.16.0.0/12"
-        ]
-      }
-    ]
-  },
       {
         "tag": "AI",
         "type": "remote",
