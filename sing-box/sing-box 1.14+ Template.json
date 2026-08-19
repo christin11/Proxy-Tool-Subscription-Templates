@@ -14,27 +14,32 @@
         "tag": "dns-sdykjym",
         "address": "https://api-query.yunkai002.top/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb",
         "address_resolver": "private-dns-flyint"
+      },
+      {
+        "tag": "doh-cloudflare",
+        "address": "https://dns.cloudflare.com/dns-query"
       }
     ],
+
     "rules": [
       {
-        "domain_suffix": [
-          "lan",
-          "local"
-        ],
+        "domain_suffix": ["bestvmr.com"],
         "server": "private-dns-flyint"
       },
       {
-        "domain_suffix": [
-          "bestvmr.com"
-        ],
-        "server": "private-dns-flyint"
-      },
-      {
-        "domain_suffix": [
-          "sdykjym.cc"
-        ],
+        "domain_suffix": ["sdykjym.cc"],
         "server": "dns-sdykjym"
+      },
+      {
+        "domain_suffix": ["lan", "local"],
+        "server": "private-dns-flyint"
+      },
+      {
+        "rule_set": ["ChinaDomain"],
+        "server": "private-dns-flyint"
+      },
+      {
+        "server": "doh-cloudflare"
       }
     ],
     "strategy": "prefer_ipv4"
