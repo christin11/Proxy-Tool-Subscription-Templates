@@ -15,8 +15,7 @@
     "tag": "private-dns-flyint",
     "type": "udp",
     "server": "47.110.75.65",
-    "server_port": 8053,
-    "detour": "🟢 直连 Selector"
+    "server_port": 8053
   },
   {
     "tag": "dns-sdykjym",
