@@ -4,99 +4,46 @@
     "level": "info",
     "timestamp": true
   },
- "dns": {
-  "servers": [
-    {
-      "tag": "default-dns",
-      "type": "udp",
-      "server": "223.5.5.5"
-    },
-    {
-      "tag": "default-dns-2",
-      "type": "udp",
-      "server": "119.29.29.29"
-    },
-    {
-      "tag": "doh-ali",
-      "type": "https",
-      "server": "223.5.5.5"
-    },
-    {
-      "tag": "doh-tencent",
-      "type": "https",
-      "server": "119.29.29.29"
-    },
-    {
-      "tag": "doh-cloudflare",
-      "type": "https",
-      "server": "dns.cloudflare.com",
-      "domain_resolver": "default-dns",
-      "detour": "✨ 节点选择"
-    },
-    {
-      "tag": "private-dns-flyint",
-      "type": "udp",
-      "server": "47.110.75.65",
-      "server_port": 8053,
-      "detour": "direct-for-dns"
-    },
-    {
-      "tag": "dns-sdykjym",
-      "type": "https",
-      "server": "api-query.yunkai002.top",
-      "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb",
-      "domain_resolver": "default-dns"
-    }
-  ],
-  "rules": [
-    {
-      "domain_suffix": [
-        "lan",
-        "local"
-      ],
-      "action": "route",
-      "server": "default-dns"
-    },
-    {
-      "domain_suffix": [
-        "stun.*.*",
-        "stun.*.*.*",
-        "msftncsi.com",
-        "msftconnecttest.com",
-        "push.apple.com"
-      ],
-      "action": "route",
-      "server": "default-dns"
-    },
-    {
-      "domain": [
-        "bestvmr.com"
-      ],
-      "action": "route",
-      "server": "private-dns-flyint"
-    },
-    {
-      "domain_suffix": [
-        "sdykjym.cc"
-      ],
-      "action": "route",
-      "server": "dns-sdykjym"
-    },
-    {
-      "domain_suffix": [
-        "google.com",
-        "googleapis.com",
-        "youtube.com",
-        "facebook.com",
-        "twitter.com",
-        "github.com"
-      ],
-      "action": "route",
-      "server": "doh-cloudflare"
-    }
-  ],
-  "strategy": "prefer_ipv4",
-  "final": "doh-cloudflare"
+  "dns": {
+    "servers": [
+      { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
+      { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
+      { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
+      { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
+      { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
+      { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053, "detour": "direct-for-dns" },
+      { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
+    ],
+    "rules": [
+      {
+        "domain_suffix": ["lan", "local"],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": [
+          "stun.*.*", "stun.*.*.*",
+          "msftncsi.com", "msftconnecttest.com", "push.apple.com"
+        ],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": ["bestvmr.com"],
+        "server": "private-dns-flyint"
+      },
+      {
+        "domain_suffix": ["sdykjym.cc"],
+        "server": "dns-sdykjym"
+      },
+      {
+        "domain_suffix": [
+          "google.com", "googleapis.com", "youtube.com",
+          "facebook.com", "twitter.com", "github.com"
+        ],
+        "server": "doh-cloudflare"
+      }
+    ],
+    "strategy": "prefer_ipv4",
+    "final": "doh-cloudflare"
   },
   "experimental": {
     "clash_api": {
