@@ -4,6 +4,7 @@
     "level": "info",
     "timestamp": true
   },
+{
   "dns": {
     "servers": [
       {
@@ -25,19 +26,12 @@
         "tag": "doh-cloudflare",
         "type": "https",
         "server": "dns.cloudflare.com",
-        "path": "/dns-query",
-        "domain_resolver": "default-dns"
+        "path": "/dns-query"
       },
       {
         "tag": "default-dns",
         "type": "udp",
         "server": "223.5.5.5",
-        "server_port": 53
-      },
-      {
-        "tag": "default-dns-2",
-        "type": "udp",
-        "server": "119.29.29.29",
         "server_port": 53
       }
     ],
@@ -57,21 +51,6 @@
       {
         "domain_suffix": ["sdykjym.cc"],
         "server": "dns-sdykjym"
-      },
-      {
-        "domain_suffix": [
-          "google.com",
-          "googleapis.com",
-          "youtube.com",
-          "facebook.com",
-          "twitter.com",
-          "github.com"
-        ],
-        "server": "doh-cloudflare"
-      },
-      {
-        "rule_set": ["ChinaDomain"],
-        "server": "private-dns-flyint"
       },
       {
         "server": "doh-cloudflare"
