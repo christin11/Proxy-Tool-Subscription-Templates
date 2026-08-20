@@ -81,7 +81,8 @@
     },
     {
       "type": "direct",
-      "tag": "direct-for-dns"
+      "tag": "direct-for-dns",
+      "domain_strategy": "prefer_ipv4"
     },
     {
       "type": "block",
