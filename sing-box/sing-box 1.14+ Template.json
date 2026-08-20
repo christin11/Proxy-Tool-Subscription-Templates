@@ -704,7 +704,7 @@
     },
     {
       "type": "selector",
-      "tag": "📽 哔哩哔哔哩",
+      "tag": "📽 哔哩哔哩",
       "outbounds": [
         "🟢 直连",
         "✨ 节点选择"
@@ -963,7 +963,7 @@
       {"rule_set": ["Bahamut"], "outbound": "📽 巴哈姆特"},
       {"rule_set": ["ProxyMedia"], "outbound": "🍿 境外媒体"},
       {"rule_set": ["ChinaMedia"], "outbound": "🍔 国内媒体"},
-      {"rule_set": ["Bilibili"], "outbound": "📽 哔哩哔哔哩"},
+      {"rule_set": ["Bilibili"], "outbound": "📽 哔哩哔哩"},
       {"rule_set": ["Emby"], "outbound": "🛋️ Emby"},
       {"rule_set": ["Twitch"], "outbound": "📺 Twitch直播"},
       {"rule_set": ["Steam", "Epic", "Games"], "outbound": "🎮 游戏平台"},
