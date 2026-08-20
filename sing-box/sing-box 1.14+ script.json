@@ -1,5 +1,6 @@
-// Sub-Store 脚本操作：适配 christin11/Subscription-Templet 最新版 sing-box 模板
-// （这份模板的地区分组用 "DIRECT" 作为永久兜底成员，脚本只做"追加"，不做"替换/清空"）
+// Sub-Store 脚本操作：适配 christin11/Proxy-Tool-Subscription-Templates 1.14+ sing-box 模板
+// （这份模板用 "AirPort name" 作为占位符，脚本会先过滤掉占位符，再追加真实节点，
+//  如果某分组过滤+追加后仍为空，会自动塞入直连 "🟢 直连" 兜底，避免数组为空导致启动报错）
 //
 // URL 参数（脚本链接后面用 # 拼接）：
 //   name = 你在 Sub-Store 里保存的订阅名称（必填）
@@ -51,12 +52,13 @@ const REGION_RULES = [
   ['🇬🇧 英国节点', /🇬🇧|英国|英國|GBR|\bUK\b(?!R)|Kingdom/i],
 ]
 
-// ④ 手动切换/自动选择/故障转移/负载均衡 这几个「全量节点池」分组，同样只追加不清空
+// ④ 手动切换/自动选择/故障转移/负载均衡 这几个「全量节点池」分组
 const FULL_POOL_TAGS = ['🚀 手动切换', '♻️ 自动选择', '🔯 故障转移', '🔮 负载均衡']
-// 注：🚀 手动切换 原本 outbounds 是 ["✨ 节点选择", "DIRECT"]，
-// 会跟 ✨ 节点选择 形成循环引用（✨ 节点选择 -> 🚀 手动切换 -> ✨ 节点选择）。
-// 脚本会把真实节点追加进去，但你仍需手动把模板里 🚀 手动切换 的
-// "✨ 节点选择" 这一项删掉，只留 "DIRECT"，避免循环引用报错。
+
+// 模板里用来占位的字符串，以及找不到匹配节点时的兜底直连出站 tag
+// 务必跟模板实际内容保持一致！
+const PLACEHOLDER_TAG = 'AirPort name'
+const DIRECT_TAG = '🟢 直连'
 
 // ④.5 【仅 1.14+ 模板需要】强制修正每个真实节点的 domain_resolver：
 // 节点自身服务器地址的域名解析，走的是节点对象自己的 domain_resolver 字段，
@@ -86,16 +88,21 @@ config.outbounds.forEach(ob => {
   if (regionRule) {
     const [, regex] = regionRule
     const tags = proxies.filter(p => regex.test(p.tag)).map(p => p.tag)
-    // 只追加，不删除原有的 "DIRECT"，即使 tags 为空也不会导致数组变空
+    // 先去掉占位符，再追加真实节点
+    ob.outbounds = ob.outbounds.filter(t => t !== PLACEHOLDER_TAG)
     ob.outbounds.push(...tags)
-    log(`🕳 ${ob.tag} 追加 ${tags.length} 个节点${tags.length === 0 ? '（该地区无匹配节点，保留 DIRECT 兜底）' : ''}`)
+    // 兜底：过滤+追加之后如果还是空的，塞入直连，避免数组为空导致报错
+    if (ob.outbounds.length === 0) ob.outbounds.push(DIRECT_TAG)
+    log(`🕳 ${ob.tag} 追加 ${tags.length} 个节点${tags.length === 0 ? '（该地区无匹配节点，已用直连兜底）' : ''}`)
     regionMatched++
     return
   }
 
   if (FULL_POOL_TAGS.includes(ob.tag)) {
     const tags = proxies.map(p => p.tag)
+    ob.outbounds = ob.outbounds.filter(t => t !== PLACEHOLDER_TAG)
     ob.outbounds.push(...tags)
+    if (ob.outbounds.length === 0) ob.outbounds.push(DIRECT_TAG)
     log(`🕳 ${ob.tag} 追加 ${tags.length} 个节点（全量）`)
     poolMatched++
   }
