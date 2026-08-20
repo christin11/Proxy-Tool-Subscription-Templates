@@ -11,7 +11,7 @@
       { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
       { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
       { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
-      { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053, "address_resolver": "default-dns", "detour": "direct-for-dns" },
+      { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053, "detour": "direct-for-dns" },
       { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
     ],
     "rules": [
@@ -27,12 +27,10 @@
         "server": "default-dns"
       },
       {
-        "domain_keyword": ["bestvmr"],
         "domain_suffix": ["bestvmr.com"],
         "server": "private-dns-flyint"
       },
       {
-        "domain_keyword": ["sdykjym"],
         "domain_suffix": ["sdykjym.cc"],
         "server": "dns-sdykjym"
       },
@@ -44,7 +42,7 @@
         "server": "doh-cloudflare"
       }
     ],
-    "strategy": "ipv4_only",
+    "strategy": "prefer_ipv4",
     "final": "doh-cloudflare"
   },
   "experimental": {
@@ -84,7 +82,7 @@
     {
       "type": "direct",
       "tag": "direct-for-dns",
-      "domain_strategy": "ipv4_only"
+      "domain_strategy": "prefer_ipv4"
     },
     {
       "type": "block",
@@ -929,10 +927,7 @@
     "rules": [
       {"action": "sniff"},
       {"protocol": "dns", "action": "hijack-dns"},
-      {"domain_suffix": ["bestvmr.com"], "action": "resolve", "server": "private-dns-flyint"},
-      {"domain_suffix": ["sdykjym.cc"], "action": "resolve", "server": "dns-sdykjym"},
       {"ip_cidr": ["47.110.75.65/32"], "outbound": "🌐 全球直连"},
-      {"port": [8053], "outbound": "🌐 全球直连"},
       {"rule_set": ["Lan"], "outbound": "🌐 全球直连"},
       {"rule_set": ["BanProgramAD"], "outbound": "🧹 应用净化"},
       {"rule_set": ["Reject", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
