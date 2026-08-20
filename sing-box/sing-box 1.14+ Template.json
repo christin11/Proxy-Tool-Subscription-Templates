@@ -69,7 +69,7 @@
       "server": "default-dns"
     },
     {
-      "domain_suffix": [
+      "domain": [
         "bestvmr.com"
       ],
       "action": "route",
