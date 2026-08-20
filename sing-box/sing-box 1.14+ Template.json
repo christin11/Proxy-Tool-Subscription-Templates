@@ -4,7 +4,7 @@
     "level": "info",
     "timestamp": true
   },
-  "dns": {
+"dns": {
     "servers": [
       { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
       { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
@@ -27,11 +27,11 @@
         "server": "default-dns"
       },
       {
-        "domain_suffix": ["bestvmr.com"],
+        "domain_suffix": ["bestvmr.com", ".bestvmr.com"],
         "server": "private-dns-flyint"
       },
       {
-        "domain_suffix": ["sdykjym.cc"],
+        "domain_suffix": ["sdykjym.cc", ".sdykjym.cc"],
         "server": "dns-sdykjym"
       },
       {
@@ -928,6 +928,7 @@
       {"action": "sniff"},
       {"protocol": "dns", "action": "hijack-dns"},
       {"ip_cidr": ["47.110.75.65/32"], "outbound": "🌐 全球直连"},
+      {"port": [8053], "outbound": "🌐 全球直连"},
       {"rule_set": ["Lan"], "outbound": "🌐 全球直连"},
       {"rule_set": ["BanProgramAD"], "outbound": "🧹 应用净化"},
       {"rule_set": ["Reject", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
