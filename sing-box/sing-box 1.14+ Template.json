@@ -27,11 +27,13 @@
         "server": "default-dns"
       },
       {
-        "domain_suffix": ["bestvmr.com", ".bestvmr.com"],
+        "domain_keyword": ["bestvmr"],
+        "domain_suffix": ["bestvmr.com"],
         "server": "private-dns-flyint"
       },
       {
-        "domain_suffix": ["sdykjym.cc", ".sdykjym.cc"],
+        "domain_keyword": ["sdykjym"],
+        "domain_suffix": ["sdykjym.cc"],
         "server": "dns-sdykjym"
       },
       {
@@ -42,7 +44,7 @@
         "server": "doh-cloudflare"
       }
     ],
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "final": "doh-cloudflare"
   },
   "experimental": {
