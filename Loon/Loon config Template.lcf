@@ -117,8 +117,8 @@ https://yfamilys.com/rule/Apple.list, policy=🍎 Apple, tag=🍎 Apple, enabled
 https://yfamilys.com/rule/AppStore.list, policy=🍎 Apple, tag=🍎 Apple, enabled=true
 https://yfamilys.com/rule/AppleProxy.list, policy=🚀 手动切换, tag=🍎 Apple, enabled=true
 https://yfamilys.com/rule/AppleNews.list, policy=📰 Apple News, tag=📰 Apple News, enabled=true
-https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Cryptocurrency.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
-https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Crypto/Crypto.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
+https://yfamilys.com/rule/Cryptocurrency.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
+https://yfamilys.com/rule/Crypto.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
 https://yfamilys.com/rule/PayPal.list, policy=🪙 Paypal, tag=🪙 Paypal, enabled=true
 https://yfamilys.com/rule/AmazonIP.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
 https://yfamilys.com/rule/eBay.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
