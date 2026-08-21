@@ -1,6 +1,4 @@
 // surfboard_substore.js
-// 用法：在订阅处理器中把脚本作为 content filter 使用，
-// 参数示例：?target=sub:my-sub-name&name=MyAirPort
 if (typeof $content === 'string') {
   const raw = $arguments?.target || ''
   const nameParam = $arguments?.name || ''
@@ -20,11 +18,12 @@ if (typeof $content === 'string') {
   }
 
   const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
-  const TARGET = 'ClashMeta'
+  const TARGET = 'Surfboard'
+  const TIMEOUT = 20000
   const pathPrefix = type === 'collection' ? 'collection/' : ''
 
   const url = subName
-    ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}`
+    ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}&timeout=${TIMEOUT}`
     : ''
 
   const displayName = nameParam || subName || 'AirPort'
