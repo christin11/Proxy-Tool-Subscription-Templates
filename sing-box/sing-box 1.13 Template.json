@@ -284,6 +284,27 @@
     },
     {
       "type": "selector",
+      "tag": "💰 加密货币",
+      "outbounds": [
+        "✨ 节点选择",
+        "🚀 手动切换",
+        "♻️ 自动选择",
+        "🔯 故障转移",
+        "🔮 负载均衡",
+        "🇭🇰 香港节点",
+        "🇹🇼 台湾节点",
+        "🇯🇵 日本节点",
+        "🇰🇷 韩国节点",
+        "🇸🇬 新加坡节点",
+        "🇹🇭 泰国节点",
+        "🇺🇸 美国节点",
+        "🇩🇪 德国节点",
+        "🇬🇧 英国节点",
+        "🟢 直连"
+      ]
+    },
+    {
+      "type": "selector",
       "tag": "🤖️ 人工智能",
       "outbounds": [
         "🇹🇼 台湾节点",
@@ -949,10 +970,45 @@
     "update_interval": "3d"
   },
   {
+    "tag": "OpenAI",
+    "type": "remote",
+    "format": "source",
+    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/OpenAI/OpenAI.json",
+    "update_interval": "3d"
+  },
+  {
+    "tag": "Claude",
+    "type": "remote",
+    "format": "source",
+    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Claude/Claude.json",
+    "update_interval": "3d"
+  },
+  {
+    "tag": "Gemini",
+    "type": "remote",
+    "format": "source",
+    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Gemini/Gemini.json",
+    "update_interval": "3d"
+  },
+  {
     "tag": "AI",
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/AI.json",
+    "update_interval": "3d"
+  },
+  {
+    "tag": "Crypto",
+    "type": "remote",
+    "format": "source",
+    "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Crypto.json",
+    "update_interval": "3d"
+  },
+  {
+    "tag": "Cryptocurrency",
+    "type": "remote",
+    "format": "source",
+    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Cryptocurrency/Cryptocurrency.json",
     "update_interval": "3d"
   },
   {
