@@ -80,21 +80,21 @@ policy_groups:
     name: ♻️ 自动选择
     type: select
     urls:
-    - "{{SUB_URL}}"
+    - {{SUB_URL}}
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
     hidden: false
 - external:
     name: 🚀 手动切换
     type: select
     urls:
-    - "{{SUB_URL}}"
+    - {{SUB_URL}}
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
     hidden: false
 - external:
     name: 🔯 故障转移
     type: smart
     urls:
-    - "{{SUB_URL}}"
+    - {{SUB_URL}}
     filter: .*
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
     hidden: false
@@ -102,7 +102,7 @@ policy_groups:
     name: 🔮 负载均衡
     type: load_balance
     urls:
-    - "{{SUB_URL}}"
+    - {{SUB_URL}}
     filter: .*
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Round_Robin.png
     hidden: false
@@ -186,6 +186,24 @@ policy_groups:
     - 🇺🇸 美国节点
     flatten: false
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png
+    hidden: false
+- select:
+    name: 💰 Crypto
+    policies:
+    - DIRECT
+    - ♻️ 自动选择
+    - 🚀 手动切换
+    - 🇭🇰 香港节点
+    - 🇹🇼 台湾节点
+    - 🇯🇵 日本节点
+    - 🇰🇷 韩国节点
+    - 🇸🇬 新加坡节点
+    - 🇹🇭 泰国节点
+    - 🇺🇸 美国节点
+    - 🇩🇪 德国节点
+    - 🇬🇧 英国节点
+    flatten: false
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency.png
     hidden: false
 - select:
     name: 🪙 PayPal
@@ -826,10 +844,21 @@ policy_groups:
     hidden: false
 rules:
 - rule_set:
-    name: Speedtest
-    match: ⏱️ https://yfamilys.com/rule/Speedtest.list
+    match: https://yfamilys.com/rule/Speedtest.list
     policy: ⏱️ Speedtest
     disabled: false
+- rule_set:
+    match: https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Providers/Ruleset/OpenAi.yaml
+    policy: 🤖️ AI
+- rule_set:
+    match: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Claude/Claude.yaml
+    policy: 🤖️ AI
+- rule_set:
+    match: https://github.com/ACL4SSR/ACL4SSR/blob/master/Clash/Providers/Ruleset/Gemini.yaml
+    policy: 🤖️ AI          
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/AI.yaml
+    policy: 🤖️ AI    
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Google.yaml
     policy: 🔍 Google
@@ -849,11 +878,16 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/AppleServers.yaml
     policy: 🍎 Apple
 - rule_set:
-    name: 📰 Apple News
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/AppleNews/AppleNews.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/AppleNews/AppleNews.yaml
     policy: 📰 Apple News
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/PayPal.yaml
+    match: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Cryptocurrency/Cryptocurrency.yaml
+    policy: 💰 Crypto
+- rule_set:
+    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/Crypto.yaml
+    policy: 💰 Crypto    
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/PayPal.yaml
     policy: 🪙 PayPal
 - rule_set:
     match: https://yfamilys.com/rule/eBay.list
@@ -868,9 +902,6 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Github.yaml
     policy: 🐙 GitHub
 - rule_set:
-    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/AI.yaml
-    policy: 🤖️ AI
-- rule_set:
     match: https://yfamilys.com/rule/Line.list
     policy: 📤 Line
 - rule_set:
@@ -880,7 +911,7 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Telegram.yaml
     policy: 📲 Telegram
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/Discord/Discord.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/Discord/Discord.yaml
     policy: 🐦 Discord
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Facebook.yaml
@@ -889,7 +920,7 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Twitter.yaml
     policy: 📄 Twitter
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/Reddit/Reddit.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/Reddit/Reddit.yaml
     policy: 📖 Reddit
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/TikTok.yaml
@@ -898,10 +929,10 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Spotify.yaml
     policy: 🎻 Spotify
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/JOOX/JOOX.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/JOOX/JOOX.yaml
     policy: 🎹 JOOX
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/Deezer/Deezer.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/Deezer/Deezer.yaml
     policy: 🎷 Deezer
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/YouTube.yaml
@@ -916,28 +947,28 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/HBO.yaml
     policy: 🎬 HBO
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/Amazon/Amazon.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/Amazon/Amazon.yaml
     policy: 📀 PrimeVideo
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/BBC/BBC.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/BBC/BBC.yaml
     policy: 🗼 BBC
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/DAZN/DAZN.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/DAZN/DAZN.yaml
     policy: 🏟️ DAZN
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/ViuTV/ViuTV.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/ViuTV/ViuTV.yaml
     policy: 🎞️ ViuTV
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/AbemaTV/AbemaTV.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/AbemaTV/AbemaTV.yaml
     policy: 🖼️ AbemaTV
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Bahamut.yaml
     policy: 📽 巴哈姆特
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/ProxyMedia.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/ProxyMedia.yaml
     policy: 🍿 境外媒体
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/ChinaMedia/ChinaMedia.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/ChinaMedia/ChinaMedia.yaml
     policy: 🍔 国内媒体
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Bilibili.yaml
@@ -946,7 +977,7 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Emby.yaml
     policy: 🛋️ Emby
 - rule_set:
-    match: https://github.com/Repcz/EgernRules/blob/X/Rules/Twitch/Twitch.yaml
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/Twitch/Twitch.yaml
     policy: 📺 Twitch
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Game.yaml
@@ -958,12 +989,10 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Proxy.yaml
     policy: 🌍 兜底分流
 - domain_regex:
-    name: 广告拦截
     match: ^ad\..*|^ads\..*
     policy: REJECT
     disabled: false
 - rule_set:
-    name: DIRECT
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Direct.yaml
     policy: DIRECT
     disabled: false
@@ -971,28 +1000,28 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Reject.yaml
     policy: 🛑 广告拦截
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/AdGuardChinese.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/AdGuardChinese.yaml
     policy: 🛑 广告拦截
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/Ads_EasyListChina.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Ads_EasyListChina.yaml
     policy: 🛑 广告拦截
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/Ads_EasyListPrivacy.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Ads_EasyListPrivacy.yaml
     policy: 🛑 广告拦截
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/Ads_limbopro.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Ads_limbopro.yaml
     policy: 🛑 广告拦截
 - rule_set:
-    match: https://github.com/christin11/Subscription-Templet/blob/main/ACL4SSR/BanProgramAD.yaml
+    match: https://github.com/christin11/Subscription-Templet/raw/main/ACL4SSR/BanProgramAD.yaml
     policy: 🧹 应用净化
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/ChinaASN.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/ChinaASN.yaml
     policy: DIRECT
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/ChinaDomain.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/ChinaDomain.yaml
     policy: DIRECT
 - rule_set:
-    match: https://github.com/Repcz/Tool/blob/X/Egern/Rules/ChinaIP.yaml
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/ChinaIP.yaml
     policy: DIRECT
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Lan.yaml
