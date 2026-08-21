@@ -237,6 +237,27 @@
     },
     {
       "type": "selector",
+      "tag": "💰 加密货币",
+      "outbounds": [
+        "✨ 节点选择",
+        "🚀 手动切换",
+        "♻️ 自动选择",
+        "🔯 故障转移",
+        "🔮 负载均衡",
+        "🇭🇰 香港节点",
+        "🇹🇼 台湾节点",
+        "🇯🇵 日本节点",
+        "🇰🇷 韩国节点",
+        "🇸🇬 新加坡节点",
+        "🇹🇭 泰国节点",
+        "🇺🇸 美国节点",
+        "🇩🇪 德国节点",
+        "🇬🇧 英国节点",
+        "🟢 直连"
+      ]
+    },
+    {
+      "type": "selector",
       "tag": "🪙 贝宝支付",
       "outbounds": [
         "✨ 节点选择",
@@ -280,27 +301,6 @@
     {
       "type": "selector",
       "tag": "🐙 Github",
-      "outbounds": [
-        "✨ 节点选择",
-        "🚀 手动切换",
-        "♻️ 自动选择",
-        "🔯 故障转移",
-        "🔮 负载均衡",
-        "🇭🇰 香港节点",
-        "🇹🇼 台湾节点",
-        "🇯🇵 日本节点",
-        "🇰🇷 韩国节点",
-        "🇸🇬 新加坡节点",
-        "🇹🇭 泰国节点",
-        "🇺🇸 美国节点",
-        "🇩🇪 德国节点",
-        "🇬🇧 英国节点",
-        "🟢 直连"
-      ]
-    },
-    {
-      "type": "selector",
-      "tag": "💰 加密货币",
       "outbounds": [
         "✨ 节点选择",
         "🚀 手动切换",
@@ -957,12 +957,12 @@
       {"rule_set": ["Claude"], "outbound": "🤖️ 人工智能"},
       {"rule_set": ["Gemini"], "outbound": "🤖️ 人工智能"},
       {"rule_set": ["AI"], "outbound": "🤖️ 人工智能"},
-      {"rule_set": ["Crypto"], "outbound": "💰 加密货币"},
-      {"rule_set": ["Cryptocurrency"], "outbound": "💰 加密货币"},
       {"rule_set": ["Google"], "outbound": "🔍 谷歌服务"},
       {"rule_set": ["Microsoft", "OneDrive", "Xbox"], "outbound": "Ⓜ️ 微软服务"},
       {"rule_set": ["AppleCN", "AppleProxy"], "outbound": "🍎 苹果服务"},
       {"rule_set": ["AppleNews"], "outbound": "📰 苹果新闻"},
+      {"rule_set": ["Crypto"], "outbound": "💰 加密货币"},
+      {"rule_set": ["Cryptocurrency"], "outbound": "💰 加密货币"},
       {"rule_set": ["Paypal"], "outbound": "🪙 贝宝支付"},
       {"rule_set": ["eBay", "Bestbuy", "AmazonIP"], "outbound": "🛒 电商平台"},
       {"rule_set": ["Github"], "outbound": "🐙 Github"},
