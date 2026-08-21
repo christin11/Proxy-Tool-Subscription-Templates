@@ -300,6 +300,27 @@
     },
     {
       "type": "selector",
+      "tag": "💰 加密货币",
+      "outbounds": [
+        "✨ 节点选择",
+        "🚀 手动切换",
+        "♻️ 自动选择",
+        "🔯 故障转移",
+        "🔮 负载均衡",
+        "🇭🇰 香港节点",
+        "🇹🇼 台湾节点",
+        "🇯🇵 日本节点",
+        "🇰🇷 韩国节点",
+        "🇸🇬 新加坡节点",
+        "🇹🇭 泰国节点",
+        "🇺🇸 美国节点",
+        "🇩🇪 德国节点",
+        "🇬🇧 英国节点",
+        "🟢 直连"
+      ]
+    },
+    {
+      "type": "selector",
       "tag": "🤖️ 人工智能",
       "outbounds": [
         "🇹🇼 台湾节点",
@@ -932,6 +953,12 @@
       {"rule_set": ["BanProgramAD"], "outbound": "🧹 应用净化"},
       {"rule_set": ["Reject", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
       {"rule_set": ["Speedtest"], "outbound": "⏱️ 网络测速"},
+      {"rule_set": ["OpenAI"], "outbound": "🤖️ 人工智能"},
+      {"rule_set": ["Claude"], "outbound": "🤖️ 人工智能"},
+      {"rule_set": ["Gemini"], "outbound": "🤖️ 人工智能"},
+      {"rule_set": ["AI"], "outbound": "🤖️ 人工智能"},
+      {"rule_set": ["Crypto"], "outbound": "💰 加密货币"},
+      {"rule_set": ["Cryptocurrency"], "outbound": "💰 加密货币"},
       {"rule_set": ["Google"], "outbound": "🔍 谷歌服务"},
       {"rule_set": ["Microsoft", "OneDrive", "Xbox"], "outbound": "Ⓜ️ 微软服务"},
       {"rule_set": ["AppleCN", "AppleProxy"], "outbound": "🍎 苹果服务"},
@@ -939,7 +966,6 @@
       {"rule_set": ["Paypal"], "outbound": "🪙 贝宝支付"},
       {"rule_set": ["eBay", "Bestbuy", "AmazonIP"], "outbound": "🛒 电商平台"},
       {"rule_set": ["Github"], "outbound": "🐙 Github"},
-      {"rule_set": ["AI"], "outbound": "🤖️ 人工智能"},
       {"rule_set": ["Line"], "outbound": "📤 Line消息"},
       {"rule_set": ["KakaoTalk"], "outbound": "📢 KakaoTalk消息"},
       {"rule_set": ["Telegram"], "outbound": "📱 电报消息"},
@@ -1014,10 +1040,45 @@
         "update_interval": "3d", "download_detour": "✨ 节点选择"
       },
       {
+        "tag": "OpenAI",
+        "type": "remote",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/OpenAI/OpenAI.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "Claude",
+        "type": "remote",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Claude/Claude.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "Gemini",
+        "type": "remote",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Gemini/Gemini.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
         "tag": "AI",
         "type": "remote",
         "format": "source",
         "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/AI.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "Crypto",
+        "type": "remote",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/Crypto.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "Cryptocurrency",
+        "type": "remote",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Cryptocurrency/Cryptocurrency.json",
         "update_interval": "3d", "download_detour": "✨ 节点选择"
       },
       {
