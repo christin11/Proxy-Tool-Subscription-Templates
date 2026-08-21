@@ -1,223 +1,339 @@
-mode: rule
-log-level: info
+
+global-ua: clash
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7894
+ipv6: false
+allow-lan: true
+unified-delay: true
+tcp-concurrent: true
+
+geodata-mode: false
+geodata-loader: standard
+geo-auto-update: true
+geo-update-interval: 48
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+
+external-controller: 0.0.0.0:9090
+secret: ""
+external-ui: ui
+
+find-process-mode: strict
+global-client-fingerprint: chrome
+keep-alive-idle: 600
+keep-alive-interval: 30
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  force-domain:
+    - "+.v2ex.com"
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "+.push.apple.com"
+    - "+.apple.com"
+
+tun:
+  enable: true
+  stack: mixed
+  mtu: 9000
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
 dns:
   enable: true
   ipv6: false
+  listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
+
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-  # 策略解析：优先级最高，强制 Flyint 域名走 8053 专线
+
+  fake-ip-filter:
+    - 'doh.pub'
+    - 'dns.alidns.com'
+    - 'dns.google'
+    - '*.lan'
+    - '*.local'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.msftncsi.com'
+    - '+.msftconnecttest.com'
+    - '+.push.apple.com'
+
+  nameserver:
+    - 'https://119.29.29.29/dns-query'
+    - 'https://223.5.5.5/dns-query'
+    - '223.5.5.5'
+
   nameserver-policy:
     "*.bestvmr.com": "47.110.75.65:8053"
+    "bestvmr.com": "47.110.75.65:8053"
+    "geosite:cn": "119.29.29.29"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
     "+.googleapis.com": "https://dns.cloudflare.com/dns-query"
-    "+.googleapis.cn": "https://dns.cloudflare.com/dns-query"
-    "+.googlevideo.com": "https://dns.cloudflare.com/dns-query"
-    "+.gstatic.com": "https://dns.cloudflare.com/dns-query"
     "+.youtube.com": "https://dns.cloudflare.com/dns-query"
-    "+.youtu.be": "https://dns.cloudflare.com/dns-query"
     "+.facebook.com": "https://dns.cloudflare.com/dns-query"
     "+.twitter.com": "https://dns.cloudflare.com/dns-query"
-    "+.x.com": "https://dns.cloudflare.com/dns-query"
     "+.github.com": "https://dns.cloudflare.com/dns-query"
-    "+.githubusercontent.com": "https://dns.cloudflare.com/dns-query"
-    "+.openai.com": "https://dns.cloudflare.com/dns-query"
-    "+.chatgpt.com": "https://dns.cloudflare.com/dns-query"
-    "+.anthropic.com": "https://dns.cloudflare.com/dns-query"
-  # 国内主流解析：使用加密 DoH 提高安全性
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - tls://dot.pub:853
-    - tls://dns.alidns.com:853
-  # 海外保底解析
-  fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
+    "+.sdykjym.cc":
+        - "https://api-query.yunkai002.top/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb"
+        - "https://64.83.40.123:40443//89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb"
+        - "https://dns.controld.com/zlyskwxxt6"
+
   fallback-filter:
     geoip: true
-    geoip-code: CN
+    geoip-code: "CN"
     ipcidr:
-      - 0.0.0.0/8
-      - 10.0.0.0/8
-      - 100.64.0.0/10
-      - 127.0.0.0/8
-      - 169.254.0.0/16
-      - 172.16.0.0/12
-      - 192.168.0.0/16
-      - 224.0.0.0/4
       - 240.0.0.0/4
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
-      - "+.githubusercontent.com"
-      - "+.googlevideo.com"
-      - "+.googleapis.cn"
-  # Fake-IP 白名单：确保本地服务和特殊系统检测不走代理
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localhost"
-    - "*.test"
-    - "localhost.ptlogin2.qq.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "lens.l.google.com"
-    - "*.srv.nintendo.net"
-    - "+.stun.playstation.net"
-    - "xbox.*.*.microsoft.com"
-    - "*.*.xboxlive.com"
-    - "+.msftncsi.com"
-    - "+.msftconnecttest.com"
-# > 订阅信息展示
-subscribe-url: null
-# > 远程服务器
+
+proxies:
+  - name: "🟢 直连"
+    type: direct
+    udp: true
+    
 proxy-providers:
-  {{AIRPORT_NAME}}:
+  MySubGroup:
     benchmark-timeout: 300
     benchmark-url: https://www.epochtimes.com/
     interval: 86400
-    url: {{SUB_URL}}
+    url: "{{SUB_URL}}" 
+
+# YAML 锚点
+pr: &pr
+  type: select
+  proxies: ["✨ 节点选择", "🚀 手动切换", "♻️ 自动选择", "🔯 故障转移", "🔮 负载均衡", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🟢 直连"]
+
+# 策略组
 proxy-groups:
-  # 主要分流
-  - {name: ✨ 节点选择, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png', type: select, proxies: [♻️ 自动选择, 🔯 故障转移, 🔮 负载均衡, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 🚀 手动切换, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png', type: select, include-all: true, use: [{{AIRPORT_NAME}}]}
-  - {name: ♻️ 自动选择, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png', type: url-test, include-all: true, use: [{{AIRPORT_NAME}}], url: 'http://www.gstatic.com/generate_204', interval: 300, tolerance: 50}
-  - {name: 🔯 故障转移, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png', type: fallback, include-all: true, use: [{{AIRPORT_NAME}}], url: 'http://www.gstatic.com/generate_204', interval: 300}
-  - {name: 🔮 负载均衡, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Round_Robin.png', type: load-balance, include-all: true, use: [{{AIRPORT_NAME}}], url: 'http://www.gstatic.com/generate_204', interval: 300, strategy: consistent-hashing}
-  # 业务分流组
-  - {name: ⏱️ 网络测速, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🔍 谷歌服务, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: Ⓜ️ 微软服务, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🍎 苹果服务, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📰 苹果新闻, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇺🇸 美国节点]}
-  - {name: 🪙 贝宝支付, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🛒 电商平台, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Amazon_1.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🐙 GitHub, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🤖️ 人工智能, icon: 'https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📤 Line消息, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📢 KakaoTalk消息, icon: 'https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/kakaotalk.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📱 电报消息, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🐦 Discord消息, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 👤 脸书消息, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📄 推特消息, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📖 红迪消息, icon: 'https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/reddit.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🫟 TikTok, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🎻 Spotify, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🎹 JOOX, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/JOOX.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇭 泰国节点]}
-  - {name: 🎷 Deezer, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/deezer.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📹 油管视频, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🎥 奈飞视频, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🎬 迪士尼+, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🎬 HBO视频, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HBO.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 📀 PrimeVideo, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video_1.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🗼 BBC, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/BBC_iPlayer.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇬🇧 英国节点]}
-  - {name: 🏟️ DAZN, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DAZN.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🎞️ ViuTV, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ViuTV.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点]}
-  - {name: 🖼️ AbemaTV, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AbemaTV.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇯🇵 日本节点]}
-  - {name: 📽 巴哈姆特, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bahamut.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点]}
-  - {name: 🍿 境外媒体, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DomesticMedia.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🍔 国内媒体, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/StreamingCN.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换]}
-  - {name: 📽 哔哩哔哩, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点]}
-  - {name: 🛋️ Emby, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换]}
-  - {name: 📺 Twitch直播, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitch.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🎮 游戏平台, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🧱 GFW网站, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🌍 兜底分流, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
-  - {name: 🛑 广告拦截, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png', type: select, proxies: [DIRECT, REJECT]}
-  - {name: 🧹 应用净化, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png', type: select, proxies: [DIRECT, REJECT]}
-  - {name: 🌐 全球直连, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png', type: select, proxies: [DIRECT]}
-  # 节点地区分流
-  - {name: 🇭🇰 香港节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇭🇰|香港|港|HK|(\b(HK|Hong)\b)((?!(台湾|日本|新加坡|美国|韩国|狮城|南朝鲜|US|SG|JP|KR|TW|台灣|美國|韓國|獅城)).)*$"}
-  - {name: 🇹🇼 台湾节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇹🇼|台湾|台灣|(\b(TW|Tai|Taiwan)\b)"}
-  - {name: 🇯🇵 日本节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)"}
-  - {name: 🇰🇷 韩国节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png', type: url-test, interval: 300, include-all: true, filter: "(?=.*(KR|Korea|KOR|首尔|韩|韓|(?i)Korea))^((?!(香港|台湾|新加坡|美国|狮城|南朝鲜|US|SG|HK|TW|UKR|台灣|美國|獅城)).)*$"}
-  - {name: 🇸🇬 新加坡节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇸🇬|新加坡|狮|狮城|(\b(SG|Singapore)\b)"}
-  - {name: 🇹🇭 泰国节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇹🇭|泰国|泰國|曼谷|\b(THA|TH)\b"}
-  - {name: 🇺🇸 美国节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)"}
-  - {name: 🇩🇪 德国节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇩🇪|德国|德國|DEU|慕尼黑|汉堡|科隆|(\b(DE|Germany)\b)^((?!(香港|台湾|新加坡|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
-  - {name: 🇬🇧 英国节点, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png', type: url-test, interval: 300, include-all: true, filter: "(?i)🇬🇧|英国|英國|GBR|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰|(\b(UK|United Kingdom)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|乌克兰|🇺🇦|UKR|UKRUS US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
+  - name: "✨ 节点选择"
+    type: select
+    proxies: ["🚀 手动切换", "♻️ 自动选择", "🔯 故障转移", "🔮 负载均衡", "🇭🇰 香港节点", "🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🟢 直连"]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
+
+  - name: "🚀 手动切换"
+    type: select
+    include-all: true
+    filter: '^((?!直连).)*$'
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png
+
+  - name: "♻️ 自动选择"
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: '^((?!直连).)*$'
+    url: "https://www.gstatic.com/generate_204"
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+
+  - name: "🔯 故障转移"
+    type: fallback
+    include-all: true
+    filter: '^((?!直连).)*$'
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Available.png
+
+  - name: "🔮 负载均衡"
+    type: load-balance
+    include-all: true
+    filter: '^((?!直连).)*$'
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    strategy: consistent-hashing
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Round_Robin.png
+
+# ============ 业务分流组 ============
+  - {name: "⏱️ 网络测速", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
+  - {name: "🔍 谷歌服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
+  - {name: "Ⓜ️ 微软服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
+  - {name: "🍎 苹果服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png}
+  - {name: "📰 苹果新闻", type: select, proxies: ["🇺🇸 美国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png}
+  - {name: "💰 加密货币", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency_3.png}
+  - {name: "🪙 贝宝支付", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png}
+  - {name: "🛒 电商平台", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Amazon_1.png}
+  - {name: "🐙 Github", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png}
+  - {name: "🤖️ 人工智能", type: select, proxies: ["🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
+  - {name: "📤 Line消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png}
+  - {name: "📢 KakaoTalk消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/kakaotalk.png}
+  - {name: "📱 电报消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
+  - {name: "🐦 Discord消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png}
+  - {name: "👤 脸书消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png}
+  - {name: "📄 推特消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png}
+  - {name: "📖 红迪消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/reddit.png}
+  - {name: "🫟 TikTok", type: select, proxies: ["🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
+  - {name: "🎻 Spotify", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png}
+  - {name: "🎹 JOOX", type: select, proxies: ["🇭🇰 香港节点", "🇹🇭 泰国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/JOOX.png}
+  - {name: "🎷 Deezer", type: select, proxies: ["🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/deezer.png}
+  - {name: "📹 油管视频", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png}
+  - {name: "🎥 奈飞视频", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png}
+  - {name: "🎬 迪士尼+", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png}
+  - {name: "🎬 HBO视频", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HBO.png}
+  - {name: "📀 PrimeVideo", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video_1.png}
+  - {name: "🗼 BBC", type: select, proxies: ["🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/BBC_iPlayer.png}
+  - {name: "🏟️ DAZN", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DAZN.png}
+  - {name: "🎞️ ViuTV", type: select, proxies: ["🇭🇰 香港节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ViuTV.png}
+  - {name: "🖼️ AbemaTV", type: select, proxies: ["🇯🇵 日本节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AbemaTV.png}
+  - {name: "📽 巴哈姆特", type: select, proxies: ["🇭🇰 香港节点", "🇹🇼 台湾节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bahamut.png}
+  - {name: "🍿 境外媒体", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DomesticMedia.png}
+  - {name: "🍔 国内媒体", type: select, proxies: ["🟢 直连", "✨ 节点选择"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/StreamingCN.png}
+  - {name: "📽 哔哩哔哩", type: select, proxies: ["🟢 直连", "✨ 节点选择"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png}
+  - {name: "🛋️ Emby", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
+  - {name: "📺 Twitch直播", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitch.png}
+  - {name: "🎮 游戏平台", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png}
+  - {name: "🧱 GFW网站", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png}
+  - {name: "🌍 兜底分流", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
+  
+  # ============ 拦截与直连组 ============
+  - {name: "🛑 广告拦截", type: select, proxies: [REJECT, "🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png}
+  - {name: "🧹 应用净化", type: select, proxies: [REJECT, "🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png}
+  - {name: "🌐 全球直连", type: select, proxies: ["🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png}
+
+  # ============ 地区节点分组 (url-test 自动择优) ============
+  - {name: "🇭🇰 香港节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇭🇰|香港|港|\bHK\b|Hong', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png}
+  - {name: "🇹🇼 台湾节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇹🇼|台湾|台灣|台|\bTW\b|Taiwan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png}
+  - {name: "🇯🇵 日本节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇯🇵|日本|东京|東京|\bJP\b|Japan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png}
+  - {name: "🇰🇷 韩国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇰🇷|韩|韓|首尔|\bKR\b|Korea', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png}
+  - {name: "🇸🇬 新加坡节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇸🇬|新加坡|狮|狮城|🇸🇬|\bSG\b|Singapore', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png}
+  - {name: "🇹🇭 泰国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇹🇭|泰国|泰國|曼谷|\bTH\b|Thailand', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png}
+  - {name: "🇺🇸 美国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇺🇸|美国|洛杉矶|圣何塞|\bUS\b|States|America', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png}
+  - {name: "🇩🇪 德国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇩🇪|德国|德國|\bDE\b|Germany', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png}
+  - {name: "🇬🇧 英国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇬🇧|英国|英國|GBR|\bUK\b(?!R)|Kingdom', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png}
+
+# 规则锚点定义
+rule-anchor:
+  ip: &ip {type: http, interval: 259200, behavior: ipcidr, format: mrs}
+  domain: &domain {type: http, interval: 259200, behavior: domain, format: mrs}
+  qcy: &qcy {type: http, interval: 259200, behavior: domain, format: text}
+  class: &class {type: http, interval: 259200, behavior: classical, format: text}
+
+# 规则集定义
 rule-providers:
-  Speedtest: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Speedtest.list'}
-  Google: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
-  AppleCN: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
-  AppleProxy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
-  AppleNews: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/AppleNews.list'}
-  Microsoft: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
-  OneDrive: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
-  GitHub: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
-  Xbox: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Xbox.list'}
-  Paypal: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PayPal.list'}
-  eBay: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/eBay.list'}
-  Bestbuy: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Bestbuy.list'}
-  AmazonIP: {behavior: ipcidr, format: text, interval: 86400, url: 'https://yfamilys.com/rule/AmazonIP.list'}
-  AI: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
-  Line: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Line.list'}
-  KakaoTalk: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/KakaoTalk.list'}
-  Telegram: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
-  Discord: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Discord.list'}
-  Facebook: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list'}
-  Twitter: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
-  Reddit: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Reddit.list'}
-  TikTok: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list'}
-  Spotify: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list'}
-  JOOX: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/JOOX.rule'}
-  Deezer: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Deezer.list'}
-  YouTube: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
-  YouTubeMusic: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/YouTubeMusic.list'}
-  Netflix: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list'}
-  Disney: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list'}
-  PrimeVideo: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list'}
-  HBO: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list'}
-  BBC: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/BBC.list'}
-  DAZN: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/DAZN.list'}
-  ViuTV: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/ViuTV.list'}
-  AbemaTV: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/AbemaTV.list'}
-  Bahamut: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list'}
-  ProxyMedia: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
-  ChinaMedia: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/ChinaMedia.list'}
-  Bilibili: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/BiliBili.list'}
-  Emby: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list'}
-  Twitch: {behavior: classical, format: text, interval: 86400, url: 'https://yfamilys.com/rule/Twitch.list'}
-  Steam: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
-  Epic: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
-  Games: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list'}
-  ProxyGFW: {behavior: classical, format: text, interval: 86400, url: 'https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Stash/Rules/ProxyGFW.list'}
-  Proxy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Proxy.list'}
-  Direct: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Direct.list'}
-  ChinaASN: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaASN.list'}
-  ChinaDomain: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaDomain.list'}
-  ChinaIP: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaIP.list'}
-  Lan: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
-  Reject: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Reject.list'}
-  AdGuardChinese: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AdGuardChinese.list'}
-  EasyListChina: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListChina.list'}
-  EasyListPrivacy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListPrivacy.list'}
-  Ads_limbopro: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_limbopro.list'}
-  BanProgramAD: {behavior: classical, format: text, interval: 86400, url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list'}
+  # === 拦截类规则 (最高优先级) ===
+  BanProgramAD: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list'}
+  Reject: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Reject.list'}
+  AdGuardChinese: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AdGuardChinese.list'}
+  EasyListChina: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListChina.list'}
+  EasyListPrivacy: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListPrivacy.list'}
+  Ads_limbopro: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_limbopro.list'}
+
+  # === 应用与流媒体规则 ===
+  OpenAI: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list'}
+  Claude: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list'}
+  Gemini: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.list'}
+  AI: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
+  Telegram: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
+  YouTube: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
+  YouTubeMusic: {!!merge <<: *class, url: 'https://whatshub.top/rule/YouTubeMusic.list'}
+  Netflix: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list'}
+  Disney: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list'}
+  Spotify: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list'}
+  TikTok: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list'}
+  Twitter: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
+  Facebook: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list'}
+  Reddit: {!!merge <<: *class, url: 'https://whatshub.top/rule/Reddit.list'}
+  Discord: {!!merge <<: *class, url: 'https://whatshub.top/rule/Discord.list'}
+  Line: {!!merge <<: *class, url: 'https://whatshub.top/rule/Line.list'}
+  KakaoTalk: {!!merge <<: *class, url: 'https://yfamilys.com/rule/KakaoTalk.list'}
+  Speedtest: {!!merge <<: *class, url: 'https://whatshub.top/rule/Speedtest.list'}
+  Google: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
+  AppleCN: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
+  AppleProxy: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
+  AppleNews: {!!merge <<: *class, url: 'https://whatshub.top/rule/AppleNews.list'}
+  Microsoft: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
+  OneDrive: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
+  Github: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
+  Cryptocurrency: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cryptocurrency/Cryptocurrency.list'}
+  Crypto: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/Repcz/Tool/X/Stash/Rules/Crypto.list'}
+  Paypal: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PayPal.list'}
+  eBay: {!!merge <<: *class, url: 'https://yfamilys.com/rule/eBay.list'}
+  Bestbuy: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Bestbuy.list'}
+  AmazonIP: {!!merge <<: *ip, url: 'https://yfamilys.com/rule/AmazonIP.list'}
+  Xbox: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Xbox.list'}
+  Steam: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
+  Epic: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
+  Games: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list'}
+  JOOX: {!!merge <<: *class, url: 'https://whatshub.top/rule/JOOX.rule'}
+  Deezer: {!!merge <<: *class, url: 'https://whatshub.top/rule/Deezer.list'}
+  PrimeVideo: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list'}
+  HBO: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list'}
+  BBC: {!!merge <<: *class, url: 'https://whatshub.top/rule/BBC.list'}
+  DAZN: {!!merge <<: *class, url: 'https://whatshub.top/rule/DAZN.list'}
+  ViuTV: {!!merge <<: *class, url: 'https://whatshub.top/rule/ViuTV.list'}
+  AbemaTV: {!!merge <<: *class, url: 'https://whatshub.top/rule/AbemaTV.list'}
+  Bahamut: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list'}
+  ProxyMedia: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
+  ChinaMedia: {!!merge <<: *class, url: 'https://whatshub.top/rule/ChinaMedia.list'}
+  Bilibili: {!!merge <<: *class, url: 'https://whatshub.top/rule/BiliBili.list'}
+  Emby: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list'}
+  Twitch: {!!merge <<: *class, url: 'https://whatshub.top/rule/Twitch.list'}
+
+  # === 基础分流与兜底规则 ===
+  Lan: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
+  ProxyGFW: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Stash/Rules/ProxyGFW.list'}
+  Proxy: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Proxy.list'}
+  Direct: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Direct.list'}
+  ChinaDomain: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaDomain.list'}
+  ChinaIP: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaIP.list'}
+  ChinaASN: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaASN.list'}
+
 rules:
+  # === 最高优先级：广告拦截规则 ===
+  - RULE-SET,BanProgramAD,🧹 应用净化
+  - RULE-SET,Reject,🛑 广告拦截
+  - RULE-SET,AdGuardChinese,🛑 广告拦截
+  - RULE-SET,EasyListChina,🛑 广告拦截
+  - RULE-SET,EasyListPrivacy,🛑 广告拦截
+  - RULE-SET,Ads_limbopro,🛑 广告拦截
+  
+  # === 第二优先级：应用与媒体规则 ===
+  - RULE-SET,OpenAI,🤖️ 人工智能
+  - RULE-SET,Claude,🤖️ 人工智能
+  - RULE-SET,Gemini,🤖️ 人工智能
+  - RULE-SET,AI,🤖️ 人工智能
   - RULE-SET,Speedtest,⏱️ 网络测速
+  - RULE-SET,YouTubeMusic,🔍 谷歌服务
   - RULE-SET,YouTube,🔍 谷歌服务
   - RULE-SET,Google,🔍 谷歌服务
   - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,Github,🐙 Github
   - RULE-SET,OneDrive,Ⓜ️ 微软服务
   - RULE-SET,Xbox,Ⓜ️ 微软服务
   - RULE-SET,AppleCN,🍎 苹果服务
   - RULE-SET,AppleProxy,🍎 苹果服务
   - RULE-SET,AppleNews,📰 苹果新闻
+  - RULE-SET,Crypto,💰 加密货币
+  - RULE-SET,Cryptocurrency,💰 加密货币
   - RULE-SET,Paypal,🪙 贝宝支付
   - RULE-SET,eBay,🛒 电商平台
   - RULE-SET,Bestbuy,🛒 电商平台
   - RULE-SET,AmazonIP,🛒 电商平台
-  - RULE-SET,GitHub,🐙 GitHub
-  - RULE-SET,AI,🤖️ 人工智能
   - RULE-SET,Line,📤 Line消息
   - RULE-SET,KakaoTalk,📢 KakaoTalk消息
   - RULE-SET,Telegram,📱 电报消息
@@ -235,6 +351,7 @@ rules:
   - RULE-SET,HBO,🎬 HBO视频
   - RULE-SET,BBC,🗼 BBC
   - RULE-SET,DAZN,🏟️ DAZN
+  - RULE-SET,ViuTV,🎞️ ViuTV
   - RULE-SET,AbemaTV,🖼️ AbemaTV
   - RULE-SET,Bahamut,📽 巴哈姆特
   - RULE-SET,ProxyMedia,🍿 境外媒体
@@ -246,27 +363,15 @@ rules:
   - RULE-SET,Epic,🎮 游戏平台
   - RULE-SET,Games,🎮 游戏平台
   - RULE-SET,ProxyGFW,🧱 GFW网站
-  - RULE-SET,Reject,Reject
-  - RULE-SET,AdGuardChinese,🛑 广告拦截
-  - RULE-SET,EasyListChina,🛑 广告拦截
-  - RULE-SET,EasyListPrivacy,🛑 广告拦截
-  - RULE-SET,Ads_limbopro,🛑 广告拦截
-  - RULE-SET,BanProgramAD,🧹 应用净化
+  - DOMAIN-SUFFIX,accuweather.com,✨ 节点选择
+  
+  # === 第三优先级：国内直连 ===
   - RULE-SET,Direct,🌐 全球直连
   - RULE-SET,ChinaASN,🌐 全球直连
   - RULE-SET,ChinaDomain,🌐 全球直连
   - RULE-SET,ChinaIP,🌐 全球直连
   - RULE-SET,Lan,🌐 全球直连
   - GEOIP,CN,🌐 全球直连
+  
+  # === 最低优先级：兜底分流 ===
   - MATCH,🌍 兜底分流
-http:
-  script:
-  shortcuts:
-    flyint_fix:
-      type: dns
-      code: |
-        if ($request.hostname.endsWith(".bestvmr.com")) {
-          $done({ server: "quic://47.110.75.65:8053" });
-        } else {
-          $done({});
-        }
