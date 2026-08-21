@@ -1,3 +1,8 @@
+
+# ==========================================
+# Loon 配置文件
+# ==========================================
+
 [General]
 udp-fallback-mode = DIRECT
 dns-server = 223.5.5.5,119.29.29.29,114.114.114.114,47.110.75.65
@@ -27,6 +32,7 @@ bestvmr.com = server:47.110.75.65:8053
 ⛔️Reject = REJECT
 
 [Remote Proxy]
+[Remote Proxy]
 {{AIRPORT_NAME}} = {{SUB_URL}},udp=true,block-quic=true,fast-open=false,vmess-aead=true,skip-cert-verify=true,enabled=true,flexible-sni=true,img-url={{SUB_img-url}}
 
 [Proxy Group]
@@ -40,6 +46,7 @@ bestvmr.com = server:47.110.75.65:8053
 Ⓜ️ Microsoft = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
 🍎 Apple = select,DIRECT,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png
 📰 Apple News = select,DIRECT,🚀 手动切换,🇺🇸 美国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png
+💰 Crypto = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency.png
 🪙 Paypal = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png
 🛒 Shopping = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Amazon_1.png
 🐙 GitHub = select,🚀 手动切换,🇭🇰 香港节点,🇹🇼 台湾节点,🇯🇵 日本节点,🇰🇷 韩国节点,🇸🇬 新加坡节点,🇹🇭 泰国节点,🇺🇸 美国节点,🇩🇪 德国节点,🇬🇧 英国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png
@@ -99,6 +106,9 @@ bestvmr.com = server:47.110.75.65:8053
 英国节点 = NameRegex, FilterKey = "(?=.*(🇬🇧|英国|英國|GBR|UK|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰))^((?!(香港|台湾|日本|新加坡|韩国|狮城|南朝鲜|SG|JP|KR|HK|TW|台灣|韓國|獅城)).)*$"
 
 [Remote Rule]
+https://yfamilys.com/rule/OpenAI.list, policy=🤖️ AI, tag=OpenAI, enabled=true
+https://yfamilys.com/rule/Claude.list, policy=🤖️ AI, tag=Claude, enabled=true
+https://yfamilys.com/rule/Gemini.list, policy=🤖️ AI, tag=Gemini, enabled=true
 https://yfamilys.com/rule/Speedtest.list, policy=⏱️ Speedtest, tag=⏱️ Speedtest, enabled=true
 https://yfamilys.com/rule/Google.list, policy=🔍 Google, tag=🔍 Google, enabled=true
 https://yfamilys.com/rule/Microsoft.list, policy=Ⓜ️ Microsoft, tag=Ⓜ️ Microsoft, enabled=true
@@ -107,6 +117,8 @@ https://yfamilys.com/rule/Apple.list, policy=🍎 Apple, tag=🍎 Apple, enabled
 https://yfamilys.com/rule/AppStore.list, policy=🍎 Apple, tag=🍎 Apple, enabled=true
 https://yfamilys.com/rule/AppleProxy.list, policy=🚀 手动切换, tag=🍎 Apple, enabled=true
 https://yfamilys.com/rule/AppleNews.list, policy=📰 Apple News, tag=📰 Apple News, enabled=true
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Cryptocurrency.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
+https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Crypto/Crypto.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
 https://yfamilys.com/rule/PayPal.list, policy=🪙 Paypal, tag=🪙 Paypal, enabled=true
 https://yfamilys.com/rule/AmazonIP.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
 https://yfamilys.com/rule/eBay.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
@@ -156,12 +168,18 @@ https://yfamilys.com/rule/AntiAD.list, policy=⛔️ 广告拦截, tag=⛔️ �
 https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list, policy=🧹 应用净化, tag=🧹 应用净化, enabled=true
 https://yfamilys.com/rule/IPs-CN.list, policy=DIRECT, tag=🌐 全球直连, enabled=true
 https://yfamilys.com/rule/ChinaIPsBGP.list, policy=DIRECT, tag=🌐 全球直连, enabled=true
+
 [Rule]
 FINAL,🚀 手动切换
+
 [Rewrite]
+
 [Remote Rewrite]
+
 [Script]
+
 [Remote Script]
+
 [Plugin]
 https://yfamilys.com/plugin/adultraplus.plugin, enabled=true
 https://kelee.one/Tool/Loon/Lpx/AppleWeatherEnhancer.lpx, enabled=true
@@ -189,7 +207,6 @@ https://kelee.one/Tool/Loon/Lpx/Spotify_remove_ads.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/QQMusic_remove_ads.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/IThome_remove_ads.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/Google.lpx, enabled=true
+
 [Mitm]
-ca-p12 = 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
-ca-passphrase = GG0V9FQ6
 skip-server-cert-verify = false
