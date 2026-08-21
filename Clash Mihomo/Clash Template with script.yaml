@@ -251,6 +251,9 @@ rule-providers:
   Ads_limbopro: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_limbopro.list'}
 
   # === 应用与流媒体规则 ===
+  OpenAI: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list'}
+  Claude: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list'}
+  Gemini: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.list'}
   AI: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
   Telegram: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
   YouTube: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
@@ -315,6 +318,10 @@ rules:
   - RULE-SET,Ads_limbopro,🛑 广告拦截
   
   # === 第二优先级：应用与媒体规则 ===
+  - RULE-SET,OpenAI,🤖️ 人工智能
+  - RULE-SET,Claude,🤖️ 人工智能
+  - RULE-SET,Gemini,🤖️ 人工智能
+  - RULE-SET,AI,🤖️ 人工智能
   - RULE-SET,Speedtest,⏱️ 网络测速
   - RULE-SET,YouTube,🔍 谷歌服务
   - RULE-SET,Google,🔍 谷歌服务
@@ -329,7 +336,6 @@ rules:
   - RULE-SET,eBay,🛒 电商平台
   - RULE-SET,Bestbuy,🛒 电商平台
   - RULE-SET,AmazonIP,🛒 电商平台
-  - RULE-SET,AI,🤖️ 人工智能
   - RULE-SET,Line,📤 Line消息
   - RULE-SET,KakaoTalk,📢 KakaoTalk消息
   - RULE-SET,Telegram,📱 电报消息
