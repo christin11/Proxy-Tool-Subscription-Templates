@@ -17,7 +17,7 @@ if (typeof $content === 'string') {
   }
 
   const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
-  const TARGET = 'ClashMeta'
+  const TARGET = 'Stash'
   const pathPrefix = type === 'collection' ? 'collection/' : ''
 
   const url = subName
