@@ -1,36 +1,45 @@
 if (typeof $content === 'string') {
-  const raw = $arguments?.target || ''
-  const nameParam = $arguments?.name || ''
-  const iconParam = $arguments?.icon || ''
-
-  let type = 'sub'
-  let subName = raw
-  if (raw.includes(':')) {
-    const idx = raw.indexOf(':')
-    type = raw.slice(0, idx).trim().toLowerCase()
-    subName = raw.slice(idx + 1).trim()
-  }
-
-  if (!subName) {
-    console.log(`[脚本操作] WARN: 参数表里没有配置 target，请检查`)
-  } else if (!['sub', 'collection'].includes(type)) {
-    console.log(`[脚本操作] WARN: target 的类型 "${type}" 不识别，仅支持 sub 或 collection`)
-  }
-
   const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
-  const TARGET = 'Loon'   // Sub-Store 支持的目标格式，专供 Loon 使用
-  const pathPrefix = type === 'collection' ? 'collection/' : ''
+  const TARGET = 'Loon'
+  const DEFAULT_ICON = 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png'
 
-  const url = subName
-    ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}`
-    : ''
+  // 参数表 key = airports，多个机场用 | 分隔，每个机场内部用 ; 分隔字段：
+  // 显示名;sub或collection;Sub-Store里的订阅/组合订阅名;图标链接(可省略)
+  const airportsRaw = $arguments?.airports || ''
 
-  const displayName = nameParam || subName || 'AirPort'
-  // 没在参数表配置 icon 就用一个通用的机场图标兜底
-  const iconUrl = iconParam || 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png'
+  if (!airportsRaw) {
+    console.log(`[脚本操作] WARN: 参数表里没有配置 airports，请检查`)
+  }
+
+  const entries = airportsRaw.split('|').map(s => s.trim()).filter(Boolean)
+  const remoteProxyLines = []
+  const displayNames = []
+
+  entries.forEach(entry => {
+    const parts = entry.split(';').map(s => s.trim())
+    const [name, type, subName, icon] = parts
+
+    if (!name || !subName) {
+      console.log(`[脚本操作] WARN: 机场条目 "${entry}" 格式不完整，已跳过`)
+      return
+    }
+    const t = (type || 'sub').toLowerCase()
+    if (!['sub', 'collection'].includes(t)) {
+      console.log(`[脚本操作] WARN: 机场 "${name}" 的类型 "${type}" 不识别，已跳过`)
+      return
+    }
+
+    const pathPrefix = t === 'collection' ? 'collection/' : ''
+    const url = `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}`
+    const iconUrl = icon || DEFAULT_ICON
+
+    remoteProxyLines.push(
+      `${name} = ${url},udp=true,block-quic=true,fast-open=false,vmess-aead=true,skip-cert-verify=true,enabled=true,flexible-sni=true,img-url=${iconUrl}`
+    )
+    displayNames.push(name)
+  })
 
   $content = $content
-    .replace(/\{\{AIRPORT_NAME\}\}/g, displayName)
-    .replace(/\{\{SUB_URL\}\}/g, url)
-    .replace(/\{\{SUB_img-url\}\}/g, iconUrl)
+    .replace(/\{\{REMOTE_PROXY_BLOCK\}\}/g, remoteProxyLines.join('\n'))
+    .replace(/\{\{AIRPORT_NAME\}\}/g, displayNames.join(','))
 }
