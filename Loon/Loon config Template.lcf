@@ -32,7 +32,7 @@ bestvmr.com = server:47.110.75.65:8053
 ⛔️Reject = REJECT
 
 [Remote Proxy]
-{{AIRPORT_NAME}} = {{SUB_URL}},udp=true,block-quic=true,fast-open=false,vmess-aead=true,skip-cert-verify=true,enabled=true,flexible-sni=true,img-url={{SUB_img-url}}
+{{REMOTE_PROXY_BLOCK}}
 
 [Proxy Group]
 节点选择 = select,🚀 手动切换,♻️ 自动选择,🔯 故障转移,🔮 负载均衡,🇭🇰 香港节点,🇹🇼 台湾节点,🇺🇸 美国节点,🇰🇷 韩国节点,🇬🇧 英国节点,🇯🇵 日本节点,🇸🇬 新加坡节点,🇩🇪 德国节点,img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png
