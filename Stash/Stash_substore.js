@@ -1,5 +1,6 @@
 if (typeof $content === 'string') {
   const raw = $arguments?.target || ''
+  const nameParam = $arguments?.name || ''
 
   let type = 'sub'
   let subName = raw
@@ -16,12 +17,16 @@ if (typeof $content === 'string') {
   }
 
   const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
-  const TARGET = 'ClashMeta'   // Stash 内核兼容 Clash Premium，跟 Clash 模板用同一目标格式
+  const TARGET = 'ClashMeta'
   const pathPrefix = type === 'collection' ? 'collection/' : ''
 
   const url = subName
     ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}`
     : ''
 
-  $content = $content.replace(/\{\{SUB_URL\}\}/g, url)
+  const displayName = nameParam || subName || 'AirPort'
+
+  $content = $content
+    .replace(/\{\{AIRPORT_NAME\}\}/g, displayName)
+    .replace(/\{\{SUB_URL\}\}/g, url)
 }
