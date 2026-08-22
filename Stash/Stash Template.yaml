@@ -119,7 +119,7 @@ proxies:
     udp: true
     
 proxy-providers:
-  MySubGroup:
+  {{AIRPORT_NAME}}:
     benchmark-timeout: 300
     benchmark-url: https://www.epochtimes.com/
     interval: 86400
