@@ -1,7 +1,7 @@
 if (typeof $content === 'string') {
   const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
   const TARGET = 'Loon'
-  const DEFAULT_ICON = 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png'
+  const DEFAULT_ICON = 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png'
 
   // 参数表 key = airports，多个机场用 | 分隔，每个机场内部用 ; 分隔字段：
   // 显示名;sub或collection;Sub-Store里的订阅/组合订阅名;图标链接(可省略)
