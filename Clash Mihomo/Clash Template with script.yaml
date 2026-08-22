@@ -189,7 +189,7 @@ proxy-groups:
   - {name: "🐙 Github", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png}
   - {name: "🤖️ 人工智能", type: select, proxies: ["🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
   - {name: "📤 Line消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png}
-  - {name: "📢 KakaoTalk消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/kakaotalk.png}
+  - {name: "📢 KakaoTalk消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Kakao.png}
   - {name: "📱 电报消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
   - {name: "🐦 Discord消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png}
   - {name: "👤 脸书消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png}
