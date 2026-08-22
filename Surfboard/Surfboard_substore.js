@@ -1,4 +1,3 @@
-// surfboard_substore.js
 if (typeof $content === 'string') {
   const raw = $arguments?.target || ''
   const nameParam = $arguments?.name || ''
@@ -12,18 +11,17 @@ if (typeof $content === 'string') {
   }
 
   if (!subName) {
-    console.log('[脚本操作] WARN: 参数表里没有配置 target，请检查')
+    console.log(`[脚本操作] WARN: 参数表里没有配置 target，请检查`)
   } else if (!['sub', 'collection'].includes(type)) {
     console.log(`[脚本操作] WARN: target 的类型 "${type}" 不识别，仅支持 sub 或 collection`)
   }
 
   const SUBSTORE_HOST = 'https://substore-rear.planet-teddy.org'
-  const TARGET = 'Surfboard'
-  const TIMEOUT = 20000
+  const TARGET = 'Surfboard'   // 唯一改动点：ClashMeta → Surfboard
   const pathPrefix = type === 'collection' ? 'collection/' : ''
 
   const url = subName
-    ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}&timeout=${TIMEOUT}`
+    ? `${SUBSTORE_HOST}/download/${pathPrefix}${encodeURIComponent(subName)}?target=${TARGET}`
     : ''
 
   const displayName = nameParam || subName || 'AirPort'
