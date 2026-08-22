@@ -1,5 +1,5 @@
 
-global-ua: clash
+global-ua: stash
 
 port: 7890
 socks-port: 7891
