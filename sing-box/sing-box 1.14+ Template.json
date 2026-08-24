@@ -5,45 +5,45 @@
     "timestamp": true
   },
   "dns": {
-  "servers": [
-    { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
-    { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
-    { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
-    { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
-    { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
-    { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053, "detour": "direct-for-dns" },
-    { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
-  ],
-  "rules": [
-    {
-      "domain_suffix": ["lan", "local"],
-      "server": "default-dns"
-    },
-    {
-      "domain_suffix": [
-        "stun.*.*", "stun.*.*.*",
-        "msftncsi.com", "msftconnecttest.com", "push.apple.com"
-      ],
-      "server": "default-dns"
-    },
-    {
-      "domain_suffix": ["bestvmr.com"],
-      "server": "private-dns-flyint"
-    },
-    {
-      "domain_suffix": ["sdykjym.cc"],
-      "server": "dns-sdykjym"
-    },
-    {
-      "domain_suffix": [
-        "google.com", "googleapis.com", "youtube.com",
-        "facebook.com", "twitter.com", "github.com"
-      ],
-      "server": "doh-cloudflare"
-    }
-  ],
-  "strategy": "prefer_ipv4",
-  "final": "doh-cloudflare"
+    "servers": [
+      { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
+      { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
+      { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
+      { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
+      { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
+      { "tag": "private-dns-flyint", "type": "udp", "server": "47.110.75.65", "server_port": 8053, "detour": "direct-for-dns" },
+      { "tag": "dns-sdykjym", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" }
+    ],
+    "rules": [
+      {
+        "domain_suffix": ["lan", "local"],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": [
+          "stun.*.*", "stun.*.*.*",
+          "msftncsi.com", "msftconnecttest.com", "push.apple.com"
+        ],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": ["bestvmr.com"],
+        "server": "private-dns-flyint"
+      },
+      {
+        "domain_suffix": ["sdykjym.cc"],
+        "server": "dns-sdykjym"
+      },
+      {
+        "domain_suffix": [
+          "google.com", "googleapis.com", "youtube.com",
+          "facebook.com", "twitter.com", "github.com"
+        ],
+        "server": "doh-cloudflare"
+      }
+    ],
+    "strategy": "prefer_ipv4",
+    "final": "doh-cloudflare"
   },
   "experimental": {
     "clash_api": {
@@ -233,6 +233,48 @@
       "outbounds": [
         "🇺🇸 美国节点",
         "🚀 手动切换"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "💰 加密货币",
+      "outbounds": [
+        "✨ 节点选择",
+        "🚀 手动切换",
+        "♻️ 自动选择",
+        "🔯 故障转移",
+        "🔮 负载均衡",
+        "🇭🇰 香港节点",
+        "🇹🇼 台湾节点",
+        "🇯🇵 日本节点",
+        "🇰🇷 韩国节点",
+        "🇸🇬 新加坡节点",
+        "🇹🇭 泰国节点",
+        "🇺🇸 美国节点",
+        "🇩🇪 德国节点",
+        "🇬🇧 英国节点",
+        "🟢 直连"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "🪙 欧易易所",
+      "outbounds": [
+        "🟢 直连",
+        "✨ 节点选择",
+        "🚀 手动切换",
+        "♻️ 自动选择",
+        "🔯 故障转移",
+        "🔮 负载均衡",
+        "🇭🇰 香港节点",
+        "🇹🇼 台湾节点",
+        "🇯🇵 日本节点",
+        "🇰🇷 韩国节点",
+        "🇸🇬 新加坡节点",
+        "🇹🇭 泰国节点",
+        "🇺🇸 美国节点",
+        "🇩🇪 德国节点",
+        "🇬🇧 英国节点"
       ]
     },
     {
@@ -935,10 +977,12 @@
       {"rule_set": ["Microsoft", "OneDrive", "Xbox"], "outbound": "Ⓜ️ 微软服务"},
       {"rule_set": ["AppleCN", "AppleProxy"], "outbound": "🍎 苹果服务"},
       {"rule_set": ["AppleNews"], "outbound": "📰 苹果新闻"},
+      {"rule_set": ["Crypto", "Cryptocurrency"], "outbound": "💰 加密货币"},
+      {"rule_set": ["OKX"], "outbound": "🪙 欧易易所"},
       {"rule_set": ["Paypal"], "outbound": "🪙 贝宝支付"},
       {"rule_set": ["eBay", "Bestbuy", "AmazonIP"], "outbound": "🛒 电商平台"},
       {"rule_set": ["Github"], "outbound": "🐙 Github"},
-      {"rule_set": ["AI"], "outbound": "🤖️ 人工智能"},
+      {"rule_set": ["AI", "OpenAI", "Claude"], "outbound": "🤖️ 人工智能"},
       {"rule_set": ["Line"], "outbound": "📤 Line消息"},
       {"rule_set": ["KakaoTalk"], "outbound": "📢 KakaoTalk消息"},
       {"rule_set": ["Telegram"], "outbound": "📱 电报消息"},
@@ -1018,6 +1062,20 @@
         "type": "remote",
         "format": "source",
         "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/AI.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "OpenAI",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/OpenAI.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "Claude",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Claude.json",
         "update_interval": "3d", "download_detour": "✨ 节点选择"
       },
       {
@@ -1165,6 +1223,27 @@
         "type": "remote",
         "format": "source",
         "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Github.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "Cryptocurrency",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Cryptocurrency/Cryptocurrency.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "Crypto",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Crypto.json",
+        "update_interval": "3d", "download_detour": "✨ 节点选择"
+      },
+      {
+        "tag": "OKX",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/OKX/OKX.json",
         "update_interval": "3d", "download_detour": "✨ 节点选择"
       },
       {
