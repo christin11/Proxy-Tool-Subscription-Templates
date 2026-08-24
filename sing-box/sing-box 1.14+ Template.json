@@ -947,9 +947,9 @@
     "final": "🌍 兜底分流",
     "rules": [
       {"protocol": "dns", "action": "hijack-dns"},
+      {"action": "sniff"},
       {"network": "udp", "port": 443, "outbound": "🛑 广告拦截"},
       {"rule_set": ["BanProgramAD", "Reject", "AdBlockHeidai", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
-      {"action": "sniff"},
       {"ip_cidr": ["47.110.75.65/32"], "outbound": "🌐 全球直连"},
       {"rule_set": ["Lan"], "outbound": "🌐 全球直连"},
       {"rule_set": ["Speedtest"], "outbound": "⏱️ 网络测速"},
