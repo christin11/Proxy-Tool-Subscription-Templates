@@ -258,27 +258,6 @@
     },
     {
       "type": "selector",
-      "tag": "🪙 欧易易所",
-      "outbounds": [
-        "🟢 直连",
-        "✨ 节点选择",
-        "🚀 手动切换",
-        "♻️ 自动选择",
-        "🔯 故障转移",
-        "🔮 负载均衡",
-        "🇭🇰 香港节点",
-        "🇹🇼 台湾节点",
-        "🇯🇵 日本节点",
-        "🇰🇷 韩国节点",
-        "🇸🇬 新加坡节点",
-        "🇹🇭 泰国节点",
-        "🇺🇸 美国节点",
-        "🇩🇪 德国节点",
-        "🇬🇧 英国节点"
-      ]
-    },
-    {
-      "type": "selector",
       "tag": "🪙 贝宝支付",
       "outbounds": [
         "✨ 节点选择",
@@ -746,7 +725,7 @@
     },
     {
       "type": "selector",
-      "tag": "📽 哔哩哔哔哩",
+      "tag": "📽 哔哩哔哩",
       "outbounds": [
         "🟢 直连",
         "✨ 节点选择"
@@ -977,8 +956,7 @@
       {"rule_set": ["Microsoft", "OneDrive", "Xbox"], "outbound": "Ⓜ️ 微软服务"},
       {"rule_set": ["AppleCN", "AppleProxy"], "outbound": "🍎 苹果服务"},
       {"rule_set": ["AppleNews"], "outbound": "📰 苹果新闻"},
-      {"rule_set": ["Crypto", "Cryptocurrency"], "outbound": "💰 加密货币"},
-      {"rule_set": ["OKX"], "outbound": "🪙 欧易易所"},
+      {"rule_set": ["Crypto", "Cryptocurrency", "OKX"], "outbound": "💰 加密货币"},
       {"rule_set": ["Paypal"], "outbound": "🪙 贝宝支付"},
       {"rule_set": ["eBay", "Bestbuy", "AmazonIP"], "outbound": "🛒 电商平台"},
       {"rule_set": ["Github"], "outbound": "🐙 Github"},
@@ -1006,7 +984,7 @@
       {"rule_set": ["Bahamut"], "outbound": "📽 巴哈姆特"},
       {"rule_set": ["ProxyMedia"], "outbound": "🍿 境外媒体"},
       {"rule_set": ["ChinaMedia"], "outbound": "🍔 国内媒体"},
-      {"rule_set": ["Bilibili"], "outbound": "📽 哔哩哔哔哩"},
+      {"rule_set": ["Bilibili"], "outbound": "📽 哔哩哔哩"},
       {"rule_set": ["Emby"], "outbound": "🛋️ Emby"},
       {"rule_set": ["Twitch"], "outbound": "📺 Twitch直播"},
       {"rule_set": ["Steam", "Epic", "Games"], "outbound": "🎮 游戏平台"},
