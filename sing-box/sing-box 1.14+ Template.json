@@ -988,6 +988,12 @@
         "action": "hijack-dns"
       },
       {
+        "domain_suffix": [
+          "google.com"
+        ],
+        "outbound": "📹 油管视频"
+      },
+      {
         "ip_cidr": [
           "47.110.75.65/32"
         ],
