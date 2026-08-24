@@ -1011,7 +1011,7 @@
         "tag": "AdBlockHeidai",
         "type": "remote",
         "format": "source",
-        "url": "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksingbox.json",
+        "url": "https://testingcf.jsdelivr.net/gh/217heidai/adblockfilters@main/rules/adblocksingbox.json",
         "update_interval": "3d", "download_detour": "🟢 直连"
       },
       {
