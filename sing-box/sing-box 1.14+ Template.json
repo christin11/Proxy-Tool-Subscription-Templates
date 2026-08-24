@@ -948,7 +948,7 @@
     "rules": [
       {"protocol": "dns", "action": "hijack-dns"},
       {"network": "udp", "port": 443, "outbound": "🛑 广告拦截"},
-      {"rule_set": ["BanProgramAD", "Reject", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
+      {"rule_set": ["BanProgramAD", "Reject", "AdBlockHeidai", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
       {"action": "sniff"},
       {"ip_cidr": ["47.110.75.65/32"], "outbound": "🌐 全球直连"},
       {"rule_set": ["Lan"], "outbound": "🌐 全球直连"},
@@ -1005,6 +1005,13 @@
         "type": "remote",
         "format": "source",
         "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Reject.json",
+        "update_interval": "3d", "download_detour": "🟢 直连"
+      },
+      {
+        "tag": "AdBlockHeidai",
+        "type": "remote",
+        "format": "source",
+        "url": "https://raw.githubusercontent.com/217heidai/adblockfilters/main/rules/adblocksingbox.json",
         "update_interval": "3d", "download_detour": "🟢 直连"
       },
       {
