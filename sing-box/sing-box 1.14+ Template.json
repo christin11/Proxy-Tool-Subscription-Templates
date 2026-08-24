@@ -946,11 +946,12 @@
     "auto_detect_interface": true,
     "final": "🌍 兜底分流",
     "rules": [
-      {"action": "sniff"},
       {"protocol": "dns", "action": "hijack-dns"},
+      {"network": "udp", "port": 443, "outbound": "🛑 广告拦截"},
+      {"rule_set": ["BanProgramAD", "Reject", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
+      {"action": "sniff"},
       {"ip_cidr": ["47.110.75.65/32"], "outbound": "🌐 全球直连"},
       {"rule_set": ["Lan"], "outbound": "🌐 全球直连"},
-      {"rule_set": ["BanProgramAD"], "outbound": "🧹 应用净化"},
       {"rule_set": ["Speedtest"], "outbound": "⏱️ 网络测速"},
       {"rule_set": ["Google"], "outbound": "🔍 谷歌服务"},
       {"rule_set": ["Microsoft", "OneDrive", "Xbox"], "outbound": "Ⓜ️ 微软服务"},
@@ -989,7 +990,6 @@
       {"rule_set": ["Twitch"], "outbound": "📺 Twitch直播"},
       {"rule_set": ["Steam", "Epic", "Games"], "outbound": "🎮 游戏平台"},
       {"rule_set": ["ProxyGFW", "Proxy"], "outbound": "🧱 GFW网站"},
-      {"rule_set": ["Reject", "AdGuardChinese", "EasyListChina", "EasyListPrivacy", "Ads_limbopro"], "outbound": "🛑 广告拦截"},
       {"rule_set": ["Direct", "ChinaDomain", "ChinaIP", "ChinaASN"], "outbound": "🌐 全球直连"}
     ],
     "rule_set": [
