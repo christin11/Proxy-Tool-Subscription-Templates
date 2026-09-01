@@ -861,6 +861,9 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/AI.yaml
     policy: 🤖️ AI    
 - rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/YouTube.yaml
+    policy: 📹 YouTube
+- rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Google.yaml
     policy: 🔍 Google
 - rule_set:
@@ -935,9 +938,6 @@ rules:
 - rule_set:
     match: https://github.com/Repcz/EgernRules/raw/X/Rules/Deezer/Deezer.yaml
     policy: 🎷 Deezer
-- rule_set:
-    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/YouTube.yaml
-    policy: 📹 YouTube
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Netflix.yaml
     policy: 🎥 Netflix
