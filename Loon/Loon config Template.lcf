@@ -108,6 +108,7 @@ bestvmr.com = server:47.110.75.65:8053
 https://yfamilys.com/rule/OpenAI.list, policy=🤖️ AI, tag=OpenAI, enabled=true
 https://yfamilys.com/rule/Claude.list, policy=🤖️ AI, tag=Claude, enabled=true
 https://yfamilys.com/rule/Gemini.list, policy=🤖️ AI, tag=Gemini, enabled=true
+https://yfamilys.com/rule/YouTube.list, policy=📹 YouTube, tag=📹 YouTube, enabled=true
 https://yfamilys.com/rule/Speedtest.list, policy=⏱️ Speedtest, tag=⏱️ Speedtest, enabled=true
 https://yfamilys.com/rule/Google.list, policy=🔍 Google, tag=🔍 Google, enabled=true
 https://yfamilys.com/rule/Microsoft.list, policy=Ⓜ️ Microsoft, tag=Ⓜ️ Microsoft, enabled=true
@@ -135,7 +136,6 @@ https://yfamilys.com/rule/TikTok.list, policy=🫟 TikTok, tag=🫟 TikTok, enab
 https://yfamilys.com/rule/Spotify.list, policy=🎻 Spotify, tag=🎻 Spotify, enabled=true
 https://yfamilys.com/rule/JOOX.list, policy=🎹 JOOX, tag=🎹 JOOX, enabled=true
 https://yfamilys.com/rule/Deezer.list, policy=🎷 Deezer, tag=🎷 Deezer, enabled=true
-https://yfamilys.com/rule/YouTube.list, policy=📹 YouTube, tag=📹 YouTube, enabled=true
 https://yfamilys.com/rule/YouTubeMusic.list, policy=📹 YouTube, tag=🎵 YouTube Music, enabled=true
 https://yfamilys.com/rule/Netflix.list, policy=🎥 Netflix, tag=🎥 Netflix, enabled=true
 https://yfamilys.com/rule/Disney.list, policy=🎬 Disney+, tag=🎬 Disney+, enabled=true
