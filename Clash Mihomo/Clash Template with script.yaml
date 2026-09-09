@@ -8,6 +8,8 @@ proxy-providers:
       interval: 300
     proxy: "🟢 直连"
     url: "{{SUB_URL}}"
+    override:
+      client-fingerprint: chrome
 
 global-ua: clash
 
@@ -36,7 +38,6 @@ secret: ""
 external-ui: ui
 
 find-process-mode: strict
-global-client-fingerprint: chrome
 keep-alive-idle: 600
 keep-alive-interval: 30
 
