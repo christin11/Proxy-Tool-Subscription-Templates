@@ -180,8 +180,10 @@ FINAL,🚀 手动切换
 [Remote Script]
 
 [Plugin]
-https://yfamilys.com/plugin/adultraplus.plugin, enabled=true
-https://kelee.one/Tool/Loon/Lpx/AppleWeatherEnhancer.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Block_HTTPDNS.lpx, enabled=true
+https://yfamilys.com/plugin/adultraplus.plugin, enabled=false
+https://kelee.one/Tool/Loon/Lpx/AppleWeatherEnhancer.lpx, enabled=false
 https://kelee.one/Tool/Loon/Lpx/Auto_Join_TF.lpx, enabled=false
 https://kelee.one/Tool/Loon/Lpx/Zhihu_remove_ads.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/RedPaper_remove_ads.lpx, enabled=true
