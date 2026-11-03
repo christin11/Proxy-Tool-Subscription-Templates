@@ -1067,14 +1067,14 @@
         "tag": "Gemini",
         "type": "remote",
         "format": "source",
-        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Gemini.json",
+        "url": "https://testingcf.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Gemini/Gemini.json",
         "update_interval": "3d", "download_detour": "🟢 直连"
       },
       {
         "tag": "Copilot",
         "type": "remote",
         "format": "source",
-        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Copilot.json",
+        "url": "https://testingcf.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Copilot/Copilot.json",
         "update_interval": "3d", "download_detour": "🟢 直连"
       },      
       {
