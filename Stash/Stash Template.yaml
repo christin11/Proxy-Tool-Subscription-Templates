@@ -1,11 +1,11 @@
 
 global-ua: stash
 
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
-tproxy-port: 7894
+port: 6780
+socks-port: 6781
+redir-port: 6782
+mixed-port: 6783
+tproxy-port: 6784
 ipv6: false
 allow-lan: true
 unified-delay: true
