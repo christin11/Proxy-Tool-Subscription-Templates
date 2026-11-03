@@ -251,22 +251,22 @@ rule-providers:
   AI: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
   Telegram: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
   YouTube: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
-  YouTubeMusic: {!!merge <<: *class, url: 'https://whatshub.top/rule/YouTubeMusic.list'}
+  YouTubeMusic: {!!merge <<: *class, url: 'https://yfamilys.com/rule/YouTubeMusic.list'}
   Netflix: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list'}
   Disney: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list'}
   Spotify: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list'}
   TikTok: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list'}
   Twitter: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
   Facebook: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list'}
-  Reddit: {!!merge <<: *class, url: 'https://whatshub.top/rule/Reddit.list'}
-  Discord: {!!merge <<: *class, url: 'https://whatshub.top/rule/Discord.list'}
-  Line: {!!merge <<: *class, url: 'https://whatshub.top/rule/Line.list'}
+  Reddit: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Reddit.list'}
+  Discord: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Discord.list'}
+  Line: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Line.list'}
   KakaoTalk: {!!merge <<: *class, url: 'https://yfamilys.com/rule/KakaoTalk.list'}
-  Speedtest: {!!merge <<: *class, url: 'https://whatshub.top/rule/Speedtest.list'}
+  Speedtest: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Speedtest.list'}
   Google: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
   AppleCN: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
   AppleProxy: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
-  AppleNews: {!!merge <<: *class, url: 'https://whatshub.top/rule/AppleNews.list'}
+  AppleNews: {!!merge <<: *class, url: 'https://yfamilys.com/rule/AppleNews.list'}
   Microsoft: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
   OneDrive: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   Github: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
@@ -280,20 +280,20 @@ rule-providers:
   Steam: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
   Epic: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
   Games: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list'}
-  JOOX: {!!merge <<: *class, url: 'https://whatshub.top/rule/JOOX.rule'}
-  Deezer: {!!merge <<: *class, url: 'https://whatshub.top/rule/Deezer.list'}
+  JOOX: {!!merge <<: *class, url: 'https://yfamilys.com/rule/JOOX.rule'}
+  Deezer: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Deezer.list'}
   PrimeVideo: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list'}
   HBO: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list'}
-  BBC: {!!merge <<: *class, url: 'https://whatshub.top/rule/BBC.list'}
-  DAZN: {!!merge <<: *class, url: 'https://whatshub.top/rule/DAZN.list'}
-  ViuTV: {!!merge <<: *class, url: 'https://whatshub.top/rule/ViuTV.list'}
-  AbemaTV: {!!merge <<: *class, url: 'https://whatshub.top/rule/AbemaTV.list'}
+  BBC: {!!merge <<: *class, url: 'https://yfamilys.com/rule/BBC.list'}
+  DAZN: {!!merge <<: *class, url: 'https://yfamilys.com/rule/DAZN.list'}
+  ViuTV: {!!merge <<: *class, url: 'https://yfamilys.com/rule/ViuTV.list'}
+  AbemaTV: {!!merge <<: *class, url: 'https://yfamilys.com/rule/AbemaTV.list'}
   Bahamut: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list'}
   ProxyMedia: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
-  ChinaMedia: {!!merge <<: *class, url: 'https://whatshub.top/rule/ChinaMedia.list'}
-  Bilibili: {!!merge <<: *class, url: 'https://whatshub.top/rule/BiliBili.list'}
+  ChinaMedia: {!!merge <<: *class, url: 'https://yfamilys.com/rule/ChinaMedia.list'}
+  Bilibili: {!!merge <<: *class, url: 'https://yfamilys.com/rule/BiliBili.list'}
   Emby: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list'}
-  Twitch: {!!merge <<: *class, url: 'https://whatshub.top/rule/Twitch.list'}
+  Twitch: {!!merge <<: *class, url: 'https://yfamilys.com/rule/Twitch.list'}
 
   # === 基础分流与兜底规则 ===
   Lan: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
