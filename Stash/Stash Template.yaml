@@ -247,6 +247,7 @@ rule-providers:
   OpenAI: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OpenAI/OpenAI.list'}
   Claude: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list'}
   Gemini: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Gemini/Gemini.list'}
+  Copilot: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Copilot/Copilot.list'} 
   AI: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
   Telegram: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
   YouTube: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
@@ -316,6 +317,7 @@ rules:
   - RULE-SET,OpenAI,🤖️ 人工智能
   - RULE-SET,Claude,🤖️ 人工智能
   - RULE-SET,Gemini,🤖️ 人工智能
+  - RULE-SET,Copilot,🤖️ 人工智能
   - RULE-SET,AI,🤖️ 人工智能
   - RULE-SET,Speedtest,⏱️ 网络测速
   - RULE-SET,YouTubeMusic,🔍 谷歌服务
