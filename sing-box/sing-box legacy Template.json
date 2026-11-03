@@ -991,6 +991,13 @@
     "update_interval": "3d"
   },
   {
+    "tag": "Copilot",
+    "type": "remote",
+    "format": "source",
+    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/refs/heads/main/rule/Copilot/Copilot.json",
+    "update_interval": "3d"
+  },
+  {
     "tag": "AI",
     "type": "remote",
     "format": "source",
