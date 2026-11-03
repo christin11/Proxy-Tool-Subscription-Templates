@@ -961,7 +961,7 @@
       {"rule_set": ["Paypal"], "outbound": "🪙 贝宝支付"},
       {"rule_set": ["eBay", "Bestbuy", "AmazonIP"], "outbound": "🛒 电商平台"},
       {"rule_set": ["Github"], "outbound": "🐙 Github"},
-      {"rule_set": ["AI", "OpenAI", "Claude"], "outbound": "🤖️ 人工智能"},
+      {"rule_set": ["AI", "OpenAI", "Claude", "Gemini", "Copilot"], "outbound": "🤖️ 人工智能"},
       {"rule_set": ["Line"], "outbound": "📤 Line消息"},
       {"rule_set": ["KakaoTalk"], "outbound": "📢 KakaoTalk消息"},
       {"rule_set": ["Telegram"], "outbound": "📱 电报消息"},
@@ -1063,6 +1063,20 @@
         "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Claude.json",
         "update_interval": "3d", "download_detour": "🟢 直连"
       },
+      {
+        "tag": "Gemini",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Gemini.json",
+        "update_interval": "3d", "download_detour": "🟢 直连"
+      },
+      {
+        "tag": "Copilot",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/Copilot.json",
+        "update_interval": "3d", "download_detour": "🟢 直连"
+      },      
       {
         "tag": "Telegram",
         "type": "remote",
