@@ -5,7 +5,7 @@
 
 [General]
 udp-fallback-mode = DIRECT
-dns-server = 223.5.5.5,119.29.29.29,114.114.114.114,47.110.75.65
+dns-server = 223.5.5.5,119.29.29.29,114.114.114.114,140.235.98.102
 ip-mode = v4-only
 ipv6 = false
 skip-proxy = 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,localhost,*.local,passenger.t3go.cn,passenger.t3go.cn
@@ -22,8 +22,8 @@ resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/dow
 
 [Host]
 # 指定 bestvmr.com 及其子域名使用机场私有 DNS 服务的 8053 端口解析，并仅限 IPv4
-bestvmr.com = server:47.110.75.65:8053
-*.bestvmr.com = server:47.110.75.65:8053
+bestvmr.com = server:140.235.98.102:8053
+*.bestvmr.com = server:140.235.98.102:8053
 
 [Proxy]
 🌐直连 = DIRECT
