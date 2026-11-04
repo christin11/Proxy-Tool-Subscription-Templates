@@ -7,7 +7,7 @@
 proxy-providers:
   {{AIRPORT_NAME}}: 
     type: http
-    interval: 1800
+    interval: 259200
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
