@@ -12,7 +12,7 @@ dns:
   - system
   upstreams:
     bestvmr_dns:
-    - 47.110.75.65:8053
+    - 140.235.98.102:8053
     cloudflare_doh:
     - https://dns.cloudflare.com/dns-query
     cn_dns:
