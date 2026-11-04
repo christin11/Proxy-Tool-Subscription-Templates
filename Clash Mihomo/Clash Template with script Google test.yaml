@@ -107,8 +107,8 @@ dns:
 
   # 修正后的策略分流：每个冒号后都严格检查了空格，并对 Key 加上了双引号
   nameserver-policy:
-    "*.bestvmr.com": "47.110.75.65:8053"
-    "bestvmr.com": "47.110.75.65:8053"
+    "*.bestvmr.com": "140.235.98.102:8053"
+    "bestvmr.com": "140.235.98.102:8053"
     "geosite:cn": "119.29.29.29"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
     "+.googleapis.com": "https://dns.cloudflare.com/dns-query"
