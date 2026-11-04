@@ -93,8 +93,8 @@ dns:
     - '223.5.5.5'
 
   nameserver-policy:
-    "*.bestvmr.com": "47.110.75.65:8053"
-    "bestvmr.com": "47.110.75.65:8053"
+    "*.bestvmr.com": "140.235.98.102:8053"
+    "bestvmr.com": "140.235.98.102:8053"
     "geosite:cn": "119.29.29.29"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
     "+.googleapis.com": "https://dns.cloudflare.com/dns-query"
