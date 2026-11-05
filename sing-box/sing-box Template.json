@@ -5,114 +5,63 @@
     "timestamp": true
   },
   "dns": {
-  "servers": [
-    {
-      "tag": "default-dns",
-      "type": "udp",
-      "server": "223.5.5.5"
-    },
-    {
-      "tag": "default-dns-2",
-      "type": "udp",
-      "server": "119.29.29.29"
-    },
-    {
-      "tag": "doh-ali",
-      "type": "https",
-      "server": "223.5.5.5"
-    },
-    {
-      "tag": "doh-tencent",
-      "type": "https",
-      "server": "119.29.29.29"
-    },
-    {
-      "tag": "doh-cloudflare",
-      "type": "https",
-      "server": "dns.cloudflare.com",
-      "domain_resolver": "default-dns",
-      "detour": "✨ 节点选择"
-    },
-    {
-      "tag": "private-dns-flyint",
-      "type": "udp",
-      "server": "140.235.98.102",
-      "server_port": 8053,
-      "detour": "direct-for-dns"
-    },
-    {
-      "tag": "dns-yunkai",
-      "type": "https",
-      "server": "api-query.yunkai002.top",
-      "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb",
-      "domain_resolver": "default-dns"
-    },
-    {
-      "tag": "yuji-doh",
-      "type": "https",
-      "server": "doh.vistart.art",
-      "server_port": 443,
-      "path": "/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05",
-      "domain_resolver": "default-dns"
-    }
-  ],
-  "rules": [
-    {
-      "domain_suffix": [
-        "lan",
-        "local"
-      ],
-      "server": "default-dns"
-    },
-    {
-      "domain_suffix": [
-        "stun.*.*",
-        "stun.*.*.*",
-        "msftncsi.com",
-        "msftconnecttest.com",
-        "push.apple.com"
-      ],
-      "server": "default-dns"
-    },
-    {
-      "domain_suffix": [
-        "bestvmr.com"
-      ],
-      "server": "private-dns-flyint"
-    },
-    {
-      "domain": [
-        "any.node.vistart.art"
-      ],
-      "server": "yuji-doh"
-    },
-    {
-      "domain_suffix": [
-        "node.vistart.art"
-      ],
-      "server": "yuji-doh"
-    },
-    {
-      "domain_suffix": [
-        "sdykjym.cc"
-      ],
-      "server": "dns-yunkai"
-    },
-    {
-      "domain_suffix": [
-        "google.com",
-        "google.com.hk",
-        "googleapis.com",
-        "youtube.com",
-        "facebook.com",
-        "twitter.com",
-        "github.com"
-      ],
-      "server": "doh-cloudflare"
-    }
-  ],
-  "strategy": "ipv4_only",
-  "final": "doh-cloudflare"
+    "servers": [
+      { "tag": "default-dns",     "type": "udp",   "server": "223.5.5.5" },
+      { "tag": "default-dns-2",   "type": "udp",   "server": "119.29.29.29" },
+      { "tag": "doh-ali",         "type": "https", "server": "223.5.5.5" },
+      { "tag": "doh-tencent",     "type": "https", "server": "119.29.29.29" },
+      { "tag": "doh-cloudflare",  "type": "https", "server": "dns.cloudflare.com", "domain_resolver": "default-dns", "detour": "✨ 节点选择" },
+      { "tag": "private-dns-flyint", "type": "udp", "server": "140.235.98.102", "server_port": 8053, "detour": "direct-for-dns" },
+      { "tag": "dns-yunkai", "type": "https", "server": "api-query.yunkai002.top", "path": "/89dffa593f26dc3633027c7fc35fb0e3fe8a0c7875e5effb", "domain_resolver": "default-dns" },
+      {
+        "domain_resolver": "doh-bootstrap",
+        "path": "/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05",
+        "server": "doh.vistart.art",
+        "server_port": 443,
+        "tag": "yuji-doh",
+        "type": "https"
+      },
+      {
+        "tag": "doh-bootstrap",
+        "type": "local"
+      }
+    ],
+    "rules": [
+      {
+        "domain": [
+          "doh.vistart.art"
+        ],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": ["lan", "local"],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": [
+          "stun.*.*", "stun.*.*.*",
+          "msftncsi.com", "msftconnecttest.com", "push.apple.com"
+        ],
+        "server": "default-dns"
+      },
+      {
+        "domain_suffix": ["bestvmr.com"],
+        "server": "private-dns-flyint"
+      },
+      {
+        "domain_suffix": ["sdykjym.cc"],
+        "server": "dns-yunkai"
+      },
+      {
+        "domain_suffix": [
+          "google.com", "google.com.hk", "googleapis.com", "youtube.com",
+          "facebook.com", "twitter.com", "github.com"
+        ],
+        "server": "doh-cloudflare"
+      }
+    ],
+    "strategy": "ipv4_only",
+    "final": "yuji-doh"
   },
   "experimental": {
     "clash_api": {
@@ -1011,10 +960,16 @@
     }
   ],
   "route": {
-    "default_domain_resolver": "default-dns",
+    "default_domain_resolver": "yuji-doh",
     "auto_detect_interface": true,
     "final": "🌍 兜底分流",
     "rules": [
+      {
+        "domain": [
+          "doh.vistart.art"
+        ],
+        "outbound": "🟢 直连"
+      },
       {"protocol": "dns", "action": "hijack-dns"},
       {"action": "sniff"},
       {"network": "udp", "port": 443, "outbound": "🛑 广告拦截"},
