@@ -61,7 +61,7 @@
       }
     ],
     "strategy": "ipv4_only",
-    "final": "yuji-doh"
+    "final": "doh-cloudflare"
   },
   "experimental": {
     "clash_api": {
