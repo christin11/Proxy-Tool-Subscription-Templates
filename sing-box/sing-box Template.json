@@ -1017,12 +1017,6 @@
     "final": "🌍 兜底分流",
     "rules": [
       {
-        "domain": [
-          "doh.vistart.art"
-        ],
-        "outbound": "🟢 直连"
-      },
-      {
         "protocol": "dns",
         "action": "hijack-dns"
       },
