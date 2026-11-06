@@ -107,10 +107,6 @@ dns:
     - '223.5.5.5'
     - 'https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05'
 
-  # 解析代理节点域名用的 DNS：机场 DoH
-  proxy-server-nameserver:
-    - 'https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05'
-
   # 修正后的策略分流：每个冒号后都严格检查了空格，并对 Key 加上了双引号
   nameserver-policy:
     "*.bestvmr.com": "140.235.98.102:8053"
