@@ -171,7 +171,7 @@ https://yfamilys.com/rule/IPs-CN.list, policy=DIRECT, tag=🌐 全球直连, ena
 https://yfamilys.com/rule/ChinaIPsBGP.list, policy=DIRECT, tag=🌐 全球直连, enabled=true
 
 [Rule]
-DOMAIN,doh.vistart.art,🚀 手动切换
+DOMAIN,doh.vistart.art,DIRECT
 FINAL,🚀 手动切换
 
 [Rewrite]
