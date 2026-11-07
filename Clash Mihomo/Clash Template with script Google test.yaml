@@ -110,6 +110,8 @@ dns:
   nameserver-policy:
     "*.bestvmr.com": "140.235.98.102:8053"
     "bestvmr.com": "140.235.98.102:8053"
+    "*.node.vistart.art": "https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05"
+    "node.vistart.art": "https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05"
     "geosite:cn": "119.29.29.29"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
     "+.googleapis.com": "https://dns.cloudflare.com/dns-query"
