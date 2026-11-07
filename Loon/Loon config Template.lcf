@@ -5,6 +5,7 @@
 
 [General]
 udp-fallback-mode = DIRECT
+doh-server = https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05
 dns-server = 223.5.5.5,119.29.29.29,114.114.114.114,140.235.98.102
 ip-mode = v4-only
 ipv6 = false
@@ -14,7 +15,7 @@ allow-udp-proxy = false
 allow-wifi-access = false
 wifi-access-http-port = 7222
 wifi-access-socks5-port = 7221
-proxy-test-url = https://www.epochtimes.com/
+proxy-test-url =   http://www.gstatic.com/generate_204
 internet-test-url = http://wifi.vivo.com.cn/generate_204
 test-timeout = 2
 interface-mode = auto
