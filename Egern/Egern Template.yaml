@@ -13,6 +13,7 @@ dns:
   upstreams:
     bestvmr_dns:
     - 140.235.98.102:8053
+    - https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05
     cloudflare_doh:
     - https://dns.cloudflare.com/dns-query
     cn_dns:
@@ -20,7 +21,6 @@ dns:
     - https://dns.alidns.com/dns-query
     - tls://dot.pub
     - tls://dns.alidns.com
-    - https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05
     fallback_dns:
     - https://dns.google/dns-query
     - tls://1.1.1.1
