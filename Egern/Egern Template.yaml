@@ -11,8 +11,9 @@ dns:
   bootstrap:
   - system
   upstreams:
-    bestvmr_dns:
+    flyint_dns:
     - 140.235.98.102:8053
+    yuji_dns:
     - https://doh.vistart.art/dns-query/ac49695594da5621cdfa584a18440aefc15d7b3e5dc9fd5fa6b4cdd6f21cbd05
     cloudflare_doh:
     - https://dns.cloudflare.com/dns-query
@@ -28,10 +29,16 @@ dns:
   forward:
   - domain_wildcard:
       match: '*.bestvmr.com'
-      value: bestvmr_dns
+      value: flyint_dns
   - domain:
       match: bestvmr.com
-      value: bestvmr_dns
+      value: flyint_dns
+  - domain_wildcard:
+      match: '*.node.vistart.art'
+      value: yuji_dns
+  - domain:
+      match: any.node.vistart.art
+      value: yuji_dns    
   - domain_wildcard:
       match: '*.google.com'
       value: cloudflare_doh
