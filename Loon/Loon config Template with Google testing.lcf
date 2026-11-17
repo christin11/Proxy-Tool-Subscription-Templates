@@ -115,10 +115,10 @@ https://yfamilys.com/rule/Speedtest.list, policy=⏱️ Speedtest, tag=⏱️ Sp
 https://yfamilys.com/rule/Google.list, policy=🔍 Google, tag=🔍 Google, enabled=true
 https://yfamilys.com/rule/Microsoft.list, policy=Ⓜ️ Microsoft, tag=Ⓜ️ Microsoft, enabled=true
 https://yfamilys.com/rule/OneDrive.list, policy=Ⓜ️ Microsoft, tag=Ⓜ️ Microsoft, enabled=true
+https://yfamilys.com/rule/AppleNews.list, policy=📰 Apple News, tag=📰 Apple News, enabled=true
 https://yfamilys.com/rule/Apple.list, policy=🍎 Apple, tag=🍎 Apple, enabled=true
 https://yfamilys.com/rule/AppStore.list, policy=🍎 Apple, tag=🍎 Apple, enabled=true
 https://yfamilys.com/rule/AppleProxy.list, policy=🚀 手动切换, tag=🍎 Apple, enabled=true
-https://yfamilys.com/rule/AppleNews.list, policy=📰 Apple News, tag=📰 Apple News, enabled=true
 https://yfamilys.com/rule/Cryptocurrency.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
 https://yfamilys.com/rule/Crypto.list, policy=💰 Crypto, tag=Cryptocurrency, enabled=true
 https://yfamilys.com/rule/PayPal.list, policy=🪙 Paypal, tag=🪙 Paypal, enabled=true
