@@ -275,9 +275,9 @@ rule-providers:
   KakaoTalk: {<<: *class, url: 'https://yfamilys.com/rule/KakaoTalk.list'}
   Speedtest: {<<: *class, url: 'https://whatshub.top/rule/Speedtest.list'}
   Google: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
+  AppleNews: {<<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleNews/AppleNews.list'}
   AppleCN: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
   AppleProxy: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
-  AppleNews: {<<: *class, url: 'https://whatshub.top/rule/AppleNews.list'}
   Microsoft: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
   OneDrive: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   Github: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
