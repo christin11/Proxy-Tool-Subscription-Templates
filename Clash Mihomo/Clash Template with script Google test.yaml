@@ -275,9 +275,9 @@ rule-providers:
   KakaoTalk: {<<: *class, url: 'https://yfamilys.com/rule/KakaoTalk.list'}
   Speedtest: {<<: *class, url: 'https://whatshub.top/rule/Speedtest.list'}
   Google: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
-  AppleNews: {<<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleNews/AppleNews.list'}
   AppleCN: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
   AppleProxy: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
+  AppleNews: {<<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleNews/AppleNews.list'}
   Microsoft: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
   OneDrive: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   Github: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
@@ -337,9 +337,9 @@ rules:
   - RULE-SET,Github,🐙 Github
   - RULE-SET,OneDrive,Ⓜ️ 微软服务
   - RULE-SET,Xbox,Ⓜ️ 微软服务
+  - RULE-SET,AppleNews,📰 苹果新闻
   - RULE-SET,AppleCN,🍎 苹果服务
   - RULE-SET,AppleProxy,🍎 苹果服务
-  - RULE-SET,AppleNews,📰 苹果新闻
   - RULE-SET,Crypto,💰 加密货币
   - RULE-SET,Cryptocurrency,💰 加密货币
   - RULE-SET,Paypal,🪙 贝宝支付
