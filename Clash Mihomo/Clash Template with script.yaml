@@ -276,9 +276,9 @@ rule-providers:
   KakaoTalk: {<<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/KakaoTalk/KakaoTalk.list'}
   Speedtest: {<<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.list'}
   Google: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
+  AppleNews: {<<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/AppleNews/AppleNews.list'}
   AppleCN: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
   AppleProxy: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
-  AppleNews: {<<: *class, url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleNews/AppleNews.list'}
   Microsoft: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
   OneDrive: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   Github: {<<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
