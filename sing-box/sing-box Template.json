@@ -1207,6 +1207,13 @@
         "update_interval": "3d", "download_detour": "🟢 直连"
       },
       {
+        "tag": "AppleNews",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/AppleNews/AppleNews.json",
+        "update_interval": "3d", "download_detour": "🟢 直连"
+      },
+      {
         "tag": "AppleCN",
         "type": "remote",
         "format": "source",
@@ -1218,13 +1225,6 @@
         "type": "remote",
         "format": "source",
         "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/AppleServers.json",
-        "update_interval": "3d", "download_detour": "🟢 直连"
-      },
-      {
-        "tag": "AppleNews",
-        "type": "remote",
-        "format": "source",
-        "url": "https://testingcf.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/AppleNews/AppleNews.json",
         "update_interval": "3d", "download_detour": "🟢 直连"
       },
       {
