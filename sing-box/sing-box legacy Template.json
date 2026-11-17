@@ -1124,6 +1124,13 @@
     "update_interval": "3d"
   },
   {
+    "tag": "AppleNews",
+    "type": "remote",
+    "format": "source",
+    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/AppleNews/AppleNews.json",
+    "update_interval": "3d"
+  },
+  {
     "tag": "AppleCN",
     "type": "remote",
     "format": "source",
@@ -1135,13 +1142,6 @@
     "type": "remote",
     "format": "source",
     "url": "https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/sing-box/Rules/AppleServers.json",
-    "update_interval": "3d"
-  },
-  {
-    "tag": "AppleNews",
-    "type": "remote",
-    "format": "source",
-    "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/AppleNews/AppleNews.json",
     "update_interval": "3d"
   },
   {
