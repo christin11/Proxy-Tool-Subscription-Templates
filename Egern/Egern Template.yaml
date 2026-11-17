@@ -884,6 +884,9 @@ rules:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Microsoft.yaml
     policy: Ⓜ️ Microsoft
 - rule_set:
+    match: https://github.com/Repcz/EgernRules/raw/X/Rules/AppleNews/AppleNews.yaml
+    policy: 📰 Apple News
+- rule_set:
     match: https://raw.githubusercontent.com/Centralmatrix3/Matrix-io/master/Egern/Ruleset/Apple.yaml
     policy: 🍎 Apple
 - rule_set:
@@ -892,9 +895,6 @@ rules:
 - rule_set:
     match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/AppleServers.yaml
     policy: 🍎 Apple
-- rule_set:
-    match: https://github.com/Repcz/EgernRules/raw/X/Rules/AppleNews/AppleNews.yaml
-    policy: 📰 Apple News
 - rule_set:
     match: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Cryptocurrency/Cryptocurrency.yaml
     policy: 💰 Crypto
