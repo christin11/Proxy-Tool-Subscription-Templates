@@ -110,6 +110,7 @@ https://yfamilys.com/rule/OpenAI.list, policy=🤖️ AI, tag=OpenAI, enabled=tr
 https://yfamilys.com/rule/Claude.list, policy=🤖️ AI, tag=Claude, enabled=true
 https://yfamilys.com/rule/Gemini.list, policy=🤖️ AI, tag=Gemini, enabled=true
 https://yfamilys.com/rule/Copilot.list, policy=🤖️ AI, tag=Copilot, enabled=true
+https://yfamilys.com/rule/ai.list, policy=🤖️ AI, tag=🤖 AI, enabled=true
 https://yfamilys.com/rule/YouTube.list, policy=📹 YouTube, tag=📹 YouTube, enabled=true
 https://yfamilys.com/rule/Speedtest.list, policy=⏱️ Speedtest, tag=⏱️ Speedtest, enabled=true
 https://yfamilys.com/rule/Google.list, policy=🔍 Google, tag=🔍 Google, enabled=true
@@ -126,7 +127,6 @@ https://yfamilys.com/rule/AmazonIP.list, policy=🛒 Shopping, tag=🛒 Shopping
 https://yfamilys.com/rule/eBay.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
 https://yfamilys.com/rule/BestBuy.list, policy=🛒 Shopping, tag=🛒 Shopping, enabled=true
 https://yfamilys.com/rule/GitHub.list, policy=🐙 GitHub, tag=🐙 GitHub, enabled=true
-https://yfamilys.com/rule/ai.list, policy=🤖️ AI, tag=🤖 AI, enabled=true
 https://yfamilys.com/rule/Line.list, policy=📤 Line, tag=📤 Line, enabled=true
 https://yfamilys.com/rule/KakaoTalk.list, policy=📢 KakaoTalk, tag=📢 KakaoTalk, enabled=true
 https://yfamilys.com/rule/Telegram.list, policy=📲 Telegram, tag=📱 Telegram, enabled=true
