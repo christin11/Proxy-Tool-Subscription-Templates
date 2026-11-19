@@ -1067,13 +1067,6 @@
         "update_interval": "3d", "download_detour": "🟢 直连"
       },
       {
-        "tag": "AI",
-        "type": "remote",
-        "format": "source",
-        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/AI.json",
-        "update_interval": "3d", "download_detour": "🟢 直连"
-      },
-      {
         "tag": "OpenAI",
         "type": "remote",
         "format": "source",
@@ -1100,7 +1093,14 @@
         "format": "source",
         "url": "https://testingcf.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Copilot/Copilot.json",
         "update_interval": "3d", "download_detour": "🟢 直连"
-      },      
+      },  
+      {
+        "tag": "AI",
+        "type": "remote",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/Tool@X/sing-box/Rules/AI.json",
+        "update_interval": "3d", "download_detour": "🟢 直连"
+      },
       {
         "tag": "Telegram",
         "type": "remote",
