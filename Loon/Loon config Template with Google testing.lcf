@@ -186,8 +186,8 @@ FINAL,🚀 手动切换
 https://kelee.one/Tool/Loon/Lpx/Block_HTTPDNS.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/Remove_ads_by_keli.lpx, enabled=true
-https://kelee.one/Tool/Loon/Lpx/TestFlightRegionUnlock.lpx, enabled=true
-https://kelee.one/Tool/Loon/Lpx/Auto_Join_TF.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/TestFlightRegionUnlock.lpx, enabled=false
+https://kelee.one/Tool/Loon/Lpx/Auto_Join_TF.lpx, enabled=false
 https://kelee.one/Tool/Loon/Lpx/AppleWeatherEnhancer.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/BaiduSearchWebpage_remove_ads.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx, enabled=true
